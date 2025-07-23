@@ -52,6 +52,9 @@
 
 	--background: var(--secondary-white);
 	--textcolor: var(--secondary-900);
+
+	--shadow-black: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
+	--glow-black: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {

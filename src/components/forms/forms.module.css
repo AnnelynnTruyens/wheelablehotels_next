@@ -1,0 +1,107 @@
+/* GENERAL */
+.input {
+	margin: 0;
+	width: -webkit-fill-available;
+	min-width: 20rem;
+	padding: 1rem 1.5rem;
+
+	border-radius: var(--border-radius);
+	border: 1px solid var(--secondary-500);
+	background-color: var(--secondary-white);
+	color: var(--textcolor);
+	box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.label {
+	transform: translateX(25px);
+}
+
+.password {
+	text-align: left;
+}
+
+.password .form_input {
+	margin-bottom: 0;
+}
+
+.password .checkbox {
+	transform: translateX(25px);
+}
+
+@media screen and (max-width: 570px) {
+	.label {
+		font-size: 0.8em;
+		transform: translate(15px);
+	}
+
+	.input {
+		min-width: 0;
+		padding: 0.5rem 0.75rem;
+	}
+
+	.input::placeholder {
+		font-size: 0.8em;
+	}
+}
+
+/* CHECKBOX */
+.checkbox_label {
+	margin-left: 0.5rem;
+}
+
+@media screen and (max-width: 570px) {
+	.checkbox {
+		font-size: 0.8rem;
+	}
+}
+
+/* FILES */
+
+/* TEXTAREA */
+.input_textarea {
+	margin: 0;
+	width: -webkit-fill-available;
+	min-width: 20rem;
+	min-height: 5rem;
+	padding: 1rem 1.5rem;
+
+	border-radius: var(--border-radius);
+	border: 1px solid var(--secondary-500);
+	background-color: var(--secondary-white);
+	color: var(--black);
+	box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+@media screen and (max-width: 570px) {
+	.input_textarea::placeholder {
+		font-size: 0.8em;
+	}
+
+	.input_textarea {
+		min-width: 0;
+		padding: 0.5rem 0.75rem;
+	}
+}
+
+/* RATING */
+.rating_filled {
+	color: var(--secondary-600);
+	transition: 0.3s;
+}
+
+.rating_empty {
+	color: var(--secondary-300);
+	transition: 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+	.rating_filled {
+		color: var(--secondary-white);
+	}
+
+	.rating_empty {
+		color: var(--secondary-200);
+	}
+}
+
+/* MESSAGES */

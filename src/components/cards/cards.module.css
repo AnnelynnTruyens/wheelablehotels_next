@@ -1,0 +1,260 @@
+/* HOTEL CARD */
+.hotel_card {
+	height: fit-content;
+	width: 100%;
+	margin-bottom: 1rem;
+
+	display: flex;
+	flex-direction: row;
+
+	border-radius: var(--border-radius);
+	overflow: hidden;
+
+	box-shadow: var(--shadow-black);
+
+	position: relative;
+}
+
+.hotel_card a::before {
+	content: "";
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+}
+
+.hotel_card:hover {
+	transform: scale(1.025);
+	transition: 0.3s;
+}
+
+.card_img {
+	width: 20rem;
+	object-fit: cover;
+}
+
+.card_info {
+	width: 100%;
+	padding: 1rem;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.card_link {
+	color: var(--secondary-600);
+	text-decoration: none;
+	transition: 0.3s;
+}
+
+.card_link:hover,
+.card_link:focus,
+.card_link:focus-visible {
+	text-decoration: underline var(--secondary-600);
+	transition: 0.3s;
+}
+
+.card_title {
+	margin: 0;
+	font-size: 1.5em;
+	color: var(--secondary-600);
+}
+
+.card_location {
+	margin: 0.5rem 0;
+}
+
+.card_features {
+	margin: 0;
+}
+
+/* HOTEL HIGHLIGHT */
+.hotel_highlight {
+	width: 15rem;
+	margin-bottom: 1rem;
+
+	display: flex;
+	flex-direction: column;
+
+	border-radius: var(--border-radius);
+	overflow: hidden;
+
+	box-shadow: var(--shadow-black);
+
+	position: relative;
+}
+
+.hotel_highlight a::before {
+	content: "";
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+}
+
+.hotel_highlight:hover {
+	transform: scale(1.025);
+	transition: 0.3s;
+}
+
+.highlight_img {
+	width: 100%;
+	height: 7rem;
+	object-fit: cover;
+}
+
+.highlight_info {
+	padding: 1rem;
+}
+
+.highlight_link {
+	color: var(--secondary-600);
+	text-decoration: none;
+	transition: 0.3s;
+}
+
+.highlight_link:hover,
+.highlight_link:focus,
+.highlight_link:focus-visible {
+	text-decoration: underline var(--secondary-600);
+	transition: 0.3s;
+}
+
+.highlight_title {
+	margin: 0;
+	font-size: 1.2em;
+	color: var(--secondary-600);
+	line-height: 1;
+}
+
+.highlight_location {
+	font-size: 0.9em;
+}
+
+/* REVIEW CARD */
+.review {
+	border: 1px solid var(--secondary-200);
+	border-radius: var(--border-radius);
+	padding: 1rem;
+	margin-bottom: 1rem;
+
+	background-color: var(--secondary-100);
+	box-shadow: var(--shadow-black);
+}
+
+.review_top {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.name {
+	margin: 0;
+	font-weight: 700;
+	color: var(--primary-700);
+}
+
+.review_text {
+	margin-top: 1rem;
+}
+
+/* ROOM CARD */
+.room {
+	border: 1px solid var(--primary-200);
+	border-radius: var(--border-radius);
+	padding: 1rem;
+	margin-bottom: 1rem;
+
+	background-color: var(--primary-100);
+	box-shadow: var(--shadow-black);
+}
+
+.room_title {
+	margin: 0;
+	color: var(--primary-700);
+}
+
+.room_subtitle {
+	margin-bottom: 0;
+}
+
+.room_text {
+	margin: 0;
+}
+
+.room_list {
+	margin-top: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+	.hotel_card,
+	.hotel_highlight {
+		background-color: var(--primary-700);
+		color: var(--textcolor);
+	}
+
+	.card_title,
+	.highlight_title {
+		color: var(--secondary-400);
+	}
+
+	.review {
+		background-color: var(--secondary-200);
+		border-color: var(--secondary-100);
+		color: var(--secondary-900);
+	}
+
+	.name {
+		color: var(--secondary-900);
+	}
+
+	.room {
+		border: none;
+		background-color: var(--primary-700);
+		color: var(--textcolor);
+	}
+
+	.room_title {
+		color: var(--secondary-400);
+	}
+}
+
+@media screen and (max-width: 1290px) {
+	.card_img {
+		width: 15rem;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.card_img {
+		width: 10rem;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.card_location {
+		margin: 0.5rem 0 0.2rem;
+	}
+
+	.card_img {
+		width: 7rem;
+	}
+}
+
+@media screen and (max-width: 570px) {
+	.hotel_card p,
+	.hotel_card li {
+		font-size: 0.8em;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.card_info {
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+}
