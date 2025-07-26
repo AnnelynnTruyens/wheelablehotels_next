@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function Loading() {
-	const [showLoading, setShowLoading] = useState<Boolean>(false);
+	const [showLoading, setShowLoading] = useState<boolean>(false);
 
 	// Set timer to wait 1 second before showing the loading indicator
 	useEffect(() => {

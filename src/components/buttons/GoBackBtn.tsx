@@ -21,7 +21,7 @@ export default function GoBackBtn({
 	};
 
 	return (
-		<button onClick={goBack} className={styles.back_link}>
+		<button onClick={goBack} className={styles.back_link} type={type} {...rest}>
 			<svg className={styles.back_link_arrow} viewBox="0 0 16 16">
 				<path d="M10 12L6 8L10 4" />
 			</svg>

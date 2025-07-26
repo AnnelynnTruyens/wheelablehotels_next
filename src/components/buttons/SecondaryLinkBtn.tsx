@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 
 type ButtonProps = {
 	children: ReactNode;
-	link: string | Object;
+	link: string | object;
 };
 
 export default function SecondaryLinkBtn({ children, link }: ButtonProps) {
