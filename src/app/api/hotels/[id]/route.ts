@@ -8,10 +8,13 @@ import AuthError from "@/lib/middleware/errors/AuthError";
 import { getUserFromRequest } from "@/lib/middleware/auth";
 import { connectToDatabase } from "@/lib/mongoose";
 
-export async function GET(
-	req: NextRequest,
-	context: { params: { id: string } }
-) {
+type RouteContext = {
+	params: {
+		id: string;
+	};
+};
+
+export async function GET(req: NextRequest, context: RouteContext) {
 	await connectToDatabase();
 	try {
 		const hotel = await Hotel.findOne({ _id: context.params.id })
@@ -38,10 +41,7 @@ export async function GET(
 	}
 }
 
-export async function PUT(
-	req: NextRequest,
-	{ params }: { params: { id: string } }
-) {
+export async function PUT(req: NextRequest, context: RouteContext) {
 	await connectToDatabase();
 	try {
 		const user = await getUserFromRequest(req);
@@ -49,8 +49,8 @@ export async function PUT(
 
 		const query =
 			user.role === "admin"
-				? { _id: params.id }
-				: { _id: params.id, userId: user._id };
+				? { _id: context.params.id }
+				: { _id: context.params.id, userId: user._id };
 
 		const hotel = await Hotel.findOneAndUpdate(query, body, {
 			new: true,
@@ -68,16 +68,13 @@ export async function PUT(
 	}
 }
 
-export async function DELETE(
-	req: NextRequest,
-	{ params }: { params: { id: string } }
-) {
+export async function DELETE(req: NextRequest, context: RouteContext) {
 	await connectToDatabase();
 	try {
 		const user = await getUserFromRequest(req);
 		if (user.role !== "admin") throw new AuthError("Unauthorized", 401);
 
-		const deleted = await Hotel.findOneAndDelete({ _id: params.id });
+		const deleted = await Hotel.findOneAndDelete({ _id: context.params.id });
 		if (!deleted) throw new NotFoundError("Hotel not found");
 
 		return NextResponse.json({});
