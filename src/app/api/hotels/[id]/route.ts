@@ -10,11 +10,11 @@ import { connectToDatabase } from "@/lib/mongoose";
 
 export async function GET(
 	req: NextRequest,
-	{ params }: { params: { id: string } }
+	context: { params: { id: string } }
 ) {
 	await connectToDatabase();
 	try {
-		const hotel = await Hotel.findOne({ _id: params.id })
+		const hotel = await Hotel.findOne({ _id: context.params.id })
 			.populate("amenities")
 			.populate("accessibilityFeatures")
 			.populate("userId", "username");
