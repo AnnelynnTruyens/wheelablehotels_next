@@ -107,7 +107,7 @@ a {
 	transition: 0.3s;
 }
 a:hover {
-	color: var(--secondary-700);
+	color: var(--secondary-600);
 	font-weight: 700;
 	transition: 0.3s;
 }
@@ -125,16 +125,16 @@ button {
 	transition: 0.3s;
 }
 button:hover {
-	background-color: var(--secondary-600);
-	color: var(--secondary-white);
+	background-color: var(--secondary-500);
+	color: var(--secondary-900);
 	transform: scale(1.1);
 	transition: 0.3s;
 }
 button:focus,
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
-	background-color: var(--secondary-600);
-	color: var(--secondary-white);
+	background-color: var(--secondary-500);
+	color: var(--secondary-900);
 }
 
 .button {
@@ -150,8 +150,8 @@ button:focus-visible {
 	transition: 0.3s;
 }
 .button:hover {
-	background-color: var(--secondary-600);
-	color: var(--secondary-white);
+	background-color: var(--secondary-500);
+	color: var(--secondary-900);
 	transform: scale(1.1);
 	transition: 0.3s;
 }

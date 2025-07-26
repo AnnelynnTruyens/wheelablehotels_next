@@ -1,93 +1,128 @@
+import Link from "next/link";
 import styles from "./page.module.css";
-
-import PrimaryBtn from "@/components/buttons/PrimaryBtn";
-import SecondaryBtn from "@/components/buttons/SecondaryBtn";
-import PrimaryLinkBtn from "@/components/buttons/PrimaryLinkBtn";
-import SecondaryLinkBtn from "@/components/buttons/SecondaryLinkBtn";
-import GoBackBtn from "@/components/buttons/GoBackBtn";
-import HotelCard from "@/components/cards/HotelCard";
 import HotelHighlight from "@/components/cards/HotelHighlight";
-import ReviewCard from "@/components/cards/ReviewCard";
-import RoomCard from "@/components/cards/RoomCard";
-import FormInput from "@/components/forms/FormInput";
-import FormTextarea from "@/components/forms/FormTextarea";
-import FormCheckbox from "@/components/forms/FormCheckbox";
-import FormFileInput from "@/components/forms/FormFileInput";
+import Hotel from "@/lib/modules/Hotel/Hotel.model";
+import Review from "@/lib/modules/Review/Review.model";
+import { connectToDatabase } from "@/lib/mongoose";
+import "@/lib/modules/Amenity/Amenity.model"; // 👈 ensures schema is registered
+import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model"; // 👈 ensures schema is registered
+import PrimaryBtn from "@/components/buttons/PrimaryBtn";
 
-export default function Home() {
+// Type for hotel data
+interface HotelWithRating {
+	_id: string;
+	name: string;
+	location?: string;
+	rating: number;
+	status: string;
+}
+
+// Utility to calculate hotel ratings
+async function getTopRatedCompletedHotels(): Promise<HotelWithRating[]> {
+	await connectToDatabase();
+
+	const hotels = await Hotel.find({ status: "completed" })
+		.populate("amenities")
+		.populate("accessibilityFeatures");
+
+	const hotelsWithRatings: HotelWithRating[] = [];
+
+	for (const hotel of hotels) {
+		const reviews = await Review.find({ hotelId: hotel._id });
+		if (!reviews.length) continue;
+
+		const sum = reviews.reduce((acc, r) => acc + Number(r.rating ?? 0), 0);
+		const avg = Number((sum / reviews.length).toFixed(1));
+
+		hotelsWithRatings.push({
+			_id: hotel._id.toString(),
+			name: hotel.name,
+			location: hotel.location,
+			rating: avg,
+			status: hotel.status,
+		});
+	}
+
+	// Sort and take top 5
+	return hotelsWithRatings
+		.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0))
+		.slice(0, 5);
+}
+
+// Server component (SEO-friendly)
+export default async function HomePage() {
+	const hotels = await getTopRatedCompletedHotels();
+
 	return (
-		<div className={styles.page}>
-			<main className="main">
-				<h1>Home</h1>
-				<p>This is the home page</p>
-				<h2>Buttons</h2>
-				<div>
-					<PrimaryBtn>Primary Button</PrimaryBtn>
-					<SecondaryBtn>Secondary Button</SecondaryBtn>
-					<PrimaryLinkBtn link="">Primary Link Button</PrimaryLinkBtn>
-					<SecondaryLinkBtn link="">Secondary Link Button</SecondaryLinkBtn>
-					<GoBackBtn>Go back</GoBackBtn>
-				</div>
-				<h2>Cards</h2>
-				<div>
-					<HotelCard
-						hotelName="hotel somewhere"
-						hotelId="1"
-						location="somewhere in this world"
-						accessibilityFeatures={[
-							{ _id: "1", name: "feature-1" },
-							{ _id: "2", name: "feature-2" },
-						]}
-						rating={3}
+		<main id="main" className={styles.main_home}>
+			<title>Wheelable Hotels</title>
+
+			<div className={styles.hero}>Search form</div>
+
+			<div className={styles.content}>
+				<section className={`${styles.section} ${styles.intro}`}>
+					<div className={`${styles.section_text} ${styles.intro_text}`}>
+						<p>
+							<span className={styles.intro_name}>Wheelable Hotels</span> is a
+							platform made by and for wheelchair users. It's our mission to
+							make finding accessible hotels easier. On our platform, you can
+							search hotels by destination or name, and you can filter them
+							based on your accessibility needs. You can also find accessibility
+							information about the hotel and the accessible rooms.
+						</p>
+						<p>
+							We know how important experiences from others are when looking at
+							hotels, so you can also see ratings and reviews from others. To
+							make your search easier, you can save hotels to your favourites
+							and come back to them at a later time.
+						</p>
+						<p>
+							All of our hotels are added by members of the community and all
+							information has been checked by an admin before being published on
+							the platform. This way we try to reduce the extra research that
+							comes with travelling as a wheelchair user. We can't guarantee
+							that all information is 100% correct, but if you find any
+							mistakes, please <Link href="/contact">contact us</Link> and let
+							us know.
+						</p>
+					</div>
+					<img
+						src="/assets/DSC_0045.jpg"
+						alt="Girl in wheelchair in front of beach"
+						className={styles.intro_img}
 					/>
-					<HotelHighlight
-						hotelName="hotel somewhere"
-						hotelId="1"
-						location="somewhere in this world"
-						rating={3}
-					/>
-					<ReviewCard
-						username="user560"
-						rating={3}
-						review="great hotel, would recommend to everyone"
-					/>
-					<RoomCard
-						roomName="room name"
-						accessibilityFeatures={[
-							{ _id: "1", name: "feature-1" },
-							{ _id: "2", name: "feature-2" },
-						]}
-						roomDescription="this is an accessible room"
-						accessibilityInfo="some accessibility info"
-					/>
-				</div>
-				<h2>Form partials</h2>
-				<div>
-					<FormInput
-						label="label"
-						type="text"
-						id="id"
-						name="name"
-						value={"value"}
-						placeholder="placeholder"
-					/>
-					<FormTextarea
-						label="label"
-						id="id"
-						name="name"
-						value={"value"}
-						placeholder="placeholder"
-					/>
-					<FormCheckbox
-						label="label"
-						id="id"
-						name="name"
-						value={"value"}
-						placeholder="placeholder"
-					/>
-					<FormFileInput label="label" id="id" name="name" />
-				</div>
-			</main>
-		</div>
+				</section>
+
+				<section className={`${styles.section} ${styles.community}`}>
+					<div className={styles.community_left}>
+						<h1 className={styles.section_title}>Community-based</h1>
+						<p className={styles.section_text}>
+							Our platform is community-based. All of our hotels are added by
+							community member, based on their own experiences...
+						</p>
+						<p className={styles.section_text}>
+							Join us in creating a more accessible travel experience, one hotel
+							at a time.
+						</p>
+					</div>
+					<div>Register form</div>
+				</section>
+
+				<section className={`${styles.section} ${styles.hotels}`}>
+					<h1 className={styles.section_title}>Community favourites</h1>
+					<div className={styles.hotel_highlights}>
+						{hotels.map((hotel) => (
+							<HotelHighlight
+								key={hotel._id}
+								hotelId={hotel._id}
+								hotelName={hotel.name}
+								location={hotel.location}
+								rating={hotel.rating}
+							/>
+						))}
+					</div>
+				</section>
+			</div>
+		</main>
 	);
 }

@@ -1,6 +1,6 @@
 .secondary {
-	background-color: var(--secondary-600);
-	color: var(--secondary-white);
+	background-color: var(--secondary-500);
+	color: var(--secondary-900);
 }
 
 .secondary:hover,
