@@ -30,8 +30,11 @@ export async function GET(
 			...hotel.toObject(),
 			rating: avgRating[0]?.avg ?? null,
 		});
-	} catch (err) {
-		return handleApiError(err);
+	} catch (err: unknown) {
+		if (err instanceof Error) {
+			return handleApiError(err);
+		}
+		return handleApiError(new Error("Unknown error"));
 	}
 }
 
@@ -57,8 +60,11 @@ export async function PUT(
 		if (!hotel) throw new NotFoundError("Hotel not found");
 
 		return NextResponse.json(hotel);
-	} catch (err) {
-		return handleApiError(err);
+	} catch (err: unknown) {
+		if (err instanceof Error) {
+			return handleApiError(err);
+		}
+		return handleApiError(new Error("Unknown error"));
 	}
 }
 
@@ -75,7 +81,10 @@ export async function DELETE(
 		if (!deleted) throw new NotFoundError("Hotel not found");
 
 		return NextResponse.json({});
-	} catch (err) {
-		return handleApiError(err);
+	} catch (err: unknown) {
+		if (err instanceof Error) {
+			return handleApiError(err);
+		}
+		return handleApiError(new Error("Unknown error"));
 	}
 }
