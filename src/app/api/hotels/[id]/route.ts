@@ -8,16 +8,19 @@ import AuthError from "@/lib/middleware/errors/AuthError";
 import { getUserFromRequest } from "@/lib/middleware/auth";
 import { connectToDatabase } from "@/lib/mongoose";
 
-type RouteContext = {
+type RouteParams = {
 	params: {
 		id: string;
 	};
 };
 
-export async function GET(req: NextRequest, context: any) {
+export async function GET(req: NextRequest, context: unknown) {
 	await connectToDatabase();
+
+	const { params } = context as RouteParams;
+
 	try {
-		const hotel = await Hotel.findOne({ _id: context.params.id })
+		const hotel = await Hotel.findOne({ _id: params.id })
 			.populate("amenities")
 			.populate("accessibilityFeatures")
 			.populate("userId", "username");
@@ -41,7 +44,7 @@ export async function GET(req: NextRequest, context: any) {
 	}
 }
 
-export async function PUT(req: NextRequest, context: RouteContext) {
+export async function PUT(req: NextRequest, context: RouteParams) {
 	await connectToDatabase();
 	try {
 		const user = await getUserFromRequest(req);
@@ -68,7 +71,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
 	}
 }
 
-export async function DELETE(req: NextRequest, context: RouteContext) {
+export async function DELETE(req: NextRequest, context: RouteParams) {
 	await connectToDatabase();
 	try {
 		const user = await getUserFromRequest(req);
