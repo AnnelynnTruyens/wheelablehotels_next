@@ -103,7 +103,7 @@ h3 {
 a {
 	font-weight: 400;
 	text-decoration: underline;
-	color: var(--black);
+	color: var(--textcolor);
 	transition: 0.3s;
 }
 a:hover {

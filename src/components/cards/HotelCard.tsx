@@ -46,7 +46,7 @@ export default function HotelCard({
 				className={styles.card_img}
 			/> */}
 			<img
-				src="/globe.svg"
+				src="/logo/Logo_WheelableHotels.svg"
 				alt="No hotel image found"
 				className={styles.card_img}
 			/>
