@@ -44,16 +44,19 @@ export async function GET(req: NextRequest, context: unknown) {
 	}
 }
 
-export async function PUT(req: NextRequest, context: RouteParams) {
+export async function PUT(req: NextRequest, context: unknown) {
 	await connectToDatabase();
+
+	const { params } = context as RouteParams;
+
 	try {
 		const user = await getUserFromRequest(req);
 		const body = await req.json();
 
 		const query =
 			user.role === "admin"
-				? { _id: context.params.id }
-				: { _id: context.params.id, userId: user._id };
+				? { _id: params.id }
+				: { _id: params.id, userId: user._id };
 
 		const hotel = await Hotel.findOneAndUpdate(query, body, {
 			new: true,
@@ -71,13 +74,16 @@ export async function PUT(req: NextRequest, context: RouteParams) {
 	}
 }
 
-export async function DELETE(req: NextRequest, context: RouteParams) {
+export async function DELETE(req: NextRequest, context: unknown) {
 	await connectToDatabase();
+
+	const { params } = context as RouteParams;
+
 	try {
 		const user = await getUserFromRequest(req);
 		if (user.role !== "admin") throw new AuthError("Unauthorized", 401);
 
-		const deleted = await Hotel.findOneAndDelete({ _id: context.params.id });
+		const deleted = await Hotel.findOneAndDelete({ _id: params.id });
 		if (!deleted) throw new NotFoundError("Hotel not found");
 
 		return NextResponse.json({});
