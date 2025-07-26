@@ -14,7 +14,7 @@ type RouteContext = {
 	};
 };
 
-export async function GET(req: NextRequest, context: RouteContext) {
+export async function GET(req: NextRequest, context: any) {
 	await connectToDatabase();
 	try {
 		const hotel = await Hotel.findOne({ _id: context.params.id })
