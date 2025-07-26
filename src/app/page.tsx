@@ -4,9 +4,8 @@ import HotelHighlight from "@/components/cards/HotelHighlight";
 import Hotel from "@/lib/modules/Hotel/Hotel.model";
 import Review from "@/lib/modules/Review/Review.model";
 import { connectToDatabase } from "@/lib/mongoose";
-import "@/lib/modules/Amenity/Amenity.model"; // 👈 ensures schema is registered
-import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model"; // 👈 ensures schema is registered
-import PrimaryBtn from "@/components/buttons/PrimaryBtn";
+import "@/lib/modules/Amenity/Amenity.model";
+import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 
 // Type for hotel data
 interface HotelWithRating {
@@ -64,8 +63,8 @@ export default async function HomePage() {
 					<div className={`${styles.section_text} ${styles.intro_text}`}>
 						<p>
 							<span className={styles.intro_name}>Wheelable Hotels</span> is a
-							platform made by and for wheelchair users. It's our mission to
-							make finding accessible hotels easier. On our platform, you can
+							platform made by and for wheelchair users. It&apos;s our mission
+							to make finding accessible hotels easier. On our platform, you can
 							search hotels by destination or name, and you can filter them
 							based on your accessibility needs. You can also find accessibility
 							information about the hotel and the accessible rooms.
@@ -80,10 +79,10 @@ export default async function HomePage() {
 							All of our hotels are added by members of the community and all
 							information has been checked by an admin before being published on
 							the platform. This way we try to reduce the extra research that
-							comes with travelling as a wheelchair user. We can't guarantee
-							that all information is 100% correct, but if you find any
-							mistakes, please <Link href="/contact">contact us</Link> and let
-							us know.
+							comes with travelling as a wheelchair user. We can&apos;t
+							guarantee that all information is 100% correct, but if you find
+							any mistakes, please <Link href="/contact">contact us</Link> and
+							let us know.
 						</p>
 					</div>
 					<img

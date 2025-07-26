@@ -2,7 +2,7 @@ import AppError from "./AppError";
 import { NextResponse } from "next/server";
 import { Error as MongooseError } from "mongoose";
 
-export function handleApiError(err: any) {
+export function handleApiError(err: Error) {
 	if (err instanceof AppError) {
 		return NextResponse.json(
 			{ message: err.message },

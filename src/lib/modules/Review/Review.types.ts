@@ -5,7 +5,7 @@ import { Hotel } from "../Hotel/Hotel.types";
 export type Review = Document & {
 	_id?: string;
 	message?: string;
-	rating: Number;
+	rating: number;
 	status: string;
 	userId: ObjectId;
 	user?: User;

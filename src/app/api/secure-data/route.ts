@@ -12,10 +12,24 @@ export async function GET(req: NextRequest) {
 	try {
 		const user = await verifyJwtToken(token);
 		return NextResponse.json({ user });
-	} catch (err: any) {
+	} catch (err: unknown) {
+		if (
+			typeof err === "object" &&
+			err !== null &&
+			"message" in err &&
+			"statusCode" in err
+		) {
+			const { message, statusCode } = err as {
+				message: string;
+				statusCode?: number;
+			};
+			return NextResponse.json({ message }, { status: statusCode ?? 500 });
+		}
+
+		// Fallback for truly unknown errors
 		return NextResponse.json(
-			{ message: err.message },
-			{ status: err.statusCode ?? 500 }
+			{ message: "An unknown error occurred" },
+			{ status: 500 }
 		);
 	}
 }

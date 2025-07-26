@@ -15,8 +15,13 @@ export async function POST(req: NextRequest) {
 		const result = await hotel.save();
 
 		return NextResponse.json(result);
-	} catch (err: any) {
-		if (err.code === 11000) {
+	} catch (err: unknown) {
+		if (
+			typeof err === "object" &&
+			err !== null &&
+			"code" in err &&
+			(err as { code: number }).code === 11000
+		) {
 			return handleApiError(
 				new AuthError(
 					"It seems like someone already added this hotel. Try tweaking the name.",
@@ -24,6 +29,12 @@ export async function POST(req: NextRequest) {
 				)
 			);
 		}
-		return handleApiError(err);
+
+		if (err instanceof Error) {
+			return handleApiError(err);
+		}
+
+		// fallback for truly unknown errors
+		return handleApiError(new Error("An unknown error occurred"));
 	}
 }

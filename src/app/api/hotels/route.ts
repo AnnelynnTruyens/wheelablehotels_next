@@ -33,7 +33,12 @@ export async function GET(req: NextRequest) {
 		);
 
 		return NextResponse.json(hotelsWithRatings);
-	} catch (err) {
-		return handleApiError(err);
+	} catch (err: unknown) {
+		if (err instanceof Error) {
+			return handleApiError(err);
+		} else {
+			// Optional: handle unexpected non-Error throws
+			return handleApiError(new Error("An unknown error occurred"));
+		}
 	}
 }

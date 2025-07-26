@@ -8,7 +8,7 @@ export type Hotel = Document & {
 	contactPhone?: string;
 	website?: string;
 	accessibilityInfo?: string;
-	rating?: Number;
+	rating?: number;
 	userId: ObjectId;
 	status: string;
 	amenities?: ObjectId[];
