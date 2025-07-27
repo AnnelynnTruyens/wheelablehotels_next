@@ -6,7 +6,7 @@ export default function Accessibility() {
 			<p>
 				We aim to be as accessible as possible. Our accessibility screening for
 				the website is not finished yet. You will be able to find the digital
-				accessibility information here, once it's done.
+				accessibility information here, once it&apos;s done.
 			</p>
 		</main>
 	);

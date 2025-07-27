@@ -6,9 +6,9 @@ export default function Privacy() {
 			<p>We value your privacy.</p>
 			<h2>Registered users</h2>
 			<p>
-				We don't ask for your full name to be part of the platform. We only ask
-				for and store your email for login purposes. You can delete your account
-				at any moment, your data will then be deleted.
+				We don&apos;t ask for your full name to be part of the platform. We only
+				ask for and store your email for login purposes. You can delete your
+				account at any moment, your data will then be deleted.
 			</p>
 			<h2>Contact form</h2>
 			<p>
