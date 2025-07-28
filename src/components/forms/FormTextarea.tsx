@@ -6,7 +6,7 @@ type FormTextareaProps = {
 	label: string;
 	id: string;
 	name: string;
-	value: string;
+	value?: string;
 	placeholder?: string;
 	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 	required?: boolean;
