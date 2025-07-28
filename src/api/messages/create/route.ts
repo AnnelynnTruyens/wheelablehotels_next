@@ -25,7 +25,8 @@ export async function createMessage(formData: FormData) {
 			hotelId,
 			status: "new",
 		});
-		const result = await newMessage.save();
+
+		await newMessage.save();
 		return { success: true };
 	} catch (err: unknown) {
 		console.error("Server action failed:", err);
