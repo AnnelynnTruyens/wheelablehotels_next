@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import Link from "next/link";
 import styles from "./page.module.css";
 import HotelHighlight from "@/components/cards/HotelHighlight";
