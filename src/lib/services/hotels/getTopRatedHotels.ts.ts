@@ -2,6 +2,8 @@ import Hotel from "@/lib/modules/Hotel/Hotel.model";
 import Review from "@/lib/modules/Review/Review.model";
 import { connectToDatabase } from "@/lib/mongoose";
 import { HotelWithRating } from "./types";
+import { Amenity } from "@/lib/modules/Amenity/Amenity.types";
+import { AccessibilityFeature } from "@/lib/modules/AccessibilityFeature/AccessibilityFeature.types";
 
 // Get top-rated hotels
 export async function getTopRatedHotels(): Promise<HotelWithRating[]> {
@@ -26,11 +28,13 @@ export async function getTopRatedHotels(): Promise<HotelWithRating[]> {
 			location: hotel.location,
 			rating: avg,
 			status: hotel.status,
-			amenities: hotel.amenities.map((a: any) => ({
+			amenities: (hotel.amenities as Amenity[]).map((a) => ({
 				_id: a._id.toString(),
 				name: a.name,
 			})),
-			accessibilityFeatures: hotel.accessibilityFeatures.map((f: any) => ({
+			accessibilityFeatures: (
+				hotel.accessibilityFeatures as AccessibilityFeature[]
+			).map((f) => ({
 				_id: f._id.toString(),
 				name: f.name,
 			})),
