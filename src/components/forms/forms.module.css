@@ -1,6 +1,6 @@
 /* GENERAL */
 .input {
-	margin: 0;
+	margin: 0 0 1rem 0;
 	width: -webkit-fill-available;
 	min-width: 20rem;
 	padding: 1rem 1.5rem;
@@ -59,7 +59,7 @@
 
 /* TEXTAREA */
 .input_textarea {
-	margin: 0;
+	margin: 0 0 1rem 0;
 	width: -webkit-fill-available;
 	min-width: 20rem;
 	min-height: 5rem;

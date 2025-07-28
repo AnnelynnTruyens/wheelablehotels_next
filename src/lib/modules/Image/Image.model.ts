@@ -34,20 +34,6 @@ const imageSchema = new mongoose.Schema<Image>(
 	}
 );
 
-imageSchema.virtual("hotel", {
-	ref: "Hotel",
-	localField: "hotelId",
-	foreignField: "_id",
-	justOne: true,
-});
-
-imageSchema.virtual("room", {
-	ref: "Room",
-	localField: "roomId",
-	foreignField: "_id",
-	justOne: true,
-});
-
 imageSchema.pre("save", function (next) {
 	validateModel(this);
 	next();

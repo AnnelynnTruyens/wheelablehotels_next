@@ -4,7 +4,7 @@ import styles from "./contact.module.css";
 import { useState } from "react";
 import FormInput from "@/components/forms/FormInput";
 import FormTextarea from "@/components/forms/FormTextarea";
-import { createMessage } from "@/api/messages/create/route";
+import { createMessage } from "@/lib/services/messages/createMessage";
 import SuccessMessage from "@/components/forms/SuccessMessage";
 
 type ContactFormProps = {

@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import { getFirstImageByHotel } from "@/lib/services/images/getFirstImage";
 import styles from "./cards.module.css";
 import Rating from "./partials/rating";
 import Link from "next/link";
@@ -12,41 +10,20 @@ type HotelHighlightProps = {
 	rating: number | undefined;
 };
 
-export default function HotelHighlight({
+export default async function HotelHighlight({
 	hotelName,
 	hotelId,
 	location,
 	rating,
 }: HotelHighlightProps) {
-	const [image, setImage] = useState();
-
-	// useEffect(() => {
-	// 	getImagesByHotel({ hotelId })
-	// 		.then((response) => {
-	// 			if (response.data && response.data.length > 0) {
-	// 				setImage(response.data[0]); // Set the first image
-	// 			}
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error("Failed to fetch hotel image:", error);
-	// 		});
-	// }, [hotelId]);
+	const image = await getFirstImageByHotel({ hotelId });
 
 	return (
 		<div className={styles.hotel_highlight}>
-			{/* <img
-				src={
-					image
-						? `${process.env.VITE_SERVER_URL}${image.imageUrl}`
-						: "/Icon_wheelchair_blue-white.png"
-				}
+			<img
+				src={image ? image.imageUrl : "/logo/Logo_WheelableHotels.svg"}
 				alt={image ? `${image.alt}` : "No hotel image found"}
 				className={styles.highlight_img}
-			/> */}
-			<img
-				src="/logo/Logo_WheelableHotels.svg"
-				alt="No hotel image found"
-				className={styles.card_img}
 			/>
 			<div className={styles.highlight_info}>
 				<Link

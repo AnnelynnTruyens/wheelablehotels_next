@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import HotelHighlight from "@/components/cards/HotelHighlight";
 import "@/lib/modules/Amenity/Amenity.model";
 import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
-import { getTopRatedHotels } from "@/api/hotels/route";
+import { getTopRatedHotels } from "@/lib/services/hotels/getTopRatedHotels.ts";
 
 // Server component (SEO-friendly)
 export default async function HomePage() {
