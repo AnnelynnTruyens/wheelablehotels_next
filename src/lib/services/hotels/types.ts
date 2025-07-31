@@ -1,5 +1,5 @@
 // Type for hotel data
-export interface HotelWithRating {
+export interface HotelWithRatingAndImage {
 	_id: string;
 	name: string;
 	location?: string;
@@ -8,4 +8,7 @@ export interface HotelWithRating {
 
 	amenities: { _id: string; name: string }[];
 	accessibilityFeatures: { _id: string; name: string }[];
+
+	imageUrl?: string;
+	imageAlt?: string;
 }

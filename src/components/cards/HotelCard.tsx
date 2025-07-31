@@ -9,22 +9,24 @@ type HotelCardProps = {
 	location: string | undefined;
 	accessibilityFeatures: { _id: string; name: string }[];
 	rating: number | undefined;
+	imageUrl?: string;
+	imageAlt?: string;
 };
 
-export default async function HotelCard({
+export default function HotelCard({
 	hotelName,
 	hotelId,
 	location,
 	accessibilityFeatures,
 	rating,
+	imageUrl,
+	imageAlt,
 }: HotelCardProps) {
-	const image = await getFirstImageByHotel({ hotelId });
-
 	return (
 		<div className={styles.hotel_card}>
 			<img
-				src={image ? image.imageUrl : "/Icon_WheelableHotels.png"}
-				alt={image ? `${image.alt}` : "No hotel image found"}
+				src={imageUrl ? imageUrl : "/Icon_WheelableHotels.png"}
+				alt={imageAlt ? imageAlt : "No hotel image found"}
 				className={styles.card_img}
 			/>
 			<div className={styles.card_info}>

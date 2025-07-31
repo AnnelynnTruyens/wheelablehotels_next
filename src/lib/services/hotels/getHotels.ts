@@ -1,27 +1,29 @@
 import { connectToDatabase } from "@/lib/mongoose";
-import { HotelWithRating } from "./types";
+import { HotelWithRatingAndImage } from "./types";
 import Hotel from "@/lib/modules/Hotel/Hotel.model";
 import Review from "@/lib/modules/Review/Review.model";
 import { Amenity } from "@/lib/modules/Amenity/Amenity.types";
 import { AccessibilityFeature } from "@/lib/modules/AccessibilityFeature/AccessibilityFeature.types";
+import { getFirstImageByHotel } from "../images/getFirstImage";
 
 // Get hotels
-export async function getHotels(): Promise<HotelWithRating[]> {
+export async function getHotels(): Promise<HotelWithRatingAndImage[]> {
 	await connectToDatabase();
 
 	const hotels = await Hotel.find({ status: "completed" })
 		.populate("amenities")
 		.populate("accessibilityFeatures");
 
-	const hotelsWithRatings: HotelWithRating[] = [];
+	const hotelsWithRatingsAndImage: HotelWithRatingAndImage[] = [];
 
 	for (const hotel of hotels) {
 		const reviews = await Review.find({ hotelId: hotel._id });
+		const image = await getFirstImageByHotel({ hotelId: hotel._id });
 
 		const sum = reviews.reduce((acc, r) => acc + Number(r.rating ?? 0), 0);
 		const avg = Number((sum / reviews.length).toFixed(1));
 
-		hotelsWithRatings.push({
+		hotelsWithRatingsAndImage.push({
 			_id: hotel._id.toString(),
 			name: hotel.name,
 			location: hotel.location,
@@ -37,8 +39,10 @@ export async function getHotels(): Promise<HotelWithRating[]> {
 				_id: f._id.toString(),
 				name: f.name,
 			})),
+			imageUrl: image?.imageUrl || null,
+			imageAlt: image?.alt || null,
 		});
 	}
 
-	return hotelsWithRatings;
+	return hotelsWithRatingsAndImage;
 }
