@@ -105,3 +105,32 @@
 }
 
 /* MESSAGES */
+
+/* SEARCH FORM */
+.search_form {
+	display: flex;
+	flex-direction: row;
+	width: 100vw;
+	max-width: 1290px;
+	overflow: hidden;
+}
+
+.search_form label {
+	display: none;
+}
+
+.search_form .form_input {
+	width: 100%;
+}
+
+.search_form .input {
+	margin: 0;
+}
+
+.search_btn {
+	transform: translateX(-100%);
+}
+
+.search_btn:hover {
+	transform: translate(-100%);
+}

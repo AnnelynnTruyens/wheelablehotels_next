@@ -1,20 +1,22 @@
 "use client";
 
-import styles from "./forms.module.css";
+import styles from "../forms.module.css";
 
-type FormTextareaProps = {
+type FormInputProps = {
 	label: string;
+	type: string;
 	id: string;
 	name: string;
-	value?: string;
+	value?: string | number;
 	placeholder?: string;
-	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	required?: boolean;
 	autocomplete?: string;
 };
 
-export default function FormTextarea({
+export default function FormInput({
 	label,
+	type,
 	id,
 	name,
 	value,
@@ -22,14 +24,15 @@ export default function FormTextarea({
 	onChange,
 	required = false,
 	autocomplete,
-}: FormTextareaProps) {
+}: FormInputProps) {
 	return (
 		<div className={styles.form_input}>
 			<label className={styles.label} htmlFor={id}>
 				{label} {required ? "*" : null}
 			</label>
-			<textarea
-				className={styles.input_textarea}
+			<input
+				className={styles.input}
+				type={type}
 				id={id}
 				name={name}
 				value={value}

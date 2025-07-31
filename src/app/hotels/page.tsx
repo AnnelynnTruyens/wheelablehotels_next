@@ -2,6 +2,7 @@ import styles from "./hotels.module.css";
 import HotelCard from "@/components/cards/HotelCard";
 import NoResults from "@/components/NoResults";
 import { getHotels } from "@/lib/services/hotels/getHotels";
+import SearchSection from "./searchSection";
 
 export default async function HotelOverview() {
 	const hotels = await getHotels();
@@ -9,6 +10,7 @@ export default async function HotelOverview() {
 	return (
 		<main id="main" className="main">
 			<title>Hotels | Wheelable Hotels</title>
+			<SearchSection />
 			<h1>Search hotels</h1>
 			<div className={styles.content_flex}>
 				<div className={styles.hotels}>

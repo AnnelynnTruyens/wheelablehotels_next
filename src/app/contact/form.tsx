@@ -2,10 +2,10 @@
 
 import styles from "./contact.module.css";
 import { useState } from "react";
-import FormInput from "@/components/forms/FormInput";
-import FormTextarea from "@/components/forms/FormTextarea";
+import FormInput from "@/components/forms/_partials/FormInput";
+import FormTextarea from "@/components/forms/_partials/FormTextarea";
 import { createMessage } from "@/lib/services/messages/createMessage";
-import SuccessMessage from "@/components/forms/SuccessMessage";
+import SuccessMessage from "@/components/forms/_partials/SuccessMessage";
 
 type ContactFormProps = {
 	hotelId?: string;

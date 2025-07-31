@@ -4,6 +4,7 @@ import HotelHighlight from "@/components/cards/HotelHighlight";
 import "@/lib/modules/Amenity/Amenity.model";
 import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 import { getTopRatedHotels } from "@/lib/services/hotels/getTopRatedHotels.ts";
+import SearchSection from "./hotels/searchSection";
 
 // Server component (SEO-friendly)
 export default async function HomePage() {
@@ -13,7 +14,9 @@ export default async function HomePage() {
 		<main id="main" className={styles.main_home}>
 			<title>Wheelable Hotels</title>
 
-			<div className={styles.hero}>Search form</div>
+			<div className={styles.hero}>
+				<SearchSection />
+			</div>
 
 			<div className={styles.content}>
 				<section className={`${styles.section} ${styles.intro}`}>

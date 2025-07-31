@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./forms.module.css";
+import styles from "../forms.module.css";
 
 type RatingIconProps = {
 	filled: boolean;
