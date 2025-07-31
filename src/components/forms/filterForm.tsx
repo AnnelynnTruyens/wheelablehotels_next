@@ -55,28 +55,30 @@ export default function FilterForm({ formData, onFilterChange }: Props) {
 						Accessibility features:
 					</legend>
 					<div className={styles.checkboxes}>
-						{accessibilityFeatures.map((f: any) => (
-							<FormCheckbox
-								key={f._id}
-								label={f.name}
-								id={f._id}
-								name="accessibilityFeatures"
-								value={f._id}
-								onChange={(e) =>
-									handleChange(
-										"accessibilityFeatures",
-										e.target.value,
-										e.target.checked
-									)
-								}
-							/>
-						))}
+						{accessibilityFeatures.map(
+							(f: SerializableAccessibilityFeature) => (
+								<FormCheckbox
+									key={f._id}
+									label={f.name}
+									id={f._id}
+									name="accessibilityFeatures"
+									value={f._id}
+									onChange={(e) =>
+										handleChange(
+											"accessibilityFeatures",
+											e.target.value,
+											e.target.checked
+										)
+									}
+								/>
+							)
+						)}
 					</div>
 				</fieldset>
 				<fieldset className={styles.fieldset}>
 					<legend className={styles.fieldset_legend}>General amenities:</legend>
 					<div className={styles.checkboxes}>
-						{amenities.map((a: any) => (
+						{amenities.map((a: SerializableAmenity) => (
 							<FormCheckbox
 								key={a._id}
 								label={a.name}
