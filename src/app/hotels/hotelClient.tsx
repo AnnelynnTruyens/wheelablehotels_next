@@ -11,15 +11,15 @@ import styles from "./hotels.module.css";
 import { HotelWithRatingAndImage } from "@/lib/services/hotels/types";
 import FilterForm from "@/components/forms/filterForm";
 
-interface Props {
+type HotelClientProps = {
 	initialHotels: HotelWithRatingAndImage[];
 	initialSearchValue: string;
-}
+};
 
 export default function HotelClient({
 	initialHotels,
 	initialSearchValue,
-}: Props) {
+}: HotelClientProps) {
 	const [hotels, setHotels] = useState<HotelWithRatingAndImage[]>(
 		initialHotels || []
 	);
