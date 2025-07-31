@@ -1,1 +1,10 @@
+/* OVERVIEW */
+.content_flex {
+	display: flex;
+	flex-direction: row;
+	gap: 3rem;
+}
 
+.hotels {
+	width: 100%;
+}

@@ -3,10 +3,14 @@
 import { useEffect, useState } from "react";
 import styles from "./forms.module.css";
 import FormCheckbox from "./_partials/FormCheckbox";
-import { getAmenities } from "@/lib/services/amenities/getAmenities";
-import { getAccessibilityFeatures } from "@/lib/services/accessibilityFeatures/getAccessibilityFeatures";
-import { Amenity } from "@/lib/modules/Amenity/Amenity.types";
-import { AccessibilityFeature } from "@/lib/modules/AccessibilityFeature/AccessibilityFeature.types";
+import {
+	getAmenities,
+	SerializableAmenity,
+} from "@/lib/services/amenities/getAmenities";
+import {
+	getAccessibilityFeatures,
+	SerializableAccessibilityFeature,
+} from "@/lib/services/accessibilityFeatures/getAccessibilityFeatures";
 
 interface Props {
 	formData: {
@@ -17,9 +21,9 @@ interface Props {
 }
 
 export default function FilterForm({ formData, onFilterChange }: Props) {
-	const [amenities, setAmenities] = useState<Amenity[]>([]);
+	const [amenities, setAmenities] = useState<SerializableAmenity[]>([]);
 	const [accessibilityFeatures, setAccessibilityFeatures] = useState<
-		AccessibilityFeature[]
+		SerializableAccessibilityFeature[]
 	>([]);
 
 	useEffect(() => {
