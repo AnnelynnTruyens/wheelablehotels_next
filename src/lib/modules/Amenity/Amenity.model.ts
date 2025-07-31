@@ -23,6 +23,5 @@ amenitySchema.pre("save", function (next) {
 	next();
 });
 
-const AmenityModel = mongoose.model<Amenity>("Amenity", amenitySchema);
-
-export default AmenityModel;
+export default mongoose.models.Amenity ||
+	mongoose.model<Amenity>("Amenity", amenitySchema);

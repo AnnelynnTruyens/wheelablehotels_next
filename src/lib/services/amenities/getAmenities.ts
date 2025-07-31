@@ -1,6 +1,6 @@
 "use server";
 
-import AmenityModel from "@/lib/modules/Amenity/Amenity.model";
+// import Amenity from "@/lib/modules/Amenity/Amenity.model";
 import { connectToDatabase } from "@/lib/mongoose";
 
 export type SerializableAmenity = {
@@ -11,11 +11,13 @@ export type SerializableAmenity = {
 
 export async function getAmenities(): Promise<SerializableAmenity[]> {
 	await connectToDatabase();
+	const AmenityModel = (await import("@/lib/modules/Amenity/Amenity.model"))
+		.default;
 	const amenities = await AmenityModel.find({});
 
 	return amenities.map((a) => ({
 		_id: a._id.toString(),
 		name: a.name,
-		icon: a.icon || undefined,
+		icon: a.icon || null,
 	}));
 }
