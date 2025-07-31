@@ -18,10 +18,12 @@ export async function getHotels(): Promise<HotelWithRatingAndImage[]> {
 
 	for (const hotel of hotels) {
 		const reviews = await Review.find({ hotelId: hotel._id });
-		const image = await getFirstImageByHotel({ hotelId: hotel._id });
+		if (!reviews.length) continue;
 
 		const sum = reviews.reduce((acc, r) => acc + Number(r.rating ?? 0), 0);
 		const avg = Number((sum / reviews.length).toFixed(1));
+
+		const image = await getFirstImageByHotel({ hotelId: hotel._id });
 
 		hotelsWithRatingsAndImage.push({
 			_id: hotel._id.toString(),

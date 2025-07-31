@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import SearchForm from "@/components/forms/searchForm";
 import HotelCard from "@/components/cards/HotelCard";
 import NoResults from "@/components/NoResults";
@@ -13,22 +13,21 @@ import FilterForm from "@/components/forms/filterForm";
 
 type HotelClientProps = {
 	initialHotels: HotelWithRatingAndImage[];
-	initialSearchValue: string;
 };
 
-export default function HotelClient({
-	initialHotels,
-	initialSearchValue,
-}: HotelClientProps) {
+export default function HotelClient({ initialHotels }: HotelClientProps) {
+	const searchParams = useSearchParams();
+	const searchValueFromURL = searchParams.get("search") || "";
+
 	const [hotels, setHotels] = useState<HotelWithRatingAndImage[]>(
 		initialHotels || []
 	);
 	const [filteredHotels, setFilteredHotels] = useState<
 		HotelWithRatingAndImage[]
 	>([]);
-	const [searchValue, setSearchValue] = useState(initialSearchValue);
+	const [searchValue, setSearchValue] = useState(searchValueFromURL);
 	const [appliedSearchValue, setAppliedSearchValue] =
-		useState(initialSearchValue);
+		useState(searchValueFromURL);
 	const [formData, setFormData] = useState({
 		amenities: [] as string[],
 		accessibilityFeatures: [] as string[],
