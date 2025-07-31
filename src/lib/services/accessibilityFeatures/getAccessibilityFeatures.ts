@@ -1,6 +1,6 @@
 "use server";
 
-import AccessibilityFeatureModel from "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
+import AccessibilityFeature from "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 import { connectToDatabase } from "@/lib/mongoose";
 
 export type SerializableAccessibilityFeature = {
@@ -15,7 +15,7 @@ export async function getAccessibilityFeatures(): Promise<
 	try {
 		await connectToDatabase();
 
-		const features = await AccessibilityFeatureModel.find({});
+		const features = await AccessibilityFeature.find({});
 
 		// Serialize: remove Mongoose metadata
 		return features.map((f) => ({
