@@ -3,12 +3,18 @@ export const dynamic = "force-dynamic";
 import { getHotels } from "@/lib/services/hotels/getHotels";
 import HotelClient from "./hotelClient";
 
-export default async function HotelOverview(props: {
-	searchParams?: { search?: string };
-}) {
+type HotelOverviewProps = {
+	searchParams?: {
+		search?: string;
+	};
+};
+
+export default async function HotelOverview({
+	searchParams,
+}: HotelOverviewProps) {
 	const hotels = await getHotels();
 
-	const searchValue = props.searchParams?.search || "";
+	const searchValue = searchParams?.search || "";
 
 	return (
 		<main id="main" className="main">
