@@ -1,4 +1,3 @@
-"use server";
 import mongoose from "mongoose";
 import { Amenity } from "./Amenity.types";
 import validateModel from "../../validation/validateModel";
