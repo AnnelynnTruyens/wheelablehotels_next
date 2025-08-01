@@ -175,6 +175,7 @@
 
 .search_form .form_input {
 	width: 100%;
+	margin: 0;
 }
 
 .search_form .input {

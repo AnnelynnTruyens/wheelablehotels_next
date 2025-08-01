@@ -5,6 +5,7 @@ import "@/lib/modules/Amenity/Amenity.model";
 import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 import { getTopRatedHotels } from "@/lib/services/hotels/getTopRatedHotels.ts";
 import SearchSection from "./hotels/searchSection";
+import RegisterForm from "@/components/forms/registerForm";
 
 // Server component (SEO-friendly)
 export default async function HomePage() {
@@ -64,7 +65,7 @@ export default async function HomePage() {
 							at a time.
 						</p>
 					</div>
-					<div>Register form</div>
+					<RegisterForm />
 				</section>
 
 				<section className={`${styles.section} ${styles.hotels}`}>

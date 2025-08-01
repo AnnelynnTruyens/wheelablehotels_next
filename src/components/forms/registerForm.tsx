@@ -11,7 +11,7 @@ function SubmitButton() {
 	const { pending } = useFormStatus();
 	return (
 		<button type="submit" disabled={pending}>
-			{pending ? "Registering..." : "Register"}
+			Register
 		</button>
 	);
 }
@@ -61,7 +61,7 @@ export default function RegisterForm() {
 
 				<div className={styles.buttons}>
 					<SubmitButton />
-					<Link href="/login">I already have an account</Link>
+					<Link href="/users/login">I already have an account</Link>
 				</div>
 			</form>
 		</div>
