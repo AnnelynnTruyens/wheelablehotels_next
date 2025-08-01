@@ -1,6 +1,5 @@
 "use server";
 
-import AuthError from "@/lib/middleware/errors/AuthError";
 import UserModel from "@/lib/modules/User/User.model";
 
 export type RegisterState =
@@ -37,15 +36,30 @@ export default async function register(
 				role: result.role,
 			},
 		};
-	} catch (err: any) {
-		// Duplicate key error handling (same as original)
-		if (err.code === 11000) {
-			const duplicatedField = Object.keys(err.keyPattern)[0];
+	} catch (err) {
+		if (err instanceof Error) {
+			const errorWithCode = err as {
+				code?: number;
+				keyPattern?: Record<string, unknown>;
+			};
+
+			if (errorWithCode.code === 11000 && errorWithCode.keyPattern) {
+				const duplicatedField = Object.keys(errorWithCode.keyPattern)[0];
+				return {
+					success: false,
+					error: `A user with that ${duplicatedField} already exists.`,
+				};
+			}
+
 			return {
 				success: false,
-				error: `A user with that ${duplicatedField} already exists.`,
+				error: err.message || "Registration failed.",
 			};
 		}
-		return { success: false, error: "Registration failed." };
+
+		return {
+			success: false,
+			error: "An unknown error occurred during registration.",
+		};
 	}
 }
