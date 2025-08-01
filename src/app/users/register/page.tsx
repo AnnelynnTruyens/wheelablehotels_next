@@ -1,3 +1,9 @@
+import RegisterForm from "@/components/forms/registerForm";
+
 export default function Register() {
-	return <div>Dit is de register pagina</div>;
+	return (
+		<div>
+			<RegisterForm />
+		</div>
+	);
 }
