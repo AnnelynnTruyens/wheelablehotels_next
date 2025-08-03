@@ -28,6 +28,7 @@ export async function getTopRatedHotels(): Promise<HotelWithRatingAndImage[]> {
 		hotelsWithRatings.push({
 			_id: hotel._id.toString(),
 			name: hotel.name,
+			slug: hotel.slug,
 			location: hotel.location,
 			rating: avg,
 			status: hotel.status,

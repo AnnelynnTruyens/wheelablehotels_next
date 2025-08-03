@@ -5,6 +5,7 @@ import { getFirstImageByHotel } from "@/lib/services/images/getFirstImage";
 
 type HotelCardProps = {
 	hotelName: string;
+	hotelSlug: string;
 	hotelId: string;
 	location: string | undefined;
 	accessibilityFeatures: { _id: string; name: string }[];
@@ -15,6 +16,7 @@ type HotelCardProps = {
 
 export default function HotelCard({
 	hotelName,
+	hotelSlug,
 	hotelId,
 	location,
 	accessibilityFeatures,
@@ -33,8 +35,7 @@ export default function HotelCard({
 				<div className={styles.card_info_left}>
 					<Link
 						href={{
-							pathname: `/hotels/${hotelName}`,
-							query: { hotelId },
+							pathname: `/hotels/${hotelSlug}`,
 						}}
 						className={styles.card_link}
 					>

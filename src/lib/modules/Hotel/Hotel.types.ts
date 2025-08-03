@@ -3,6 +3,7 @@ import { Document, ObjectId } from "mongoose";
 export type Hotel = Document & {
 	_id?: string;
 	name: string;
+	slug: string;
 	location?: string;
 	contactEmail?: string;
 	contactPhone?: string;

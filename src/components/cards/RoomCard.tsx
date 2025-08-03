@@ -24,9 +24,9 @@ export default function RoomCard({
 			<h4 className={styles.room_subtitle}>Accessibility features</h4>
 			{accessibilityFeatures && accessibilityFeatures.length > 0 ? (
 				<ul className={styles.room_list}>
-					{accessibilityFeatures.map((feature, index) => {
+					{accessibilityFeatures.map((feature) => {
 						return (
-							<li key={`feature_${index}`} className={styles.list_li}>
+							<li key={`feature_${feature._id}`} className={styles.list_li}>
 								{feature.name}
 							</li>
 						);

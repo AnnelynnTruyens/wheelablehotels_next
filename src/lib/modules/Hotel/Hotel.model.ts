@@ -11,6 +11,11 @@ const hotelSchema = new mongoose.Schema<Hotel>(
 			required: true,
 			unique: true,
 		},
+		slug: {
+			type: String,
+			required: true,
+			unique: true,
+		},
 		location: {
 			type: String,
 			required: false,

@@ -105,6 +105,7 @@ export default function HotelClient({ initialHotels }: HotelClientProps) {
 									key={hotel._id}
 									hotelId={hotel._id}
 									hotelName={hotel.name}
+									hotelSlug={hotel.slug}
 									location={hotel.location}
 									rating={hotel.rating}
 									accessibilityFeatures={hotel.accessibilityFeatures}

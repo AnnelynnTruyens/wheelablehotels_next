@@ -8,3 +8,318 @@
 .hotels {
 	width: 100%;
 }
+
+/* Detail */
+.buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.favourite_btn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.favourite_icon_filled {
+	stroke: var(--black);
+	fill: var(--black);
+	transition: 0.3s;
+}
+
+.favourite_icon_empty {
+	stroke: var(--black);
+	fill: none;
+	transition: 0.3s;
+}
+
+.favourite_btn:hover .favourite_icon_filled {
+	stroke: var(--white);
+	fill: var(--white);
+	transition: 0.3s;
+}
+
+.favourite_btn:hover .favourite_icon_empty {
+	stroke: var(--white);
+	fill: none;
+	transition: 0.3s;
+}
+
+.top_section {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 3rem;
+}
+
+.title {
+	margin-bottom: 0;
+}
+
+.subtitle {
+	margin-bottom: 1rem;
+}
+
+.contact_reviews {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 3rem;
+}
+
+.contact_item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0.5rem 0;
+}
+
+.contact_item svg {
+	stroke: var(--black);
+}
+
+.contact_item p {
+	margin: 0;
+}
+
+.ratings {
+	text-align: right;
+}
+
+.rating {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+}
+
+.rating p {
+	margin: 0;
+	color: var(--primary-dark);
+}
+
+.images {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.5rem;
+}
+
+.images img {
+	min-width: 5rem;
+	max-width: 6rem;
+	height: 6rem;
+	object-fit: cover;
+	border-radius: var(--border-radius-small);
+	box-shadow: var(--shadow-black);
+}
+
+.images img:first-of-type {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	max-height: 100%;
+	border-radius: var(--border-radius);
+}
+
+.room_section,
+.review_section {
+	margin: 3rem 0;
+}
+
+.rating_top {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.imageModal {
+	border: none;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.85);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	/* Hide the dialog when not open */
+	opacity: 0;
+	pointer-events: none;
+}
+
+.imageModal[open] {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.modalContent {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.modalImage {
+	max-width: 90vw;
+	max-height: 90vh;
+	border-radius: 0.5rem;
+}
+
+.navButton,
+.closeButton {
+	position: absolute;
+	background: rgba(255, 255, 255, 0.2);
+	border: none;
+	color: white;
+	font-size: 2rem;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.closeButton {
+	top: 1rem;
+	right: 1rem;
+}
+
+.navButton,
+.navButton:hover {
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.navButton:first-of-type {
+	left: 1rem;
+}
+
+.navButton:last-of-type {
+	right: 1rem;
+}
+
+/* Review */
+.review_title {
+	margin-bottom: 0;
+}
+.review_text {
+	margin-top: 0;
+	margin-bottom: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	.favourite_icon_filled {
+		stroke: var(--black);
+		fill: var(--black);
+	}
+
+	.favourite_icon_empty {
+		stroke: var(--black);
+	}
+
+	.contact_item svg {
+		stroke: var(--white);
+	}
+
+	.rating p {
+		margin: 0;
+		color: var(--primary-verylight);
+	}
+
+	.navButton:hover,
+	.closeButton:hover,
+	.navButton:focus,
+	.closeButton:focus,
+	.navButton:focus-visible,
+	.closeButton:focus-visible {
+		color: var(--black);
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.content_flex {
+		gap: 1rem;
+	}
+
+	.top_right {
+		width: 40vw;
+	}
+
+	.contact_reviews {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.ratings {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.content_flex {
+		flex-wrap: wrap;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.top_section {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.top_right {
+		width: 100%;
+	}
+
+	.contact_reviews {
+		width: 100%;
+		margin-top: 0;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+	}
+
+	.ratings {
+		display: block;
+	}
+
+	.rating {
+		justify-content: flex-end;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	.content_flex {
+		gap: 1rem;
+	}
+
+	.contact_reviews {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.ratings {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.contact_reviews {
+		font-size: 0.8em;
+	}
+
+	.ratings {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+}
