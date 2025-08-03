@@ -25,25 +25,25 @@
 }
 
 .favourite_icon_filled {
-	stroke: var(--black);
-	fill: var(--black);
+	stroke: var(--primary-white);
+	fill: var(--primary-white);
 	transition: 0.3s;
 }
 
 .favourite_icon_empty {
-	stroke: var(--black);
+	stroke: var(--primary-white);
 	fill: none;
 	transition: 0.3s;
 }
 
 .favourite_btn:hover .favourite_icon_filled {
-	stroke: var(--white);
-	fill: var(--white);
+	stroke: var(--secondary-900);
+	fill: var(--secondary-900);
 	transition: 0.3s;
 }
 
 .favourite_btn:hover .favourite_icon_empty {
-	stroke: var(--white);
+	stroke: var(--secondary-900);
 	fill: none;
 	transition: 0.3s;
 }
@@ -79,7 +79,7 @@
 }
 
 .contact_item svg {
-	stroke: var(--black);
+	stroke: var(--textcolor);
 }
 
 .contact_item p {
@@ -98,7 +98,7 @@
 
 .rating p {
 	margin: 0;
-	color: var(--primary-dark);
+	color: var(--textcolor);
 }
 
 .images {
@@ -218,10 +218,6 @@
 
 	.favourite_icon_empty {
 		stroke: var(--black);
-	}
-
-	.contact_item svg {
-		stroke: var(--white);
 	}
 
 	.rating p {
