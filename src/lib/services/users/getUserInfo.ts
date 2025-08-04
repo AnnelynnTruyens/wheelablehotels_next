@@ -1,0 +1,27 @@
+import NotFoundError from "@/lib/middleware/errors/NotFoundError";
+import UserModel from "@/lib/modules/User/User.model";
+import { connectToDatabase } from "@/lib/mongoose";
+
+export async function getUserInfo(username: string) {
+	try {
+		await connectToDatabase();
+
+		const user = await UserModel.findOne({ username: username });
+
+		if (!user) {
+			throw new NotFoundError("User not found");
+		}
+
+		const userInfo = {
+			_id: user._id.toString(),
+			username: user.username,
+		};
+
+		return userInfo;
+	} catch (err) {
+		if (err instanceof NotFoundError) {
+			throw err;
+		}
+		throw new Error("Userinfo couldn't be fetched");
+	}
+}
