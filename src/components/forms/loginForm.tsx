@@ -8,6 +8,11 @@ import { useActionState } from "react";
 import FormInput from "./_partials/FormInput";
 import { useFormStatus } from "react-dom";
 import SuccessMessage from "./_partials/SuccessMessage";
+import { useRouter } from "next/navigation";
+
+type LoginFormProps = {
+	from: string;
+};
 
 const initialState: LoginState = {
 	success: false,
@@ -23,12 +28,11 @@ function SubmitButton() {
 	);
 }
 
-export default function LoginForm() {
+export default function LoginForm({ from }: LoginFormProps) {
+	const router = useRouter();
 	const [formData, setFormData] = useState({ email: "", password: "" });
 	const [showPassword, setShowPassword] = useState(false);
 	const [state, formAction] = useActionState(login, initialState);
-
-	const [isSuccess, setIsSuccess] = useState(false);
 
 	// Update controlled input state manually since we're using a non-uncontrolled form
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +41,7 @@ export default function LoginForm() {
 
 	useEffect(() => {
 		if (state.success && state.token) {
-			setIsSuccess(true);
+			router.push(from);
 		}
 	}, [state]);
 
@@ -45,7 +49,6 @@ export default function LoginForm() {
 		setShowPassword((prev) => !prev);
 	};
 
-	if (isSuccess) return <SuccessMessage message="Log in successful!" />;
 	return (
 		<div className={styles.container_center}>
 			<p className={styles.title_small}>Log in here!</p>

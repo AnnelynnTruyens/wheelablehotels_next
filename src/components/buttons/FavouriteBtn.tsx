@@ -5,6 +5,7 @@ import styles from "./buttons.module.css";
 import { useEffect, useState, useTransition } from "react";
 import { createFavourite } from "@/lib/services/favourites/createFavourite";
 import { deleteFavourite } from "@/lib/services/favourites/deleteFavourite";
+import { jwtDecode } from "jwt-decode";
 
 type FavouriteBtnProps = {
 	hotelId: string;
@@ -39,8 +40,18 @@ export default function FavouriteBtn({ hotelId }: FavouriteBtnProps) {
 
 				const formData = new FormData();
 				formData.append("hotelId", hotelId);
+				formData.append("from", window.location.pathname);
 
-				await createFavourite(formData);
+				const result = await createFavourite(formData);
+				if ("redirect" in result) {
+					window.location.href = result.redirect as string;
+					return;
+				}
+
+				if ("error" in result) {
+					console.error(result.error);
+					return;
+				}
 				setIsFavourite(true);
 				fetchFavourite();
 			} catch (error) {

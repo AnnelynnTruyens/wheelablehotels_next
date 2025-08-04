@@ -4,12 +4,14 @@ import { cookies } from "next/headers";
 import { getCurrentUser } from "../users/getCurrentUser";
 import AuthError from "@/lib/middleware/errors/AuthError";
 import FavouriteModel from "@/lib/modules/Favourite/Favourite.model";
+import { redirect } from "next/navigation";
 
 export async function createFavourite(formData: FormData) {
 	try {
 		const authToken = (await cookies()).get("authToken")?.value;
+		const from = formData.get("from")?.toString() || "/users/profile";
 		if (!authToken) {
-			throw new AuthError("Unauthorized", 401);
+			return { redirect: `/users/login?from=${encodeURIComponent(from)}` };
 		}
 
 		const headers = new Headers();

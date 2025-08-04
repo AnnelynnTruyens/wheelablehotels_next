@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import UserModel from "../modules/User/User.model";
 import AuthError from "@/lib/middleware/errors/AuthError";
+import { jwtDecode } from "jwt-decode";
 
 const jwtSecret = process.env.JWT_SECRET!;
 if (!jwtSecret) throw new Error("JWT_SECRET is not defined.");
@@ -13,6 +14,16 @@ export async function verifyJwtToken(token: string) {
 		return user;
 	} catch (e) {
 		throw new AuthError("Invalid or expired token", 401);
+	}
+}
+
+export function isTokenExpired(token: string): boolean {
+	try {
+		const decoded: { exp?: number } = jwtDecode(token);
+		if (!decoded.exp) return true;
+		return decoded.exp * 1000 < Date.now(); // `exp` is in seconds, JS time is in ms
+	} catch (err) {
+		return true; // consider invalid token as expired
 	}
 }
 

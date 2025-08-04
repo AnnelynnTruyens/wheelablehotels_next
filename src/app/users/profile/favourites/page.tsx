@@ -3,11 +3,22 @@ import styles from "./favourites.module.css";
 import { getFavouritesByUser } from "@/lib/services/favourites/getFavouritesByUser";
 import NoResults from "@/components/NoResults";
 import HotelHighlight from "@/components/cards/HotelHighlight";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { isTokenExpired } from "@/lib/middleware/auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function Favourites() {
-	const favourites = await getFavouritesByUser();
+	const cookieStore = cookies();
+	const token = (await cookieStore).get("authToken")?.value;
+	const from = "/users/profile/favourites";
+
+	if (!token || isTokenExpired(token)) {
+		redirect(`/users/login?from=${encodeURIComponent(from)}`);
+	}
+
+	const favourites: HotelWithRatingSimple[] = await getFavouritesByUser();
 
 	return (
 		<main id="main" className="main">
