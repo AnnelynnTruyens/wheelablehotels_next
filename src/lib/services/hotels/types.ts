@@ -30,3 +30,12 @@ export interface HotelWithRatingAndImage {
 	imageUrl?: string;
 	imageAlt?: string;
 }
+
+export interface HotelWithRatingSimple {
+	_id: string;
+	name: string;
+	slug: string;
+	location?: string;
+	rating?: number;
+	status: string;
+}

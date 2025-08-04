@@ -6,6 +6,7 @@ import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 import { getTopRatedHotels } from "@/lib/services/hotels/getTopRatedHotels.ts";
 import SearchSection from "./hotels/searchSection";
 import RegisterForm from "@/components/forms/registerForm";
+import { HotelWithRatingSimple } from "@/lib/services/hotels/types";
 
 // Server component (SEO-friendly)
 export default async function HomePage() {
@@ -71,9 +72,9 @@ export default async function HomePage() {
 				<section className={`${styles.section} ${styles.hotels}`}>
 					<h1 className={styles.section_title}>Community favourites</h1>
 					<div className={styles.hotel_highlights}>
-						{hotels.map((hotel) => (
+						{hotels.map((hotel: HotelWithRatingSimple) => (
 							<HotelHighlight
-								key={hotel._id}
+								key={`hotel_${hotel._id}`}
 								hotelId={hotel._id}
 								hotelName={hotel.name}
 								hotelSlug={hotel.slug}

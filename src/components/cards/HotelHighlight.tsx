@@ -24,7 +24,7 @@ export default async function HotelHighlight({
 		<div className={styles.hotel_highlight}>
 			<img
 				src={image ? image.imageUrl : "/logo/Logo_WheelableHotels.svg"}
-				alt={image ? `${image.alt}` : "No hotel image found"}
+				alt={image ? image.alt : "No hotel image found"}
 				className={styles.highlight_img}
 			/>
 			<div className={styles.highlight_info}>
