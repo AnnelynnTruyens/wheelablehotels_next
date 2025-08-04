@@ -5,6 +5,7 @@ import { connectToDatabase } from "@/lib/mongoose";
 import { Types } from "mongoose";
 import { ReviewInfo } from "./types";
 import { User } from "@/lib/modules/User/User.types";
+import "@/lib/modules/User/User.model";
 
 export async function getReviewsByHotel(
 	hotelId: string

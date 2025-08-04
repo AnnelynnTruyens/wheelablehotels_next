@@ -8,6 +8,9 @@ import { Amenity } from "@/lib/modules/Amenity/Amenity.types";
 import { AccessibilityFeature } from "@/lib/modules/AccessibilityFeature/AccessibilityFeature.types";
 import { HotelWithRating } from "./types";
 import { User } from "@/lib/modules/User/User.types";
+import "@/lib/modules/Amenity/Amenity.model";
+import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
+import "@/lib/modules/User/User.model";
 
 export async function getHotelById(slug: string): Promise<HotelWithRating> {
 	await connectToDatabase();

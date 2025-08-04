@@ -5,6 +5,7 @@ import { connectToDatabase } from "@/lib/mongoose";
 import { Types } from "mongoose";
 import { RoomInfo } from "./types";
 import { AccessibilityFeature } from "@/lib/modules/AccessibilityFeature/AccessibilityFeature.types";
+import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 
 export async function getRoomsByHotel(hotelId: string): Promise<RoomInfo[]> {
 	try {

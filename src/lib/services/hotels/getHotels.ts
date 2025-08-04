@@ -5,6 +5,8 @@ import Review from "@/lib/modules/Review/Review.model";
 import { Amenity } from "@/lib/modules/Amenity/Amenity.types";
 import { AccessibilityFeature } from "@/lib/modules/AccessibilityFeature/AccessibilityFeature.types";
 import { getFirstImageByHotel } from "../images/getFirstImage";
+import "@/lib/modules/Amenity/Amenity.model";
+import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 
 // Get hotels
 export async function getHotels(): Promise<HotelWithRatingAndImage[]> {
