@@ -10,7 +10,7 @@ export async function createReview(formData: FormData) {
 	try {
 		const authToken = (await cookies()).get("authToken")?.value;
 		if (!authToken) {
-			return { error: true, message: "Unauthorized" };
+			throw new AuthError("Unauthorized", 401);
 		}
 
 		const headers = new Headers();
@@ -33,7 +33,7 @@ export async function createReview(formData: FormData) {
 			status: "new",
 		});
 
-		const result = await review.save();
+		await review.save();
 
 		// Recalculate average rating
 		const reviews = await Review.find({ hotelId: hotelId });

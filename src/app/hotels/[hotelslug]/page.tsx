@@ -14,6 +14,7 @@ import { ImageInfo } from "@/lib/services/images/types";
 import ScrollToReviews from "./scrollToReviews";
 import { RoomInfo } from "@/lib/services/rooms/types";
 import { ReviewInfo } from "@/lib/services/reviews/types";
+import FavouriteBtn from "@/components/buttons/FavouriteBtn";
 
 interface HotelDetailProps {
 	params: Promise<{ hotelslug: string }>;
@@ -41,7 +42,7 @@ export default async function HotelDetailPage({ params }: HotelDetailProps) {
 			<title>Hotel detail | Wheelable Hotels</title>
 			<div className={styles.buttons}>
 				<GoBackBtn>Go back</GoBackBtn>
-				<button>Favourite</button>
+				<FavouriteBtn hotelId={hotel._id} />
 			</div>
 			<section className={styles.top_section}>
 				<div className={styles.top_left}>

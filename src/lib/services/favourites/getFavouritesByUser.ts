@@ -7,7 +7,6 @@ import { getCurrentUser } from "../users/getCurrentUser";
 import { cookies } from "next/headers";
 import AuthError from "@/lib/middleware/errors/AuthError";
 import { HotelWithRatingSimple } from "../hotels/types";
-import { getFirstImageByHotel } from "../images/getFirstImage";
 import HotelModel from "@/lib/modules/Hotel/Hotel.model";
 import NotFoundError from "@/lib/middleware/errors/NotFoundError";
 import ReviewModel from "@/lib/modules/Review/Review.model";

@@ -17,37 +17,6 @@
 	align-items: center;
 }
 
-.favourite_btn {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 0.5rem;
-}
-
-.favourite_icon_filled {
-	stroke: var(--primary-white);
-	fill: var(--primary-white);
-	transition: 0.3s;
-}
-
-.favourite_icon_empty {
-	stroke: var(--primary-white);
-	fill: none;
-	transition: 0.3s;
-}
-
-.favourite_btn:hover .favourite_icon_filled {
-	stroke: var(--secondary-900);
-	fill: var(--secondary-900);
-	transition: 0.3s;
-}
-
-.favourite_btn:hover .favourite_icon_empty {
-	stroke: var(--secondary-900);
-	fill: none;
-	transition: 0.3s;
-}
-
 .top_section {
 	display: flex;
 	flex-direction: row;
