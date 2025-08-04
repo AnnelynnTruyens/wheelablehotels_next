@@ -1,7 +1,6 @@
 import { getHotelById } from "@/lib/services/hotels/getHotelById";
 import styles from "../hotels.module.css";
 import NoResults from "@/components/NoResults";
-import Error from "@/components/Error";
 import GoBackBtn from "@/components/buttons/GoBackBtn";
 import Rating from "@/components/cards/partials/rating";
 import { getImagesByHotel } from "@/lib/services/images/getImagesByHotel";
@@ -241,7 +240,10 @@ export default async function HotelDetailPage({ params }: HotelDetailProps) {
 			</section>
 			<section>
 				<h2 className={styles.subtitle}>Noticed a mistake?</h2>
-				<Link href={`/contact?hotelId=${hotel._id}`} className="button">
+				<Link
+					href={`/contact?hotelName=${hotel.name}&hotelId=${hotel._id}`}
+					className="button"
+				>
 					Report a mistake
 				</Link>
 			</section>
