@@ -7,12 +7,7 @@ import { useState, useEffect } from "react";
 import { useActionState } from "react";
 import FormInput from "./_partials/FormInput";
 import { useFormStatus } from "react-dom";
-import SuccessMessage from "./_partials/SuccessMessage";
-import { useRouter } from "next/navigation";
-
-type LoginFormProps = {
-	from: string;
-};
+import { useRouter, useSearchParams } from "next/navigation";
 
 const initialState: LoginState = {
 	success: false,
@@ -28,8 +23,11 @@ function SubmitButton() {
 	);
 }
 
-export default function LoginForm({ from }: LoginFormProps) {
+export default function LoginForm() {
 	const router = useRouter();
+	const searchParams = useSearchParams();
+	const from = searchParams.get("from") || "/users/profile";
+
 	const [formData, setFormData] = useState({ email: "", password: "" });
 	const [showPassword, setShowPassword] = useState(false);
 	const [state, formAction] = useActionState(login, initialState);
