@@ -29,6 +29,10 @@ export default function AddHotelFlow() {
 		setError(message);
 	};
 
+	const goToPrevious = () => {
+		setStep((s) => s - 1);
+	};
+
 	if (isSuccess)
 		return (
 			<SuccessMessage message="Hotel added successfully. Thank you for helping us make travelling more accessible!" />
@@ -51,14 +55,42 @@ export default function AddHotelFlow() {
 					onSuccess={handleSuccess}
 					onError={handleError}
 					errorMessage={error || undefined}
+					goToPrevious={goToPrevious}
 				/>
 			);
 		case 3:
-			return <Step3 />;
+			return (
+				<Step3
+					hotelId={hotelId}
+					hotelName={hotelName}
+					onSuccess={handleSuccess}
+					onError={handleError}
+					errorMessage={error || undefined}
+					goToPrevious={goToPrevious}
+				/>
+			);
 		case 4:
-			return <Step4 />;
+			return (
+				<Step4
+					hotelId={hotelId}
+					hotelName={hotelName}
+					onSuccess={handleSuccess}
+					onError={handleError}
+					errorMessage={error || undefined}
+					goToPrevious={goToPrevious}
+				/>
+			);
 		case 5:
-			return <Step5 />;
+			return (
+				<Step5
+					hotelId={hotelId}
+					hotelName={hotelName}
+					onSuccess={handleSuccess}
+					onError={handleError}
+					errorMessage={error || undefined}
+					goToPrevious={goToPrevious}
+				/>
+			);
 		default:
 			return (
 				<div>

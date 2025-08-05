@@ -18,6 +18,7 @@ interface Step2Props {
 	onSuccess: () => void;
 	onError: (msg: string) => void;
 	errorMessage?: string;
+	goToPrevious: () => void;
 }
 
 const initialState = {
@@ -31,6 +32,7 @@ export default function Step2({
 	onSuccess,
 	onError,
 	errorMessage,
+	goToPrevious,
 }: Step2Props) {
 	const [formState, formAction] = useActionState(
 		async (_prevState: any, formData: FormData) => {
@@ -219,23 +221,10 @@ export default function Step2({
 					required
 				/>
 
-				{/* ✅ Hidden fields to pass arrays as JSON strings */}
-				{/* {formValue.amenities.map((a) => (
-					<input key={a._id} type="hidden" name="amenities[]" value={a._id} />
-				))}
-
-				{formValue.accessibilityFeatures.map((f) => (
-					<input
-						key={f._id}
-						type="hidden"
-						name="accessibilityFeatures[]"
-						value={f._id}
-					/>
-				))} */}
-
 				{formState.error && <p className={styles.error}>{formState.error}</p>}
 
 				<div className={styles.buttons}>
+					<button onClick={goToPrevious}>Previous</button>
 					<button type="submit">Next</button>
 				</div>
 			</form>

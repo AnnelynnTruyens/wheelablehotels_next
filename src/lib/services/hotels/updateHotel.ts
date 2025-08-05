@@ -37,18 +37,6 @@ export async function updateHotel(
 		const amenities = formData.getAll("amenities[]");
 		const accessibilityFeatures = formData.getAll("accessibilityFeatures[]");
 
-		console.log("FORM DATA:", {
-			hotelName: formData.get("hotelName"),
-			location: formData.get("location"),
-			contactEmail: formData.get("contactEmail"),
-			contactPhone: formData.get("contactPhone"),
-			website: formData.get("website"),
-			accessibilityInfo: formData.get("accessibilityInfo"),
-			status: formData.get("status"),
-			amenities: formData.get("amenities"),
-			accessibilityFeatures: formData.get("accessibilityFeatures"),
-		});
-
 		const hotelSlug =
 			slugify(hotelName, { lower: true, strict: true }) + `-${user.username}`;
 
@@ -80,8 +68,6 @@ export async function updateHotel(
 		if (!updatedHotel) {
 			throw new NotFoundError("Hotel not found");
 		}
-
-		console.log(`updated hotel: ${updatedHotel}`);
 
 		return {
 			success: true,

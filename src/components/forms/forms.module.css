@@ -291,6 +291,7 @@
 }
 
 .room_container {
+	background-color: var(--secondary-500);
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -301,7 +302,7 @@
 }
 
 .room_container .delete_btn {
-	stroke: var(--white);
+	stroke: var(--secondary-900);
 }
 
 .image_grid {
