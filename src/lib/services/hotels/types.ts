@@ -1,3 +1,7 @@
+import { AccessibilityFeature } from "../accessibilityFeatures/types";
+import { Amenity } from "../amenities/types";
+import { User } from "../users/types";
+
 // Type for hotel data
 export interface HotelWithRating {
 	_id: string;
@@ -9,11 +13,11 @@ export interface HotelWithRating {
 	website?: string;
 	accessibilityInfo?: string;
 	rating?: number;
-	userId: { _id?: string; username: string };
+	userId: User;
 	status: string;
 
-	amenities: { _id: string; name: string }[];
-	accessibilityFeatures: { _id: string; name: string }[];
+	amenities: Amenity[];
+	accessibilityFeatures: AccessibilityFeature[];
 }
 
 export interface HotelWithRatingAndImage {
@@ -24,8 +28,8 @@ export interface HotelWithRatingAndImage {
 	rating?: number;
 	status: string;
 
-	amenities: { _id: string; name: string }[];
-	accessibilityFeatures: { _id: string; name: string }[];
+	amenities: Amenity[];
+	accessibilityFeatures: AccessibilityFeature[];
 
 	imageUrl?: string;
 	imageAlt?: string;
@@ -38,4 +42,19 @@ export interface HotelWithRatingSimple {
 	location?: string;
 	rating?: number;
 	status: string;
+}
+
+export interface HotelBody {
+	name: string;
+	slug: string;
+	location?: string;
+	contactEmail?: string;
+	contactPhone?: string;
+	website?: string;
+	accessibilityInfo?: string;
+	rating?: number;
+	status: string;
+	amenities: Amenity[];
+	accessibilityFeatures: AccessibilityFeature[];
+	userId: User;
 }

@@ -1,6 +1,7 @@
 import { isTokenExpired } from "@/lib/middleware/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import AddHotelFlow from "./addHotelFlow";
 
 export default async function AddHotel() {
 	const cookieStore = cookies();
@@ -10,5 +11,11 @@ export default async function AddHotel() {
 	if (!token || isTokenExpired(token)) {
 		redirect(`/users/login?from=${encodeURIComponent(from)}`);
 	}
-	return <div>add hotel</div>;
+
+	return (
+		<main id="main">
+			<title>Add hotel | Wheelable Hotels</title>
+			<AddHotelFlow />
+		</main>
+	);
 }

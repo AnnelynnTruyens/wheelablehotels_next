@@ -9,7 +9,6 @@ const hotelSchema = new mongoose.Schema<Hotel>(
 		name: {
 			type: String,
 			required: true,
-			unique: true,
 		},
 		slug: {
 			type: String,
