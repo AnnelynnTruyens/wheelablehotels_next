@@ -281,7 +281,7 @@
 .delete_btn {
 	background-color: transparent;
 	padding: 0;
-	stroke: var(--black);
+	stroke: var(--textcolor);
 }
 
 .delete_btn:hover,

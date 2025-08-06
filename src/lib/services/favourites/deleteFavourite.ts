@@ -27,12 +27,9 @@ export async function deleteFavourite(id: string) {
 
 		return { success: true };
 	} catch (err) {
-		if (err instanceof AuthError) {
+		if (err instanceof AuthError || err instanceof NotFoundError) {
 			throw err;
-		} else if (err instanceof NotFoundError) {
-			throw err;
-		} else {
-			throw new Error("Failed to delete favourite");
 		}
+		throw new Error("Failed to delete favourite");
 	}
 }

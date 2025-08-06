@@ -1,4 +1,4 @@
-import { getHotelById } from "@/lib/services/hotels/getHotelById";
+import { getHotelBySlug } from "@/lib/services/hotels/getHotelById";
 import styles from "../hotels.module.css";
 import NoResults from "@/components/NoResults";
 import GoBackBtn from "@/components/buttons/GoBackBtn";
@@ -23,7 +23,7 @@ interface HotelDetailProps {
 export default async function HotelDetailPage({ params }: HotelDetailProps) {
 	const { hotelslug } = await params;
 
-	const hotel = await getHotelById(hotelslug);
+	const hotel = await getHotelBySlug(hotelslug);
 	const images: ImageInfo[] = await getImagesByHotel(hotel._id);
 	const rooms: RoomInfo[] = await getRoomsByHotel(hotel._id);
 	const reviews: ReviewInfo[] = await getReviewsByHotel(hotel._id);

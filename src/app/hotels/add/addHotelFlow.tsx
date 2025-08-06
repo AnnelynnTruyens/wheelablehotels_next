@@ -25,6 +25,10 @@ export default function AddHotelFlow() {
 		setStep((s) => s + 1);
 	};
 
+	const handleFinalSuccess = () => {
+		setIsSuccess(true);
+	};
+
 	const handleError = (message: string) => {
 		setError(message);
 	};
@@ -84,10 +88,8 @@ export default function AddHotelFlow() {
 			return (
 				<Step5
 					hotelId={hotelId}
-					hotelName={hotelName}
-					onSuccess={handleSuccess}
+					onSuccess={handleFinalSuccess}
 					onError={handleError}
-					errorMessage={error || undefined}
 					goToPrevious={goToPrevious}
 				/>
 			);

@@ -37,16 +37,18 @@ export async function updateHotel(
 		const amenities = formData.getAll("amenities[]");
 		const accessibilityFeatures = formData.getAll("accessibilityFeatures[]");
 
-		const hotelSlug =
-			slugify(hotelName, { lower: true, strict: true }) + `-${user.username}`;
+		let hotelSlug;
+		if (status === "published") {
+			hotelSlug = slugify(hotelName, { lower: true, strict: true });
+		} else {
+			hotelSlug =
+				slugify(hotelName, { lower: true, strict: true }) + `-${user.username}`;
+		}
 
 		const query =
 			user.role === "admin"
 				? { _id: hotelId }
 				: { _id: hotelId, userId: user._id };
-
-		console.log("Running update with query:", query);
-		console.log("Authenticated user:", user._id, "Role:", user.role);
 
 		const updatedHotel = await HotelModel.findOneAndUpdate(
 			query,

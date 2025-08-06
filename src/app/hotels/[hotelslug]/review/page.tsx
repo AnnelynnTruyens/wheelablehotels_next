@@ -1,4 +1,4 @@
-import { getHotelById } from "@/lib/services/hotels/getHotelById";
+import { getHotelBySlug } from "@/lib/services/hotels/getHotelById";
 import styles from "../../hotels.module.css";
 import ReviewForm from "@/components/forms/reviewForm";
 import { cookies } from "next/headers";
@@ -19,7 +19,7 @@ export default async function Review({ params }: ReviewProps) {
 		redirect(`/users/login?from=${encodeURIComponent(from)}`);
 	}
 
-	const hotel = await getHotelById(hotelslug);
+	const hotel = await getHotelBySlug(hotelslug);
 
 	return (
 		<main id="main" className="main">

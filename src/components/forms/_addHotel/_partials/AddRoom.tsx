@@ -71,7 +71,7 @@ export default function AddRoom({
 			accessibilityFeatures: updatedFeatures,
 		};
 		setFormData(updated);
-		onDataChange(updated); // ✅ Notify parent
+		onDataChange(updated);
 	};
 
 	return (

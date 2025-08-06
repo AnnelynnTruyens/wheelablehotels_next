@@ -1,5 +1,5 @@
 export type RoomInfo = {
-	_id?: string;
+	_id: string;
 	name: string;
 	description: string;
 	accessibilityInfo: string;
