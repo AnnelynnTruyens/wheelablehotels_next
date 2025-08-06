@@ -1,13 +1,23 @@
 "use server";
 
 import AuthError from "@/lib/middleware/errors/AuthError";
-import { getCurrentUser } from "../users/getCurrentUser";
 import { cookies } from "next/headers";
-import RoomModel from "@/lib/modules/Room/Room.model";
+import { getCurrentUser } from "../users/getCurrentUser";
 import HotelModel from "@/lib/modules/Hotel/Hotel.model";
 import NotFoundError from "@/lib/middleware/errors/NotFoundError";
+import ImageModel from "@/lib/modules/Image/Image.model";
 
-export async function createRoom(formData: FormData) {
+export async function createImage({
+	hotelId,
+	name,
+	alt,
+	filename,
+}: {
+	hotelId: string;
+	name: string;
+	alt: string;
+	filename: string;
+}) {
 	try {
 		const authToken = (await cookies()).get("authToken")?.value;
 		if (!authToken) {
@@ -18,33 +28,27 @@ export async function createRoom(formData: FormData) {
 		headers.set("authorization", `Bearer ${authToken}`);
 		const user = await getCurrentUser(headers);
 
-		const hotelId = formData.get("hotelId") as string;
-		const roomName = formData.get("name") as string;
-		const description = formData.get("description") as string;
-		const accessibilityInfo = formData.get("accessibilityInfo") as string;
-		const accessibilityFeatures = formData.getAll("accessibilityFeatures[]");
-
 		const hotel = hotelId ? HotelModel.findById(hotelId) : null;
+
 		if (!hotel) {
 			throw new NotFoundError("Hotel not found");
 		}
 
-		const room = new RoomModel({
+		const image = new ImageModel({
 			hotelId,
 			userId: user._id,
-			name: roomName,
-			description,
-			accessibilityInfo,
-			accessibilityFeatures,
+			name,
+			alt,
+			imageUrl: filename,
 		});
 
-		await room.save();
+		await image.save();
 
 		return { success: true };
 	} catch (err) {
 		if (err instanceof AuthError || err instanceof NotFoundError) {
 			throw err;
 		}
-		throw new Error("Failed to create room");
+		throw new Error("Failed to create image");
 	}
 }
