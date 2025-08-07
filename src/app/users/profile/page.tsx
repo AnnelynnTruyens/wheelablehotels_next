@@ -46,8 +46,9 @@ export default async function Profile() {
 			<section className={styles.section}>
 				<h2>My hotels in progress</h2>
 				<p>
-					You have started adding these hotels, but haven't finished all the
-					information. Click on the hotel to complete adding the information.
+					You have started adding these hotels, but haven&apos;t finished all
+					the information. Click on the hotel to complete adding the
+					information.
 				</p>
 				<div className={styles.hotels}>
 					{inProgressHotels && inProgressHotels.length > 0 ? (
