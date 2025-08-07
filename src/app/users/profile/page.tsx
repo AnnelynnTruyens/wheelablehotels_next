@@ -6,7 +6,8 @@ import NoResults from "@/components/NoResults";
 import { isTokenExpired } from "@/lib/middleware/auth";
 import { getHotelsByUser } from "@/lib/services/hotels/getHotelsByUser";
 import { HotelWithRatingSimple } from "@/lib/services/hotels/types";
-import { getCurrentUser } from "@/lib/services/users/getCurrentUser";
+import { getCurrentUserInfo } from "@/lib/services/users/getCurrentUserInfo";
+import { UserInfo } from "@/lib/services/users/types";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -21,9 +22,7 @@ export default async function Profile() {
 		redirect(`/users/login?from=${encodeURIComponent(from)}`);
 	}
 
-	const headers = new Headers();
-	headers.set("authorization", `Bearer ${token}`);
-	const user = await getCurrentUser(headers);
+	const user: UserInfo = await getCurrentUserInfo();
 
 	const hotels: HotelWithRatingSimple[] = await getHotelsByUser(user._id);
 
