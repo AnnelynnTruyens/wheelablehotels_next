@@ -14,7 +14,7 @@ export async function getHotelsByUser(
 ): Promise<HotelWithRatingSimple[]> {
 	await connectToDatabase();
 
-	const hotels = await Hotel.find({ status: "completed", userId: userId })
+	const hotels = await Hotel.find({ userId: userId })
 		.populate("amenities")
 		.populate("accessibilityFeatures");
 

@@ -16,14 +16,18 @@ export default async function UserPage({ params }: UserPageProps) {
 	const user = await getUserInfo(username);
 	const hotels: HotelWithRatingSimple[] = await getHotelsByUser(user._id);
 
+	const publishedHotels = hotels.filter(
+		(hotel) => hotel.status === "published"
+	);
+
 	return (
 		<main id="main" className="main">
 			<title>Profile | Wheelable Hotels</title>
 			<GoBackBtn>Go back</GoBackBtn>
 			<h1>Hotels added by {username}</h1>
 			<div className={styles.hotels}>
-				{hotels && hotels.length > 0 ? (
-					hotels.map((hotel: HotelWithRatingSimple) => {
+				{publishedHotels && publishedHotels.length > 0 ? (
+					publishedHotels.map((hotel: HotelWithRatingSimple) => {
 						return (
 							<HotelHighlight
 								key={`hotel_${hotel._id}`}
@@ -41,6 +45,4 @@ export default async function UserPage({ params }: UserPageProps) {
 			</div>
 		</main>
 	);
-
-	return <div>Dit is een user page</div>;
 }

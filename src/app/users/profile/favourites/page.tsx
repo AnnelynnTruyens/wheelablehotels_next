@@ -31,7 +31,7 @@ export default async function Favourites() {
 							<HotelHighlight
 								key={`favourite_${favourite._id}`}
 								hotelName={favourite.name}
-								hotelSlug={favourite.slug}
+								pathname={`/hotels/${favourite.slug}`}
 								hotelId={favourite._id}
 								location={favourite.location}
 								rating={favourite.rating}

@@ -91,6 +91,7 @@ export default function AddHotelFlow() {
 					onSuccess={handleFinalSuccess}
 					onError={handleError}
 					goToPrevious={goToPrevious}
+					editHotel={false}
 				/>
 			);
 		default:

@@ -77,7 +77,7 @@ export default async function HomePage() {
 								key={`hotel_${hotel._id}`}
 								hotelId={hotel._id}
 								hotelName={hotel.name}
-								hotelSlug={hotel.slug}
+								pathname={`/hotels/${hotel.slug}`}
 								location={hotel.location}
 								rating={hotel.rating}
 							/>

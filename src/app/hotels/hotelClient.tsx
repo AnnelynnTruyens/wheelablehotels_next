@@ -17,7 +17,7 @@ type HotelClientProps = {
 
 export default function HotelClient({ initialHotels }: HotelClientProps) {
 	const searchParams = useSearchParams();
-	const searchValueFromURL = searchParams.get("search") || "";
+	const searchValueFromURL = searchParams?.get("search") || "";
 
 	const [hotels, setHotels] = useState<HotelWithRatingAndImage[]>(
 		initialHotels || []

@@ -1,0 +1,20 @@
+.top {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 2rem;
+	flex-wrap: wrap;
+}
+
+.section {
+	margin-bottom: 5rem;
+}
+
+.hotels {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	column-gap: 1rem;
+	margin-bottom: 1rem;
+}

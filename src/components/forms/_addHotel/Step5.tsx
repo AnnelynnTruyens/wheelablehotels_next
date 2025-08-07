@@ -26,12 +26,14 @@ import FormTextarea from "../_partials/FormTextarea";
 import AddRoom from "./_partials/AddRoom";
 import FormFileInput from "../_partials/FormFileInput";
 import NoResults from "@/components/NoResults";
+import Link from "next/link";
 
 interface Step5Props {
 	hotelId: string;
 	onSuccess: () => void;
 	onError: (msg: string) => void;
 	goToPrevious: () => void;
+	editHotel: boolean;
 }
 
 export default function Step5({
@@ -39,6 +41,7 @@ export default function Step5({
 	onSuccess,
 	onError,
 	goToPrevious,
+	editHotel,
 }: Step5Props) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
@@ -267,8 +270,8 @@ export default function Step5({
 
 	return (
 		<div className={styles.container_full}>
-			<Progress step={5} />
-			<h1 className={styles.title}>Overview</h1>
+			{editHotel ? null : <Progress step={5} />}
+			<h1 className={styles.title}>{editHotel ? "Edit hotel" : "Overview"}</h1>
 			<form className={styles.form} onSubmit={handleSubmit}>
 				<h2 className={styles.subtitle}>General info</h2>
 				<FormInput
@@ -454,9 +457,14 @@ export default function Step5({
 				</div>
 
 				<div className={styles.buttons}>
-					<button type="button" onClick={goToPrevious}>
-						Previous
-					</button>
+					{editHotel ? (
+						<Link href="/">Cancel</Link>
+					) : (
+						<button type="button" onClick={goToPrevious}>
+							Previous
+						</button>
+					)}
+
 					<button type="submit">Submit</button>
 				</div>
 			</form>

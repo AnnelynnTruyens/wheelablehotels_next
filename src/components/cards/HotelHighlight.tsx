@@ -5,7 +5,7 @@ import Link from "next/link";
 
 type HotelHighlightProps = {
 	hotelName: string;
-	hotelSlug: string;
+	pathname: string;
 	hotelId: string;
 	location: string | undefined;
 	rating: number | undefined;
@@ -13,7 +13,7 @@ type HotelHighlightProps = {
 
 export default async function HotelHighlight({
 	hotelName,
-	hotelSlug,
+	pathname,
 	hotelId,
 	location,
 	rating,
@@ -30,7 +30,7 @@ export default async function HotelHighlight({
 			<div className={styles.highlight_info}>
 				<Link
 					href={{
-						pathname: `/hotels/${hotelSlug}`,
+						pathname: pathname,
 					}}
 					className={styles.highlight_link}
 				>
