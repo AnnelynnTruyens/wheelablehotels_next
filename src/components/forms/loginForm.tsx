@@ -26,7 +26,7 @@ function SubmitButton() {
 export default function LoginForm() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const from = searchParams.get("from") || "/users/profile";
+	const from = searchParams?.get("from") || "/users/profile";
 
 	const [formData, setFormData] = useState({ email: "", password: "" });
 	const [showPassword, setShowPassword] = useState(false);

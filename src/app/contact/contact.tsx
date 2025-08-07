@@ -8,12 +8,12 @@ import { useEffect, useState } from "react";
 export default function Contact() {
 	const searchParams = useSearchParams();
 
-	const hotelName = searchParams.get("hotelName");
+	const hotelName = searchParams?.get("hotelName");
 
 	const [hotelId, setHotelId] = useState<string | undefined>(undefined);
 
 	useEffect(() => {
-		const param = searchParams.get("hotelId");
+		const param = searchParams?.get("hotelId");
 		setHotelId(param ?? undefined); // force `undefined` instead of `null`
 	}, [searchParams]);
 

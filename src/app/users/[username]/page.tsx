@@ -32,7 +32,7 @@ export default async function UserPage({ params }: UserPageProps) {
 							<HotelHighlight
 								key={`hotel_${hotel._id}`}
 								hotelName={hotel.name}
-								hotelSlug={hotel.slug}
+								pathname={`/hotels/${hotel.slug}`}
 								hotelId={hotel._id}
 								location={hotel.location}
 								rating={hotel.rating}
