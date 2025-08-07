@@ -1,6 +1,7 @@
 "use server";
 
 import UserModel from "@/lib/modules/User/User.model";
+import { connectToDatabase } from "@/lib/mongoose";
 import { cookies } from "next/headers";
 
 export type LoginState =
@@ -18,6 +19,8 @@ export default async function login(
 	formData: FormData
 ): Promise<LoginState> {
 	try {
+		await connectToDatabase();
+
 		const email = formData.get("email")?.toString() || "";
 		const password = formData.get("password")?.toString() || "";
 

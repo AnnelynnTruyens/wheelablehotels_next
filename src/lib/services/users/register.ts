@@ -1,6 +1,7 @@
 "use server";
 
 import UserModel from "@/lib/modules/User/User.model";
+import { connectToDatabase } from "@/lib/mongoose";
 
 export type RegisterState =
 	| {
@@ -14,6 +15,7 @@ export default async function register(
 	formData: FormData
 ): Promise<RegisterState> {
 	try {
+		await connectToDatabase();
 		// Extract form fields (you can adjust this to use zod or custom validation)
 		const data = {
 			username: formData.get("username"),
