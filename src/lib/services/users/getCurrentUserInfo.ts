@@ -9,6 +9,7 @@ import NotFoundError from "@/lib/middleware/errors/NotFoundError";
 
 export async function getCurrentUserInfo(): Promise<UserInfo> {
 	await connectToDatabase();
+
 	const authToken = (await cookies()).get("authToken")?.value;
 	if (!authToken) {
 		throw new AuthError("Unauthorized", 401);

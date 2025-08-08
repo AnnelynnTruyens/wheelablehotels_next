@@ -6,9 +6,12 @@ import { cookies } from "next/headers";
 import RoomModel from "@/lib/modules/Room/Room.model";
 import HotelModel from "@/lib/modules/Hotel/Hotel.model";
 import NotFoundError from "@/lib/middleware/errors/NotFoundError";
+import { connectToDatabase } from "@/lib/mongoose";
 
 export async function createRoom(formData: FormData) {
 	try {
+		await connectToDatabase();
+
 		const authToken = (await cookies()).get("authToken")?.value;
 		if (!authToken) {
 			throw new AuthError("Unauthorized", 401);

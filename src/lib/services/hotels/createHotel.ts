@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { getCurrentUser } from "../users/getCurrentUser";
 import HotelModel from "@/lib/modules/Hotel/Hotel.model";
 import slugify from "slugify";
+import { connectToDatabase } from "@/lib/mongoose";
 
 export async function createHotel(
 	prevState: any,
@@ -15,6 +16,8 @@ export async function createHotel(
 	error: string | null;
 }> {
 	try {
+		await connectToDatabase();
+
 		const authToken = (await cookies()).get("authToken")?.value;
 		if (!authToken) {
 			throw new AuthError("Unauthorized", 401);

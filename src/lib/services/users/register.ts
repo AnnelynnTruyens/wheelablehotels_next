@@ -16,6 +16,7 @@ export default async function register(
 ): Promise<RegisterState> {
 	try {
 		await connectToDatabase();
+
 		// Extract form fields (you can adjust this to use zod or custom validation)
 		const data = {
 			username: formData.get("username"),

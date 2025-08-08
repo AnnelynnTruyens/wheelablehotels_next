@@ -8,9 +8,12 @@ import ImageModel from "@/lib/modules/Image/Image.model";
 import AuthError from "@/lib/middleware/errors/AuthError";
 import NotFoundError from "@/lib/middleware/errors/NotFoundError";
 import { getCurrentUser } from "../users/getCurrentUser";
+import { connectToDatabase } from "@/lib/mongoose";
 
 export async function deleteImage(id: string) {
 	try {
+		await connectToDatabase();
+
 		const authToken = (await cookies()).get("authToken")?.value;
 		if (!authToken) {
 			throw new AuthError("Unauthorized", 401);

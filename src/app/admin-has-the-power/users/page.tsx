@@ -1,3 +1,10 @@
+import AdminHeader from "../_partials/Header";
+
 export default function AdminUserOverview() {
-	return <div>Admin users overview</div>;
+	return (
+		<>
+			<AdminHeader />
+			<h1>Users</h1>
+		</>
+	);
 }

@@ -4,10 +4,12 @@ import { cookies } from "next/headers";
 import { getCurrentUser } from "../users/getCurrentUser";
 import AuthError from "@/lib/middleware/errors/AuthError";
 import FavouriteModel from "@/lib/modules/Favourite/Favourite.model";
-import { redirect } from "next/navigation";
+import { connectToDatabase } from "@/lib/mongoose";
 
 export async function createFavourite(formData: FormData) {
 	try {
+		await connectToDatabase();
+
 		const authToken = (await cookies()).get("authToken")?.value;
 		const from = formData.get("from")?.toString() || "/users/profile";
 		if (!authToken) {

@@ -10,6 +10,8 @@ import { AccessibilityFeature } from "../accessibilityFeatures/types";
 import { cookies } from "next/headers";
 import AuthError from "@/lib/middleware/errors/AuthError";
 import { getCurrentUser } from "../users/getCurrentUser";
+import "@/lib/modules/Amenity/Amenity.model";
+import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 
 export async function getAllHotels(): Promise<HotelWithRating[]> {
 	await connectToDatabase();

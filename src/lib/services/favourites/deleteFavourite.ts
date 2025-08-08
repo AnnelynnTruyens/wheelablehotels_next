@@ -5,9 +5,12 @@ import { cookies } from "next/headers";
 import { getCurrentUser } from "../users/getCurrentUser";
 import FavouriteModel from "@/lib/modules/Favourite/Favourite.model";
 import NotFoundError from "@/lib/middleware/errors/NotFoundError";
+import { connectToDatabase } from "@/lib/mongoose";
 
 export async function deleteFavourite(id: string) {
 	try {
+		await connectToDatabase();
+
 		const authToken = (await cookies()).get("authToken")?.value;
 		if (!authToken) {
 			throw new AuthError("Unauthorized", 401);

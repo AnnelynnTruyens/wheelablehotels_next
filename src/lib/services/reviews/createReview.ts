@@ -5,9 +5,12 @@ import HotelModel from "@/lib/modules/Hotel/Hotel.model";
 import AuthError from "@/lib/middleware/errors/AuthError";
 import { getCurrentUser } from "../users/getCurrentUser";
 import { cookies } from "next/headers";
+import { connectToDatabase } from "@/lib/mongoose";
 
 export async function createReview(formData: FormData) {
 	try {
+		await connectToDatabase();
+
 		const authToken = (await cookies()).get("authToken")?.value;
 		if (!authToken) {
 			throw new AuthError("Unauthorized", 401);

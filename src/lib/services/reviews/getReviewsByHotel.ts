@@ -12,6 +12,7 @@ export async function getReviewsByHotel(
 ): Promise<ReviewInfo[]> {
 	try {
 		await connectToDatabase();
+
 		const query: Record<string, string | Types.ObjectId> = {};
 		query.hotelId = hotelId;
 

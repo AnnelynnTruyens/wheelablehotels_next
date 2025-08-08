@@ -6,6 +6,7 @@ import { getCurrentUser } from "../users/getCurrentUser";
 import HotelModel from "@/lib/modules/Hotel/Hotel.model";
 import NotFoundError from "@/lib/middleware/errors/NotFoundError";
 import ImageModel from "@/lib/modules/Image/Image.model";
+import { connectToDatabase } from "@/lib/mongoose";
 
 export async function createImage({
 	hotelId,
@@ -19,6 +20,8 @@ export async function createImage({
 	filename: string;
 }) {
 	try {
+		await connectToDatabase();
+
 		const authToken = (await cookies()).get("authToken")?.value;
 		if (!authToken) {
 			throw new AuthError("Unauthorized", 401);

@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { getCurrentUser } from "../users/getCurrentUser";
 import RoomModel from "@/lib/modules/Room/Room.model";
 import NotFoundError from "@/lib/middleware/errors/NotFoundError";
+import { connectToDatabase } from "@/lib/mongoose";
 
 export async function updateRoom(
 	_prevState: any,
@@ -12,6 +13,8 @@ export async function updateRoom(
 	roomId: string
 ) {
 	try {
+		await connectToDatabase();
+
 		const authToken = (await cookies()).get("authToken")?.value;
 		if (!authToken) {
 			throw new AuthError("Unauthorized", 401);
