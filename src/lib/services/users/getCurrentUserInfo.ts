@@ -24,6 +24,7 @@ export async function getCurrentUserInfo(): Promise<UserInfo> {
 	const userInfo: UserInfo = {
 		_id: user._id,
 		username: user.username,
+		role: user.role,
 	};
 
 	return userInfo;

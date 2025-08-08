@@ -1,0 +1,59 @@
+/* GENERAL */
+.page {
+	margin: 3rem;
+}
+
+/* HEADER */
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 1rem 2rem;
+
+	box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
+
+	z-index: 1;
+}
+
+.nav_list {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 2rem;
+
+	font-size: 1.1rem;
+}
+
+.nav_listitem {
+	list-style: none;
+	text-decoration: none;
+}
+
+.nav_link {
+	color: var(--primary-900);
+	text-decoration: none;
+	transition: 0.3s;
+}
+
+.nav_link:hover {
+	border-bottom: 3px solid var(--primary-700);
+	color: var(--primary-700);
+	font-weight: 700;
+	transition: 0.3s;
+}
+
+.nav_link_active {
+	border-bottom: 3px solid var(--primary-700);
+	color: var(--primary-700);
+	font-weight: 700;
+	transition: 0.3s;
+}
+
+/* DASHBOARD */
+.dashboard_flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}

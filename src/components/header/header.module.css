@@ -72,14 +72,16 @@
 }
 
 .nav_link:hover {
-	text-decoration: underline;
-	color: var(--primary-900);
+	border-bottom: 3px solid var(--primary-700);
+	color: var(--primary-700);
+	font-weight: 700;
 	transition: 0.3s;
 }
 
 .nav_link_active {
-	text-decoration: underline;
-	color: var(--primary-900);
+	border-bottom: 3px solid var(--primary-700);
+	color: var(--primary-700);
+	font-weight: 700;
 	transition: 0.3s;
 }
 

@@ -1,3 +1,5 @@
+"use server";
+
 import { connectToDatabase } from "@/lib/mongoose";
 import { HotelWithRatingAndImage } from "./types";
 import Hotel from "@/lib/modules/Hotel/Hotel.model";

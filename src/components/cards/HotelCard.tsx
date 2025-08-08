@@ -1,7 +1,6 @@
 import styles from "./cards.module.css";
 import Rating from "./partials/rating";
 import Link from "next/link";
-import { getFirstImageByHotel } from "@/lib/services/images/getFirstImage";
 
 type HotelCardProps = {
 	hotelName: string;
