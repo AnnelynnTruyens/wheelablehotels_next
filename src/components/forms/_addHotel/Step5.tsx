@@ -25,8 +25,9 @@ import FormCheckbox from "../_partials/FormCheckbox";
 import FormTextarea from "../_partials/FormTextarea";
 import AddRoom from "./_partials/AddRoom";
 import FormFileInput from "../_partials/FormFileInput";
-import NoResults from "@/components/NoResults";
 import Link from "next/link";
+import { getCurrentUser } from "@/lib/services/users/getCurrentUser";
+import { getCurrentUserInfo } from "@/lib/services/users/getCurrentUserInfo";
 
 interface Step5Props {
 	hotelId: string;
@@ -54,17 +55,19 @@ export default function Step5({
 		AccessibilityFeature[]
 	>([]);
 	const [hotelFiles, setHotelFiles] = useState<FileList | null>(null);
+	const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
 	useEffect(() => {
 		async function fetchData() {
 			try {
-				const [hotel, rooms, images, amenitiesData, features] =
+				const [hotel, rooms, images, amenitiesData, features, user] =
 					await Promise.all([
 						getHotelById(hotelId),
 						getRoomsByHotel(hotelId),
 						getImagesByHotel(hotelId),
 						getAmenities(),
 						getAccessibilityFeatures(),
+						getCurrentUserInfo(),
 					]);
 
 				setHotelData(hotel);
@@ -72,6 +75,9 @@ export default function Step5({
 				setHotelImages(images);
 				setAmenities(amenitiesData);
 				setAccessibilityFeatures(features);
+				if (user.role === "admin") {
+					setIsAdmin(true);
+				}
 				setIsLoading(false);
 			} catch (err: any) {
 				setError(err.message || "Failed to load hotel data");
@@ -83,7 +89,9 @@ export default function Step5({
 	}, [hotelId]);
 
 	const handleInputChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+		>
 	) => {
 		const target = e.target;
 		const { name, value } = target;
@@ -201,7 +209,6 @@ export default function Step5({
 			const formData = new FormData(e.target as HTMLFormElement);
 
 			// Update hotel
-			formData.append("status", "completed");
 			await updateHotel(null, formData, hotelId);
 
 			// Update or create rooms
@@ -455,6 +462,36 @@ export default function Step5({
 						))}
 					</div>
 				</div>
+
+				{isAdmin ? (
+					<div className={styles.select}>
+						<label className={styles.select_label} htmlFor="status">
+							Status
+						</label>
+						<select
+							name="status"
+							id="status"
+							value={hotelData.status || "new"} // fallback to "new" if undefined
+							onChange={handleInputChange}
+							className={styles.select_select}
+						>
+							<option value="new" className={styles.select_option}>
+								new
+							</option>
+							<option value="completed" className={styles.select_option}>
+								completed
+							</option>
+							<option value="published" className={styles.select_option}>
+								published
+							</option>
+							<option value="unpublished" className={styles.select_option}>
+								unpublished
+							</option>
+						</select>
+					</div>
+				) : (
+					<input type="hidden" name="status" value="completed" />
+				)}
 
 				<div className={styles.buttons}>
 					{editHotel ? (

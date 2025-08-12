@@ -7,6 +7,7 @@ type HotelCardProps = {
 	hotelSlug: string;
 	hotelId: string;
 	location: string | undefined;
+	from: string;
 };
 
 export default function HotelAdminCard({
@@ -14,15 +15,14 @@ export default function HotelAdminCard({
 	hotelSlug,
 	hotelId,
 	location,
+	from,
 }: HotelCardProps) {
 	return (
 		<div className={styles.hotel_card}>
 			<div className={styles.card_info}>
 				<div className={styles.card_info_left}>
 					<Link
-						href={{
-							pathname: `/hotels/${hotelSlug}/edit`,
-						}}
+						href={`${hotelSlug}/edit?from=${encodeURIComponent(from)}`}
 						className={styles.card_link}
 					>
 						<h2 className={styles.card_title}>{hotelName}</h2>

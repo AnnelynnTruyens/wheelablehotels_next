@@ -23,7 +23,7 @@ export async function getCurrentUserInfo(): Promise<UserInfo> {
 		throw new NotFoundError("User not found");
 	}
 	const userInfo: UserInfo = {
-		_id: user._id,
+		_id: user._id.toString(),
 		username: user.username,
 		role: user.role,
 	};
