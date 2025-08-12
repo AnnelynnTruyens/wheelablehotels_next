@@ -2,28 +2,40 @@
 
 import Step5 from "@/components/forms/_addHotel/Step5";
 import SuccessMessage from "@/components/forms/_partials/SuccessMessage";
+import Loading from "@/components/Loading";
+import { getHotelById } from "@/lib/services/hotels/getHotelById";
 import { getCurrentUserInfo } from "@/lib/services/users/getCurrentUserInfo";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type EditHotelProps = {
 	hotelId: string;
+	addedByUser: string;
+	hotelStatus: string;
 };
 
-export default function EditHotel({ hotelId }: EditHotelProps) {
+export default function EditHotel({
+	hotelId,
+	addedByUser,
+	hotelStatus,
+}: EditHotelProps) {
 	const router = useRouter();
 	const [error, setError] = useState<string | null>(null);
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 	const [isAdmin, setIsAdmin] = useState<boolean>(false);
-
-	const searchParams = useSearchParams();
-	const from = searchParams?.get("from") || "/admin-has-the-power";
+	const [isAuthorised, setIsAuthorised] = useState<boolean>(false);
 
 	useEffect(() => {
 		async function getCurrentUser() {
 			const user = await getCurrentUserInfo();
 			if (user.role === "admin") {
+				setIsAuthorised(true);
 				setIsAdmin(true);
+			} else if (user.username === addedByUser && hotelStatus !== "published") {
+				setIsAuthorised(true);
+				setIsAdmin(false);
+			} else {
+				goBack();
 			}
 		}
 
@@ -52,7 +64,7 @@ export default function EditHotel({ hotelId }: EditHotelProps) {
 		return (
 			<SuccessMessage message="Hotel edited successfully. Thank you for helping us make travelling more accessible!" />
 		);
-	else
+	if (isAuthorised) {
 		return (
 			<Step5
 				hotelId={hotelId}
@@ -62,4 +74,5 @@ export default function EditHotel({ hotelId }: EditHotelProps) {
 				editHotel={true}
 			/>
 		);
+	} else return <Loading />;
 }
