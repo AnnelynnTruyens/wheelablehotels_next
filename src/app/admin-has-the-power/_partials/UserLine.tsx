@@ -3,6 +3,10 @@
 import styles from "../admin.module.css";
 import DeleteButton from "@/components/buttons/DeleteBtn";
 import SecondaryLinkBtn from "@/components/buttons/SecondaryLinkBtn";
+import { deleteUser } from "@/lib/services/users/deleteUser";
+import { useRouter } from "next/navigation";
+import { use } from "passport";
+import { useTransition } from "react";
 
 type UserLineProps = {
 	userId: string;
@@ -17,8 +21,14 @@ export default function UserLine({
 	email,
 	role,
 }: UserLineProps) {
-	const deleteUser = (userId: string) => {
-		console.log("user to delete: " + userId);
+	const router = useRouter();
+	const [isPending, startTransition] = useTransition();
+
+	const handleDeleteUser = (userId: string) => {
+		deleteUser(userId);
+		startTransition(() => {
+			router.refresh();
+		});
 	};
 
 	return (
@@ -32,7 +42,7 @@ export default function UserLine({
 				</SecondaryLinkBtn>
 				<DeleteButton
 					action={() => {
-						deleteUser(userId);
+						handleDeleteUser(userId);
 					}}
 				/>
 			</td>
