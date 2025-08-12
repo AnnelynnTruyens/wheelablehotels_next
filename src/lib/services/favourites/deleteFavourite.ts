@@ -20,10 +20,19 @@ export async function deleteFavourite(id: string) {
 		headers.set("authorization", `Bearer ${authToken}`);
 		const user = await getCurrentUser(headers);
 
-		const favourite = await FavouriteModel.findOneAndDelete({
-			_id: id,
-			userId: user._id,
-		});
+		let favourite;
+
+		if (user.role === "admin") {
+			favourite = await FavouriteModel.findOneAndDelete({
+				_id: id,
+			});
+		} else {
+			favourite = await FavouriteModel.findOneAndDelete({
+				_id: id,
+				userId: user._id,
+			});
+		}
+
 		if (!favourite) {
 			throw new NotFoundError("Favourite not found");
 		}

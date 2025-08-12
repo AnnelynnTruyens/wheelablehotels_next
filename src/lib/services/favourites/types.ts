@@ -1,5 +1,5 @@
 export type FavouriteInfo = {
-	_id?: string;
+	_id: string;
 	hotelId: string;
 	userId: string;
 };

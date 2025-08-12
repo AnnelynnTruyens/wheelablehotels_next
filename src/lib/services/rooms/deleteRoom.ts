@@ -19,11 +19,19 @@ export async function deleteRoom(id: string) {
 		const headers = new Headers();
 		headers.set("authorization", `Bearer ${authToken}`);
 		const user = await getCurrentUser(headers);
+		let room;
 
-		const room = await RoomModel.findOneAndDelete({
-			_id: id,
-			userId: user._id,
-		});
+		if (user.role === "admin") {
+			room = await RoomModel.findOneAndDelete({
+				_id: id,
+			});
+		} else {
+			room = await RoomModel.findOneAndDelete({
+				_id: id,
+				userId: user._id,
+			});
+		}
+
 		if (!room) {
 			throw new NotFoundError("Room not found");
 		}

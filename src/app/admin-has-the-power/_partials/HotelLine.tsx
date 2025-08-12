@@ -3,6 +3,9 @@
 import styles from "../admin.module.css";
 import DeleteButton from "@/components/buttons/DeleteBtn";
 import SecondaryLinkBtn from "@/components/buttons/SecondaryLinkBtn";
+import { deleteHotel } from "@/lib/services/hotels/deleteHotel";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
 
 type HotelLineProps = {
 	hotelId: string;
@@ -21,8 +24,14 @@ export default function HotelLine({
 	username,
 	hotelSlug,
 }: HotelLineProps) {
-	const deleteHotel = (hotelId: string) => {
-		console.log("hotel to delete: " + hotelId);
+	const router = useRouter();
+	const [isPending, startTransition] = useTransition();
+
+	const handleDeleteHotel = async (hotelId: string) => {
+		await deleteHotel(hotelId);
+		startTransition(() => {
+			router.refresh();
+		});
 	};
 
 	return (
@@ -37,7 +46,7 @@ export default function HotelLine({
 				</SecondaryLinkBtn>
 				<DeleteButton
 					action={() => {
-						deleteHotel(hotelId);
+						handleDeleteHotel(hotelId);
 					}}
 				/>
 			</td>
