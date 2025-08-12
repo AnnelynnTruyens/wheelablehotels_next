@@ -5,6 +5,7 @@ import AdminHeader from "../../_partials/Header";
 import NoResults from "@/components/NoResults";
 import PrimaryBtn from "@/components/buttons/PrimaryBtn";
 import GoBackBtn from "@/components/buttons/GoBackBtn";
+import UserDetailForm from "./UserDetailForm";
 
 interface UserDetailProps {
 	params: Promise<{ username: string }>;
@@ -34,17 +35,7 @@ export default async function AdminUserDetail({ params }: UserDetailProps) {
 			<main id="main" className="admin-main">
 				<h1>User: {username}</h1>
 				<p>Email: {user.email}</p>
-				<form action="">
-					<label htmlFor="role">Role</label>
-					<select name="role" id="role" value={user.role}>
-						<option value="user">User</option>
-						<option value="admin">Admin</option>
-					</select>
-				</form>
-				<div className={styles.buttons}>
-					<GoBackBtn>Cancel</GoBackBtn>
-					<PrimaryBtn>Edit</PrimaryBtn>
-				</div>
+				<UserDetailForm initialRole={user.role} userId={user._id} />
 			</main>
 		</>
 	);
