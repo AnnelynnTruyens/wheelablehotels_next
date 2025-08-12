@@ -9,7 +9,7 @@ import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 export async function getTopRatedHotels(): Promise<HotelWithRatingSimple[]> {
 	await connectToDatabase();
 
-	const hotels = await Hotel.find({ status: "completed" });
+	const hotels = await Hotel.find({ status: "published" });
 
 	const hotelsWithRatings: HotelWithRatingSimple[] = [];
 

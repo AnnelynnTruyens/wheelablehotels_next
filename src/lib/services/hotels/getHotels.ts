@@ -14,7 +14,7 @@ import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 export async function getHotels(): Promise<HotelWithRatingAndImage[]> {
 	await connectToDatabase();
 
-	const hotels = await Hotel.find({ status: "completed" })
+	const hotels = await Hotel.find({ status: "published" })
 		.populate("amenities")
 		.populate("accessibilityFeatures");
 
