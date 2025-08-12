@@ -57,3 +57,18 @@
 	flex-direction: row;
 	justify-content: space-evenly;
 }
+
+/* TABLE */
+.table {
+	width: 100%;
+}
+
+.table_head {
+	text-align: left;
+}
+
+.actions {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}

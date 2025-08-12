@@ -5,7 +5,6 @@ import styles from "./buttons.module.css";
 import { useEffect, useState, useTransition } from "react";
 import { createFavourite } from "@/lib/services/favourites/createFavourite";
 import { deleteFavourite } from "@/lib/services/favourites/deleteFavourite";
-import { jwtDecode } from "jwt-decode";
 
 type FavouriteBtnProps = {
 	hotelId: string;

@@ -6,5 +6,6 @@ export interface User {
 export interface UserInfo {
 	_id: string;
 	username: string;
+	email: string;
 	role: string;
 }

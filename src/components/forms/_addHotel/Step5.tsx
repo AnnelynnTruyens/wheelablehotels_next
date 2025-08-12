@@ -26,8 +26,8 @@ import FormTextarea from "../_partials/FormTextarea";
 import AddRoom from "./_partials/AddRoom";
 import FormFileInput from "../_partials/FormFileInput";
 import Link from "next/link";
-import { getCurrentUser } from "@/lib/services/users/getCurrentUser";
 import { getCurrentUserInfo } from "@/lib/services/users/getCurrentUserInfo";
+import GoBackBtn from "@/components/buttons/GoBackBtn";
 
 interface Step5Props {
 	hotelId: string;
@@ -502,7 +502,7 @@ export default function Step5({
 
 				<div className={styles.buttons}>
 					{editHotel ? (
-						<Link href="/">Cancel</Link>
+						<GoBackBtn>Cancel</GoBackBtn>
 					) : (
 						<button type="button" onClick={goToPrevious}>
 							Previous

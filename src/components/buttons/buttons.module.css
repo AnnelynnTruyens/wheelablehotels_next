@@ -10,6 +10,15 @@
 	color: var(--primary-100);
 }
 
+.delete {
+	background-color: var(--primary-600);
+}
+
+.delete:hover {
+	background-color: var(--primary-700);
+	color: var(--primary-100);
+}
+
 .back_link {
 	padding: 0;
 	background-color: transparent;

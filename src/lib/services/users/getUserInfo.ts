@@ -1,8 +1,9 @@
 import NotFoundError from "@/lib/middleware/errors/NotFoundError";
 import UserModel from "@/lib/modules/User/User.model";
 import { connectToDatabase } from "@/lib/mongoose";
+import { UserInfo } from "./types";
 
-export async function getUserInfo(username: string) {
+export async function getUserInfo(username: string): Promise<UserInfo> {
 	try {
 		await connectToDatabase();
 
@@ -12,9 +13,11 @@ export async function getUserInfo(username: string) {
 			throw new NotFoundError("User not found");
 		}
 
-		const userInfo = {
+		const userInfo: UserInfo = {
 			_id: user._id.toString(),
 			username: user.username,
+			email: user.email,
+			role: user.role,
 		};
 
 		return userInfo;

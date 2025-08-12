@@ -26,7 +26,7 @@ export async function getHotelBySlug(slug: string): Promise<HotelWithRating> {
 
 	const avgRating = await calculateAverageRating(hotel._id.toString());
 
-	const hotelWithRating = {
+	const hotelWithRating: HotelWithRating = {
 		_id: hotel._id.toString(),
 		name: hotel.name,
 		slug: hotel.slug,
@@ -70,7 +70,7 @@ export async function getHotelById(id: string): Promise<HotelWithRating> {
 
 	const avgRating = await calculateAverageRating(hotel._id.toString());
 
-	const hotelWithRating = {
+	const hotelWithRating: HotelWithRating = {
 		_id: hotel._id.toString(),
 		name: hotel.name,
 		slug: hotel.slug,

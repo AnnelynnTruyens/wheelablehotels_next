@@ -5,6 +5,7 @@ import { getHotelsByUser } from "@/lib/services/hotels/getHotelsByUser";
 import GoBackBtn from "@/components/buttons/GoBackBtn";
 import HotelHighlight from "@/components/cards/HotelHighlight";
 import NoResults from "@/components/NoResults";
+import { UserInfo } from "@/lib/services/users/types";
 
 interface UserPageProps {
 	params: Promise<{ username: string }>;
@@ -13,7 +14,7 @@ interface UserPageProps {
 export default async function UserPage({ params }: UserPageProps) {
 	const { username } = await params;
 
-	const user = await getUserInfo(username);
+	const user: UserInfo = await getUserInfo(username);
 	const hotels: HotelWithRatingSimple[] = await getHotelsByUser(user._id);
 
 	const publishedHotels = hotels.filter(

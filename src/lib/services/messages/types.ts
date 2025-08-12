@@ -4,5 +4,6 @@ export type MessageInfo = {
 	email: string;
 	message: string;
 	hotelId?: string;
+	hotelName?: string;
 	status: string;
 };

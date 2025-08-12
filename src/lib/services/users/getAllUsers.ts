@@ -4,10 +4,10 @@ import AuthError from "@/lib/middleware/errors/AuthError";
 import { connectToDatabase } from "@/lib/mongoose";
 import { cookies } from "next/headers";
 import { getCurrentUser } from "./getCurrentUser";
+import UserModel from "@/lib/modules/User/User.model";
 import { UserInfo } from "./types";
-import NotFoundError from "@/lib/middleware/errors/NotFoundError";
 
-export async function getCurrentUserInfo(): Promise<UserInfo> {
+export async function getAllUsers(): Promise<UserInfo[]> {
 	await connectToDatabase();
 
 	const authToken = (await cookies()).get("authToken")?.value;
@@ -19,15 +19,22 @@ export async function getCurrentUserInfo(): Promise<UserInfo> {
 	headers.set("authorization", `Bearer ${authToken}`);
 	const user = await getCurrentUser(headers);
 
-	if (!user._id) {
-		throw new NotFoundError("User not found");
+	if (user.role !== "admin") {
+		throw new AuthError("Unauthorized", 401);
 	}
-	const userInfo: UserInfo = {
-		_id: user._id.toString(),
-		username: user.username,
-		email: user.email,
-		role: user.role,
-	};
 
-	return userInfo;
+	const users = await UserModel.find();
+
+	const usersWithInfo: UserInfo[] = [];
+
+	for (const user of users) {
+		usersWithInfo.push({
+			_id: user._id.toString(),
+			username: user.username,
+			email: user.email,
+			role: user.role,
+		});
+	}
+
+	return usersWithInfo;
 }

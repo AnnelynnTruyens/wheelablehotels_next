@@ -40,7 +40,7 @@ export default async function AdminDashboard() {
 	return (
 		<>
 			<AdminHeader />
-			<main id="main" className={styles.page}>
+			<main id="main" className={`${styles.page} admin-main`}>
 				<h1>Welcome {user.username}!</h1>
 				<div className={styles.dashboard_flex}>
 					<section>
