@@ -72,3 +72,10 @@
 	flex-direction: row;
 	gap: 1rem;
 }
+
+/* DETAIL */
+.buttons {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+}

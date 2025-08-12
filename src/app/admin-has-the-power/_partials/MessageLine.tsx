@@ -11,7 +11,6 @@ type MessageLineProps = {
 	messageId: string;
 	message: string;
 	hotelName?: string;
-	status: string;
 	userName: string;
 };
 
@@ -19,7 +18,6 @@ export default function MessageLine({
 	messageId,
 	message,
 	hotelName,
-	status,
 	userName,
 }: MessageLineProps) {
 	const router = useRouter();
@@ -37,7 +35,6 @@ export default function MessageLine({
 			<td>{userName}</td>
 			<td>{message}</td>
 			<td>{hotelName ? hotelName : null}</td>
-			<td>{status}</td>
 			<td className={styles.actions}>
 				<SecondaryLinkBtn link={`/admin-has-the-power/messages/${messageId}`}>
 					View

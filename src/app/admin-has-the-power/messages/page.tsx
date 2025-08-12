@@ -37,7 +37,6 @@ export default async function AdminMessageOverview() {
 							<th className={styles.table_head}>Name</th>
 							<th className={styles.table_head}>Message</th>
 							<th className={styles.table_head}>Hotel</th>
-							<th className={styles.table_head}>Status</th>
 							<th className={styles.table_head}>Actions</th>
 						</tr>
 
@@ -49,7 +48,6 @@ export default async function AdminMessageOverview() {
 										messageId={message._id}
 										message={message.message}
 										hotelName={message.hotelName}
-										status={message.status}
 										userName={message.name}
 									/>
 								);
