@@ -3,6 +3,9 @@
 import styles from "../admin.module.css";
 import DeleteButton from "@/components/buttons/DeleteBtn";
 import SecondaryLinkBtn from "@/components/buttons/SecondaryLinkBtn";
+import { deleteMessage } from "@/lib/services/messages/deleteMessage";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 type MessageLineProps = {
 	messageId: string;
@@ -19,8 +22,14 @@ export default function MessageLine({
 	status,
 	userName,
 }: MessageLineProps) {
-	const deleteMessage = (messageId: string) => {
-		console.log("message to delete: " + messageId);
+	const router = useRouter();
+	const [isPending, startTransition] = useTransition();
+
+	const handleDeleteMessage = async (messageId: string) => {
+		await deleteMessage(messageId);
+		startTransition(() => {
+			router.refresh();
+		});
 	};
 
 	return (
@@ -35,7 +44,7 @@ export default function MessageLine({
 				</SecondaryLinkBtn>
 				<DeleteButton
 					action={() => {
-						deleteMessage(messageId);
+						handleDeleteMessage(messageId);
 					}}
 				/>
 			</td>

@@ -5,7 +5,7 @@ import DeleteButton from "@/components/buttons/DeleteBtn";
 import SecondaryLinkBtn from "@/components/buttons/SecondaryLinkBtn";
 import { deleteHotel } from "@/lib/services/hotels/deleteHotel";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useTransition } from "react";
 
 type HotelLineProps = {
 	hotelId: string;
