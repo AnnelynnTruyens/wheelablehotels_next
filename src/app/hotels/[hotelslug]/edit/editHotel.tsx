@@ -32,7 +32,7 @@ export default function EditHotel({ hotelId }: EditHotelProps) {
 
 	useEffect(() => {
 		if (isSuccess && isAdmin) {
-			router.replace(from);
+			goBack();
 		}
 	}, [isSuccess, isAdmin, router]);
 
@@ -50,7 +50,7 @@ export default function EditHotel({ hotelId }: EditHotelProps) {
 
 	if (isSuccess && !isAdmin)
 		return (
-			<SuccessMessage message="Hotel added successfully. Thank you for helping us make travelling more accessible!" />
+			<SuccessMessage message="Hotel edited successfully. Thank you for helping us make travelling more accessible!" />
 		);
 	else
 		return (

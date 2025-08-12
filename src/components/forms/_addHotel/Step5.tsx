@@ -89,9 +89,7 @@ export default function Step5({
 	}, [hotelId]);
 
 	const handleInputChange = (
-		e: React.ChangeEvent<
-			HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-		>
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => {
 		const target = e.target;
 		const { name, value } = target;
@@ -202,6 +200,15 @@ export default function Step5({
 		}
 	};
 
+	const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const newStatus = e.target.value;
+
+		setHotelData({
+			...hotelData,
+			status: newStatus,
+		});
+	};
+
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
@@ -220,7 +227,7 @@ export default function Step5({
 					roomData.append("description", room.description || "");
 					roomData.append("accessibilityInfo", room.accessibilityInfo || "");
 					room.accessibilityFeatures?.forEach((feature) => {
-						formData.append("accessibilityFeatures[]", feature._id);
+						roomData.append("accessibilityFeatures[]", feature._id);
 					});
 
 					if (!room._id) return;
@@ -340,7 +347,7 @@ export default function Step5({
 								key={amenity._id}
 								label={amenity.name}
 								id={amenity._id}
-								name="amenities"
+								name="amenities[]"
 								value={amenity._id}
 								checked={hotelData.amenities?.some(
 									(a: any) => a._id === amenity._id
@@ -362,7 +369,7 @@ export default function Step5({
 								key={feature._id}
 								label={feature.name}
 								id={feature._id}
-								name="accessibilityFeatures"
+								name="accessibilityFeatures[]"
 								value={feature._id}
 								checked={hotelData.accessibilityFeatures?.some(
 									(f: any) => f._id === feature._id
@@ -471,8 +478,8 @@ export default function Step5({
 						<select
 							name="status"
 							id="status"
-							value={hotelData.status || "new"} // fallback to "new" if undefined
-							onChange={handleInputChange}
+							value={hotelData.status || "new"}
+							onChange={handleStatusChange}
 							className={styles.select_select}
 						>
 							<option value="new" className={styles.select_option}>

@@ -43,11 +43,8 @@ export default function HotelClient({ initialHotels }: HotelClientProps) {
 
 	const applyFiltersAndSearch = () => {
 		const query = appliedSearchValue.trim().toLowerCase();
-		const publishedHotels = hotels.filter(
-			(hotel) => hotel.status === "published"
-		);
 
-		const results = publishedHotels.filter((hotel) => {
+		const results = hotels.filter((hotel) => {
 			const nameMatch = hotel.name?.toLowerCase().includes(query);
 			const locationMatch = hotel.location?.toLowerCase().includes(query);
 			const matchesSearch = query === "" || nameMatch || locationMatch;
