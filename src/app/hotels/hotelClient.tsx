@@ -44,6 +44,7 @@ function buildQuery({
 export default function HotelClient({ initialHotels }: HotelClientProps) {
 	const searchParams = useSearchParams();
 	const router = useRouter();
+	const [announcement, setAnnouncement] = useState("");
 
 	// --- 1) seed state from URL ---
 	const urlSearchValue = searchParams?.get("search") || "";
@@ -111,7 +112,7 @@ export default function HotelClient({ initialHotels }: HotelClientProps) {
 		const current = (searchParams?.toString?.() ?? "") || "";
 		const next = href.split("?")[1] ?? "";
 		if (current !== next) {
-			router.replace(href);
+			router.replace(href, { scroll: false });
 		}
 	}, [appliedSearchValue, formData, router, searchParams]);
 
@@ -128,6 +129,14 @@ export default function HotelClient({ initialHotels }: HotelClientProps) {
 		router.push(href);
 	};
 
+	useEffect(() => {
+		setAnnouncement(
+			`${filteredHotels.length} hotel${
+				filteredHotels.length === 1 ? "" : "s"
+			} found`
+		);
+	}, [filteredHotels.length, appliedSearchValue, formData]);
+
 	return (
 		<>
 			<SearchForm
@@ -137,6 +146,24 @@ export default function HotelClient({ initialHotels }: HotelClientProps) {
 			/>
 
 			<h1>Search hotels</h1>
+			<p aria-live="polite" role="status" className="sr-only">
+				{announcement}
+			</p>
+			<a
+				onClick={(e) => {
+					e.preventDefault();
+					const results = document.getElementById("results");
+					if (results) {
+						results.setAttribute("tabIndex", "-1");
+						results.focus({ preventScroll: true });
+					}
+				}}
+				className={styles.skip}
+				href="#results"
+			>
+				Skip to results
+			</a>
+
 			<div className={styles.content_flex}>
 				<FilterForm formData={formData} onFilterChange={setFormData} />
 
@@ -145,7 +172,12 @@ export default function HotelClient({ initialHotels }: HotelClientProps) {
 				) : error ? (
 					<Error message={error.message} />
 				) : (
-					<div className={styles.hotels}>
+					<div
+						className={styles.hotels}
+						id="results"
+						role="region"
+						aria-label="Search results"
+					>
 						{filteredHotels.length > 0 ? (
 							filteredHotels.map((hotel) => (
 								<HotelCard

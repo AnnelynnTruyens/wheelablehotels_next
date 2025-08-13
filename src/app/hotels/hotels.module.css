@@ -9,6 +9,24 @@
 	width: 100%;
 }
 
+.skip {
+	background: var(--primary-white);
+	border: 5px solid var(--primary-700);
+	border-radius: 5rem;
+	color: var(--primary-700);
+	font-weight: 700;
+	padding: 0.4rem 1.5rem;
+	position: absolute;
+	transform: translateX(-999%) translateY(-100%);
+	transition: 0.5s;
+}
+
+.skip:focus {
+	transform: translateX(0%) translateY(-100%);
+	z-index: 1;
+	transition: 0.5s;
+}
+
 /* DETAIL */
 .buttons {
 	display: flex;
