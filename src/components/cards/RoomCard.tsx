@@ -35,8 +35,8 @@ export default function RoomCard({
 			) : (
 				<NoResults insert="accessibility features" />
 			)}
-			<h4 className={styles.subtitle}>Accessibility information</h4>
-			<p className={styles.text}>{accessibilityInfo}</p>
+			<h4 className={styles.room_subtitle}>Accessibility information</h4>
+			<p className={styles.room_text}>{accessibilityInfo}</p>
 		</div>
 	);
 }

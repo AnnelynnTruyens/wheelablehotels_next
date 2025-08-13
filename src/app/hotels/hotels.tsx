@@ -1,0 +1,15 @@
+export const dynamic = "force-dynamic";
+
+import { getHotels } from "@/lib/services/hotels/getHotels";
+import HotelClient from "./hotelClient";
+
+export default async function HotelOverview() {
+	const hotels = await getHotels();
+
+	return (
+		<main id="main" className="main">
+			<title>Hotels | Wheelable Hotels</title>
+			<HotelClient initialHotels={hotels} />
+		</main>
+	);
+}

@@ -82,6 +82,10 @@
 	margin-top: 2rem;
 }
 
+.error {
+	color: var(--primary-500);
+}
+
 @media screen and (max-width: 570px) {
 	.label {
 		font-size: 0.8em;

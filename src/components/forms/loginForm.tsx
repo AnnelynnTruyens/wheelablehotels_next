@@ -8,6 +8,7 @@ import { useActionState } from "react";
 import FormInput from "./_partials/FormInput";
 import { useFormStatus } from "react-dom";
 import { useRouter, useSearchParams } from "next/navigation";
+import PrimaryBtn from "../buttons/PrimaryBtn";
 
 const initialState: LoginState = {
 	success: false,
@@ -17,9 +18,9 @@ const initialState: LoginState = {
 function SubmitButton() {
 	const { pending } = useFormStatus();
 	return (
-		<button type="submit" disabled={pending}>
+		<PrimaryBtn type="submit" disabled={pending}>
 			Login
-		</button>
+		</PrimaryBtn>
 	);
 }
 

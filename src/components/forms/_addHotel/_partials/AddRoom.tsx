@@ -94,6 +94,7 @@ export default function AddRoom({
 				value={formData.description}
 				placeholder="Add the description of the room here. Include amenities the room has such as a hair dryer or kettle."
 				onChange={handleChange}
+				required
 			/>
 
 			<fieldset className={styles.fieldset}>
@@ -122,6 +123,7 @@ export default function AddRoom({
 				value={formData.accessibilityInfo}
 				placeholder="Add accessibility information of the room here. Include a general impression and any additional features."
 				onChange={handleChange}
+				required
 			/>
 		</div>
 	);

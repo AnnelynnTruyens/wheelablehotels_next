@@ -5,6 +5,8 @@ import FormInput from "../_partials/FormInput";
 import Link from "next/link";
 import { createHotel } from "@/lib/services/hotels/createHotel";
 import { useActionState, useEffect } from "react";
+import { useFormStatus } from "react-dom";
+import PrimaryBtn from "@/components/buttons/PrimaryBtn";
 
 interface Step1Props {
 	onSuccess: (hotelId: string, hotelName: string) => void;
@@ -24,6 +26,7 @@ export default function Step1({
 	errorMessage,
 }: Step1Props) {
 	const [formState, formAction] = useActionState(createHotel, initialState);
+	const { pending } = useFormStatus();
 
 	useEffect(() => {
 		if (formState.success && formState.data) {
@@ -50,7 +53,9 @@ export default function Step1({
 				{errorMessage && <p className={styles.error}>{errorMessage}</p>}
 				<div className={styles.buttons}>
 					<Link href="/">Cancel</Link>
-					<button type="submit">Next</button>
+					<PrimaryBtn type="submit" disabled={pending}>
+						Next
+					</PrimaryBtn>
 				</div>
 			</form>
 		</div>

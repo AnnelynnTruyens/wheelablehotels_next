@@ -11,6 +11,12 @@ import FormCheckbox from "../_partials/FormCheckbox";
 import FormTextarea from "../_partials/FormTextarea";
 import { getAmenities } from "@/lib/services/amenities/getAmenities";
 import { getAccessibilityFeatures } from "@/lib/services/accessibilityFeatures/getAccessibilityFeatures";
+import { useFormStatus } from "react-dom";
+import SecondaryBtn from "@/components/buttons/SecondaryBtn";
+import PrimaryBtn from "@/components/buttons/PrimaryBtn";
+import { getHotelById } from "@/lib/services/hotels/getHotelById";
+import Loading from "@/components/Loading";
+import Error from "@/components/Error";
 
 interface Step2Props {
 	hotelId: string;
@@ -34,6 +40,16 @@ export default function Step2({
 	errorMessage,
 	goToPrevious,
 }: Step2Props) {
+	const { pending } = useFormStatus();
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [error, setError] = useState<string | null>(null);
+
+	const [hotelData, setHotelData] = useState<any>({});
+	const [amenities, setAmenities] = useState<Amenity[]>([]);
+	const [accessibilityFeatures, setAccessibilityFeatures] = useState<
+		AccessibilityFeature[]
+	>([]);
+
 	const [formState, formAction] = useActionState(
 		async (_prevState: any, formData: FormData) => {
 			try {
@@ -63,6 +79,28 @@ export default function Step2({
 	);
 
 	useEffect(() => {
+		async function fetchData() {
+			try {
+				const [hotel, amenitiesData, features] = await Promise.all([
+					getHotelById(hotelId),
+					getAmenities(),
+					getAccessibilityFeatures(),
+				]);
+
+				setHotelData(hotel);
+				setAmenities(amenitiesData);
+				setAccessibilityFeatures(features);
+				setIsLoading(false);
+			} catch (err: any) {
+				setError(err.message || "Failed to load hotel data");
+				setIsLoading(false);
+			}
+		}
+
+		fetchData();
+	}, []);
+
+	useEffect(() => {
 		if (formState.success) onSuccess();
 		if (formState.error) onError(formState.error);
 	}, [formState, onSuccess, onError]);
@@ -77,21 +115,19 @@ export default function Step2({
 		accessibilityFeatures: [] as AccessibilityFeature[],
 	});
 
-	const [amenities, setAmenities] = useState<Amenity[]>([]);
-	const [accessibilityFeatures, setAccessibilityFeatures] = useState<
-		AccessibilityFeature[]
-	>([]);
-
 	useEffect(() => {
-		getAmenitiesAndFeatures();
-	}, []);
+		if (!hotelData || !hotelData.location) return;
 
-	async function getAmenitiesAndFeatures() {
-		const amenities = await getAmenities();
-		setAmenities(amenities);
-		const accessibilityFeatures = await getAccessibilityFeatures();
-		setAccessibilityFeatures(accessibilityFeatures);
-	}
+		setFormValue({
+			location: hotelData.location || "",
+			contactEmail: hotelData.contactEmail || "",
+			contactPhone: hotelData.contactPhone || "",
+			website: hotelData.website || "",
+			accessibilityInfo: hotelData.accessibilityInfo || "",
+			amenities: hotelData.amenities || [],
+			accessibilityFeatures: hotelData.accessibilityFeatures || [],
+		});
+	}, [hotelData]);
 
 	const handleChange = (
 		e:
@@ -129,105 +165,134 @@ export default function Step2({
 		}));
 	};
 
-	return (
-		<div className={styles.container_full}>
-			<Progress step={2} />
-			<h1 className={styles.title}>Add hotel info</h1>
-
-			<form className={styles.form} action={formAction}>
-				<FormInput
-					label="Address hotel"
-					type="text"
-					id="location"
-					name="location"
-					value={formValue.location}
-					placeholder="Plaza 1, 1000 Brussels"
-					onChange={handleChange}
-					required
-				/>
-				<FormInput
-					label="Email hotel"
-					type="email"
-					id="contactEmail"
-					name="contactEmail"
-					value={formValue.contactEmail}
-					placeholder="example@hotel.com"
-					onChange={handleChange}
-					required
-				/>
-				<FormInput
-					label="Phone number hotel"
-					type="tel"
-					id="contactPhone"
-					name="contactPhone"
-					value={formValue.contactPhone}
-					placeholder="+32 000 00 00"
-					onChange={handleChange}
-					required
-				/>
-				<FormInput
-					label="Website hotel"
-					type="text"
-					id="website"
-					name="website"
-					value={formValue.website}
-					placeholder="www.hotel.com"
-					onChange={handleChange}
-					required
-				/>
-
-				<fieldset className={styles.fieldset}>
-					<legend className={styles.fieldset_legend}>General amenities:</legend>
-					<div className={styles.checkboxes}>
-						{amenities.map((amenity) => (
-							<FormCheckbox
-								key={amenity._id}
-								label={amenity.name}
-								id={amenity._id}
-								name="amenities"
-								value={amenity._id}
-								onChange={handleAmenityChange}
-							/>
-						))}
-					</div>
-				</fieldset>
-
-				<h2 className={styles.title}>Accessibility info</h2>
-				<fieldset className={styles.fieldset}>
-					<legend className={styles.fieldset_legend}>
-						Accessibility features:
-					</legend>
-					<div className={styles.checkboxes}>
-						{accessibilityFeatures.map((feature) => (
-							<FormCheckbox
-								key={feature._id}
-								label={feature.name}
-								id={feature._id}
-								name="accessibilityFeatures"
-								value={feature._id}
-								onChange={handleAccessibilityChange}
-							/>
-						))}
-					</div>
-				</fieldset>
-
-				<FormTextarea
-					label="Accessibility info"
-					id="accessibilityInfo"
-					name="accessibilityInfo"
-					value={formValue.accessibilityInfo}
-					placeholder="Add accessibility information..."
-					onChange={handleChange}
-					required
-				/>
-
-				{formState.error && <p className={styles.error}>{formState.error}</p>}
-
-				<div className={styles.buttons}>
-					<button onClick={goToPrevious}>Previous</button>
-					<button type="submit">Next</button>
+	if (isLoading) {
+		return (
+			<div className={styles.container_full}>
+				<Progress step={2} />
+				<Loading />
+			</div>
+		);
+	} else if (error) {
+		if (isLoading) {
+			return (
+				<div className={styles.container_full}>
+					<Progress step={2} />
+					<Error message={error} />
 				</div>
-			</form>
-		</div>
-	);
+			);
+		}
+	} else
+		return (
+			<div className={styles.container_full}>
+				<Progress step={2} />
+				<h1 className={styles.title}>Add hotel info</h1>
+
+				<form className={styles.form} action={formAction}>
+					<FormInput
+						label="Address hotel"
+						type="text"
+						id="location"
+						name="location"
+						value={formValue.location}
+						placeholder="Plaza 1, 1000 Brussels"
+						onChange={handleChange}
+						required
+					/>
+					<FormInput
+						label="Email hotel"
+						type="email"
+						id="contactEmail"
+						name="contactEmail"
+						value={formValue.contactEmail}
+						placeholder="example@hotel.com"
+						onChange={handleChange}
+						required
+					/>
+					<FormInput
+						label="Phone number hotel"
+						type="tel"
+						id="contactPhone"
+						name="contactPhone"
+						value={formValue.contactPhone}
+						placeholder="+32 000 00 00"
+						onChange={handleChange}
+						required
+					/>
+					<FormInput
+						label="Website hotel"
+						type="text"
+						id="website"
+						name="website"
+						value={formValue.website}
+						placeholder="www.hotel.com"
+						onChange={handleChange}
+						required
+					/>
+
+					<fieldset className={styles.fieldset}>
+						<legend className={styles.fieldset_legend}>
+							General amenities:
+						</legend>
+						<div className={styles.checkboxes}>
+							{amenities.map((amenity) => (
+								<FormCheckbox
+									key={amenity._id}
+									label={amenity.name}
+									id={amenity._id}
+									name="amenities"
+									value={amenity._id}
+									checked={formValue.amenities.some(
+										(a) => a._id === amenity._id
+									)}
+									onChange={handleAmenityChange}
+								/>
+							))}
+						</div>
+					</fieldset>
+
+					<h2 className={styles.title}>Accessibility info</h2>
+					<fieldset className={styles.fieldset}>
+						<legend className={styles.fieldset_legend}>
+							Accessibility features:
+						</legend>
+						<div className={styles.checkboxes}>
+							{accessibilityFeatures.map((feature) => (
+								<FormCheckbox
+									key={feature._id}
+									label={feature.name}
+									id={feature._id}
+									name="accessibilityFeatures"
+									value={feature._id}
+									checked={formValue.accessibilityFeatures.some(
+										(f) => f._id === feature._id
+									)}
+									onChange={handleAccessibilityChange}
+								/>
+							))}
+						</div>
+					</fieldset>
+
+					<FormTextarea
+						label="Accessibility info"
+						id="accessibilityInfo"
+						name="accessibilityInfo"
+						value={formValue.accessibilityInfo}
+						placeholder="Add accessibility information..."
+						onChange={handleChange}
+						required
+					/>
+
+					{formState.error && <p className={styles.error}>{formState.error}</p>}
+
+					<div className={styles.buttons}>
+						<SecondaryBtn type="button" onClick={goToPrevious}>
+							Previous
+						</SecondaryBtn>
+						<PrimaryBtn type="submit" disabled={pending}>
+							Next
+						</PrimaryBtn>
+					</div>
+				</form>
+			</div>
+		);
 }

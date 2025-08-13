@@ -20,6 +20,7 @@ export async function getRoomsByHotel(hotelId: string): Promise<RoomInfo[]> {
 		for (const room of rooms) {
 			roomsInfo.push({
 				_id: room._id.toString(),
+				hotelId: room.hotelId.toString(),
 				name: room.name,
 				description: room.description,
 				accessibilityInfo: room.accessibilityInfo,

@@ -25,9 +25,10 @@ import FormCheckbox from "../_partials/FormCheckbox";
 import FormTextarea from "../_partials/FormTextarea";
 import AddRoom from "./_partials/AddRoom";
 import FormFileInput from "../_partials/FormFileInput";
-import Link from "next/link";
 import { getCurrentUserInfo } from "@/lib/services/users/getCurrentUserInfo";
 import GoBackBtn from "@/components/buttons/GoBackBtn";
+import SecondaryBtn from "@/components/buttons/SecondaryBtn";
+import PrimaryBtn from "@/components/buttons/PrimaryBtn";
 
 interface Step5Props {
 	hotelId: string;
@@ -44,8 +45,9 @@ export default function Step5({
 	goToPrevious,
 	editHotel,
 }: Step5Props) {
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
+	const [pending, setPending] = useState<boolean>(false);
 
 	const [hotelData, setHotelData] = useState<any>({});
 	const [roomDataList, setRoomDataList] = useState<RoomInfo[]>([]);
@@ -212,6 +214,7 @@ export default function Step5({
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
+		setPending(true);
 		try {
 			const formData = new FormData(e.target as HTMLFormElement);
 
@@ -258,9 +261,11 @@ export default function Step5({
 			}
 
 			onSuccess();
+			setPending(false);
 		} catch (err: any) {
 			console.error("Failed to submit hotel overview form:", err);
 			onError(err.message || "Submission failed");
+			setPending(false);
 		}
 	};
 
@@ -428,9 +433,9 @@ export default function Step5({
 					</div>
 				))}
 
-				<button type="button" onClick={handleAddRoom}>
+				<PrimaryBtn type="button" onClick={handleAddRoom}>
 					Add another room
-				</button>
+				</PrimaryBtn>
 
 				<h2 className={styles.subtitle}>Photos</h2>
 				<FormFileInput
@@ -504,12 +509,14 @@ export default function Step5({
 					{editHotel ? (
 						<GoBackBtn>Cancel</GoBackBtn>
 					) : (
-						<button type="button" onClick={goToPrevious}>
+						<SecondaryBtn type="button" onClick={goToPrevious}>
 							Previous
-						</button>
+						</SecondaryBtn>
 					)}
 
-					<button type="submit">Submit</button>
+					<PrimaryBtn type="submit" disabled={pending}>
+						Submit
+					</PrimaryBtn>
 				</div>
 			</form>
 		</div>

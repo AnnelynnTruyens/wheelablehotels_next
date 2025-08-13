@@ -87,3 +87,8 @@
 	height: 0;
 	overflow: hidden;
 }
+
+/* ERROR */
+.error {
+	color: var(--primary-500);
+}

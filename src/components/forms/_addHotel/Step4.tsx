@@ -5,6 +5,8 @@ import FormFileInput from "../_partials/FormFileInput";
 import styles from "../forms.module.css";
 import Progress from "./_partials/Progress";
 import { createImage } from "@/lib/services/images/createImage";
+import SecondaryBtn from "@/components/buttons/SecondaryBtn";
+import PrimaryBtn from "@/components/buttons/PrimaryBtn";
 
 interface Step4Props {
 	hotelId: string;
@@ -92,10 +94,12 @@ export default function Step4({
 				/>
 				{errorMessage && <p className={styles.error}>{errorMessage}</p>}
 				<div className={styles.buttons}>
-					<button onClick={goToPrevious}>Previous</button>
-					<button type="submit" disabled={loading}>
+					<SecondaryBtn type="button" onClick={goToPrevious}>
+						Previous
+					</SecondaryBtn>
+					<PrimaryBtn type="submit" disabled={loading}>
 						Next
-					</button>
+					</PrimaryBtn>
 				</div>
 			</form>
 		</div>

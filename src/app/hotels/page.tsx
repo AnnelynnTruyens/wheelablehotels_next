@@ -1,15 +1,13 @@
 export const dynamic = "force-dynamic";
 
-import { getHotels } from "@/lib/services/hotels/getHotels";
-import HotelClient from "./hotelClient";
+import { Suspense } from "react";
+import Loading from "@/components/Loading";
+import HotelOverview from "./hotels";
 
-export default async function HotelOverview() {
-	const hotels = await getHotels();
-
+export default async function HotelOverviewPage() {
 	return (
-		<main id="main" className="main">
-			<title>Hotels | Wheelable Hotels</title>
-			<HotelClient initialHotels={hotels} />
-		</main>
+		<Suspense fallback={<Loading />}>
+			<HotelOverview />
+		</Suspense>
 	);
 }

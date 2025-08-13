@@ -1,5 +1,6 @@
 export type RoomInfo = {
 	_id: string;
+	hotelId: string;
 	name: string;
 	description: string;
 	accessibilityInfo: string;

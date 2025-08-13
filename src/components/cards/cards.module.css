@@ -166,8 +166,8 @@
 .room {
 	border: 1px solid var(--primary-200);
 	border-radius: var(--border-radius);
-	padding: 1rem;
-	margin-bottom: 1rem;
+	padding: 2rem;
+	max-width: 20rem;
 
 	background-color: var(--primary-100);
 	box-shadow: var(--shadow-black);

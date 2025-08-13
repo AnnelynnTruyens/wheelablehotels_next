@@ -9,7 +9,7 @@
 	width: 100%;
 }
 
-/* Detail */
+/* DETAIL */
 .buttons {
 	display: flex;
 	flex-direction: row;
@@ -97,6 +97,13 @@
 .room_section,
 .review_section {
 	margin: 3rem 0;
+}
+
+.rooms {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 1.2rem;
 }
 
 .rating_top {
