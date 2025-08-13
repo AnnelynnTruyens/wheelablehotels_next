@@ -37,7 +37,7 @@ export default function FilterForm({ formData, onFilterChange }: Props) {
 		checked: boolean
 	) => {
 		const updated = checked
-			? [...formData[type], value]
+			? [...new Set([...formData[type], value])]
 			: formData[type].filter((id) => id !== value);
 
 		onFilterChange({
@@ -63,6 +63,7 @@ export default function FilterForm({ formData, onFilterChange }: Props) {
 									id={f._id}
 									name="accessibilityFeatures"
 									value={f._id}
+									checked={formData.accessibilityFeatures.includes(f._id)}
 									onChange={(e) =>
 										handleChange(
 											"accessibilityFeatures",
@@ -85,6 +86,7 @@ export default function FilterForm({ formData, onFilterChange }: Props) {
 								id={a._id}
 								name="amenities"
 								value={a._id}
+								checked={formData.amenities.includes(a._id)}
 								onChange={(e) =>
 									handleChange("amenities", e.target.value, e.target.checked)
 								}
