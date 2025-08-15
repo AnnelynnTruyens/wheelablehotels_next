@@ -173,6 +173,14 @@
 		padding: 0.5rem;
 	}
 
+	.step_active .icon_border {
+		border: 3px solid var(--primary-200);
+	}
+
+	.line_bold {
+		height: 3px;
+	}
+
 	.step_text {
 		font-size: 0.5em;
 	}
