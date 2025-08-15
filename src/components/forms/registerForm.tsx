@@ -61,7 +61,9 @@ export default function RegisterForm() {
 
 				<div className={styles.buttons}>
 					<SubmitButton />
-					<Link href="/users/login">I already have an account</Link>
+					<Link href="/users/login" className={styles.form_link}>
+						I already have an account
+					</Link>
 				</div>
 			</form>
 		</div>

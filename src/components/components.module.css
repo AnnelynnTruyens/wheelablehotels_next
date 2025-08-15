@@ -88,6 +88,12 @@
 	overflow: hidden;
 }
 
+@media (prefers-color-scheme: dark) {
+	.icon {
+		fill: var(--textcolor);
+	}
+}
+
 /* ERROR */
 .error {
 	color: var(--primary-500);

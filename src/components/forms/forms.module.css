@@ -86,6 +86,45 @@
 	color: var(--primary-500);
 }
 
+@media (prefers-color-scheme: dark) {
+	.container_center {
+		background: var(--secondary-600);
+		color: var(--secondary-900);
+	}
+
+	.container_full {
+		background: var(--secondary-900);
+	}
+
+	.title {
+		color: var(--secondary-500);
+	}
+
+	.title_small {
+		color: var(--secondary-900);
+	}
+
+	.subtitle {
+		color: var(--secondary-500);
+	}
+
+	.input {
+		color: var(--primary-900);
+	}
+
+	.form_link {
+		color: var(--secondary-900);
+	}
+
+	.form_link:hover {
+		color: var(--secondary-900);
+	}
+
+	.error {
+		color: var(--primary-500);
+	}
+}
+
 /* CHECKBOX */
 .checkbox_label {
 	margin-left: 0.5rem;
@@ -104,8 +143,14 @@
 	border-radius: var(--border-radius);
 	border: 1px solid var(--secondary-500);
 	background-color: var(--secondary-white);
-	color: var(--black);
+	color: var(--textcolor);
 	box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+@media (prefers-color-scheme: dark) {
+	.input_textarea {
+		color: var(--primary-900);
+	}
 }
 
 /* SELECT */
@@ -127,6 +172,15 @@
 	background-color: var(--secondary-white);
 	color: var(--textcolor);
 	box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+@media (prefers-color-scheme: dark) {
+	.select_label {
+		color: var(--secondary-500);
+	}
+	.select_select {
+		color: var(--primary-900);
+	}
 }
 
 /* RATING */
@@ -239,7 +293,15 @@
 
 @media (prefers-color-scheme: dark) {
 	.filter_form {
-		background-color: var(--black);
+		background-color: var(--primary-900);
+	}
+
+	.filter_title {
+		color: var(--secondary-500);
+	}
+
+	.filter_toggle {
+		stroke: var(--secondary-500);
 	}
 }
 
@@ -258,12 +320,15 @@
 
 /* ADD HOTELS */
 .room_container {
-	background-color: var(--primary);
-	color: var(--white);
+	background-color: var(--secondary-500);
 
-	padding: 1rem;
+	padding: 2rem;
 	margin: 1rem 0;
 	border-radius: var(--border-radius);
+
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
 }
 
 .delete_btn {
@@ -276,13 +341,6 @@
 .delete_btn:focus,
 .delete_btn:focus-visible {
 	background-color: transparent;
-}
-
-.room_container {
-	background-color: var(--secondary-500);
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
 }
 
 .room {
@@ -311,6 +369,26 @@
 	height: 10rem;
 	object-fit: cover;
 	border-radius: var(--border-radius-small);
+}
+
+@media (prefers-color-scheme: dark) {
+	.room_container {
+		background-color: var(--primary-700);
+	}
+
+	.delete_btn {
+		stroke: var(--textcolor);
+	}
+
+	.delete_btn:hover,
+	.delete_btn:focus,
+	.delete_btn:focus-visible {
+		background-color: transparent;
+	}
+
+	.room_container .delete_btn {
+		stroke: var(--textcolor);
+	}
 }
 
 /* REVIEW */
@@ -344,28 +422,41 @@
 }
 
 .rating_filled {
-	color: var(--primary-dark);
+	color: var(--primary-700);
 	transition: 0.3s;
 }
 
 .rating_empty {
-	color: var(--primary-light);
+	color: var(--primary-300);
 	transition: 0.3s;
 }
 
 .rating_label input:focus + .rating {
-	outline: 2px solid var(--primary-dark);
+	outline: 2px solid var(--primary-700);
 	outline-offset: 4px;
 	border-radius: 4px;
 }
 
 .selected_rating {
 	margin-top: 0.5rem;
-	color: var(--black);
+	color: var(--textcolor);
+}
+
+@media (prefers-color-scheme: dark) {
+	.rating_filled {
+		color: var(--secondary-300);
+	}
+
+	.rating_empty {
+		color: var(--secondary-600);
+	}
+
+	.rating_label input:focus + .rating {
+		outline: 2px solid var(--secondary-300);
+	}
 }
 
 /* RESPONSIVE */
-
 @media screen and (max-width: 1200px) {
 	.filter_form {
 		width: 30%;

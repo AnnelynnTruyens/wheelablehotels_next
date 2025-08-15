@@ -89,10 +89,43 @@
 }
 
 @media (prefers-color-scheme: dark) {
+	.secondary {
+		background-color: var(--primary-700);
+		color: var(--primary-100);
+	}
+
+	.secondary:hover,
+	.secondary:focus,
+	.secondary:focus-visible {
+		background-color: var(--secondary-500);
+		color: var(--secondary-900);
+	}
+
 	.back_link:hover,
-	.back_link:focus,
+	.back_link:focus {
+		color: var(--secondary-300);
+	}
+
 	.back_link:hover .back_link_arrow,
 	.back_link:focus .back_link_arrow {
-		color: var(--primary-200);
+		stroke: var(--secondary-300);
+	}
+
+	.favourite_icon_filled {
+		stroke: var(--secondary-900);
+		fill: var(--secondary-900);
+	}
+
+	.favourite_icon_empty {
+		stroke: var(--secondary-900);
+	}
+
+	.favourite_btn:hover .favourite_icon_filled {
+		stroke: var(--primary-100);
+		fill: var(--primary-100);
+	}
+
+	.favourite_btn:hover .favourite_icon_empty {
+		stroke: var(--primary-100);
 	}
 }

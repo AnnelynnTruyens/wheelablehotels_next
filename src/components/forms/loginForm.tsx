@@ -95,7 +95,9 @@ export default function LoginForm() {
 
 				<div className={styles.buttons}>
 					<SubmitButton />
-					<Link href="/users/register">I don&apos;t have an account yet</Link>
+					<Link href="/users/register" className={styles.form_link}>
+						I don&apos;t have an account yet
+					</Link>
 				</div>
 			</form>
 		</div>

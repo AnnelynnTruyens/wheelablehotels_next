@@ -13,18 +13,13 @@
 }
 
 @media (prefers-color-scheme: dark) {
-	.rating_filled {
+	.rating_filled,
+	.rating_filled_detail {
 		color: var(--secondary-400);
 	}
 
-	.rating_empty {
-		color: var(--secondary-600);
-	}
-
-	.rating_filled_detail {
-		color: var(--secondary-100);
-	}
+	.rating_empty,
 	.rating_empty_detail {
-		color: var(--secondary-200);
+		color: var(--secondary-600);
 	}
 }

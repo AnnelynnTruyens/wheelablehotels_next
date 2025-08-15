@@ -39,7 +39,9 @@ export default function AddHotelFlow() {
 
 	if (isSuccess)
 		return (
-			<SuccessMessage message="Hotel added successfully. Thank you for helping us make travelling more accessible!" />
+			<main id="main" className="main">
+				<SuccessMessage message="Hotel added successfully. Thank you for helping us make travelling more accessible!" />
+			</main>
 		);
 
 	switch (step) {

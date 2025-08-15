@@ -74,42 +74,41 @@
 
 @media (prefers-color-scheme: dark) {
 	.icon_border {
-		border: 2px solid var(--primary-white);
+		border: 2px solid var(--primary-200);
 	}
 
 	.icon {
-		stroke: var(--primary-white);
+		stroke: var(--primary-200);
 	}
 
 	.step_text {
-		color: var(--primary-white);
+		color: var(--primary-100);
 	}
 
 	.step_active .icon_border {
-		border: 4px solid var(--primary-200);
+		border: 4px solid var(--secondary-500);
 		box-shadow: var(--glow-secondary);
 	}
 
-	.step_past .icon_border {
-		background-color: var(--priamry-white);
-	}
-
-	.step_past .icon {
+	.step_active .icon {
 		stroke: var(--secondary-500);
 	}
 
+	.step_past .icon_border {
+		background-color: var(--secondary-600);
+		border: 4px solid var(--secondary-600);
+	}
+
+	.step_past .icon {
+		stroke: var(--primary-900);
+	}
+
 	.line {
-		flex: 1; /* Stretch to fill the space between steps */
-		height: 2px;
-		background-color: var(--priamry-white);
-		transform: translateY(-1.5rem);
+		background-color: var(--primary-100);
 	}
 
 	.line_bold {
-		flex: 1; /* Stretch to fill the space between steps */
-		height: 4px;
-		background-color: var(--priamry-white);
-		transform: translateY(-1.5rem);
+		background-color: var(--secondary-600);
 	}
 }
 

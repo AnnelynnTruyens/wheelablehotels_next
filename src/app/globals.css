@@ -25,7 +25,7 @@
 	--secondary-300: hsla(39, 78%, 80%, 1);
 	--secondary-400: hsla(39, 79%, 70%, 1);
 	--secondary-500: hsla(39, 79%, 58%, 1);
-	--secondary-600: hsla(39, 78%, 40%, 1);
+	--secondary-600: hsla(39, 77%, 40%, 1);
 	--secondary-700: hsla(39, 78%, 25%, 1);
 	--secondary-800: hsla(39, 79%, 15%, 1);
 	--secondary-900: hsla(39, 77%, 5%, 1);
@@ -200,27 +200,27 @@ button:disabled,
 		color: var(--textcolor);
 	}
 	a:hover {
-		color: var(--primary-200);
+		color: var(--secondary-300);
 	}
 
 	button,
 	.button {
-		background-color: var(--secondary-200);
+		background-color: var(--secondary-500);
 		color: var(--secondary-900);
 	}
 
 	button:hover,
 	.button:hover {
-		background-color: var(--secondary-100);
-		color: var(--secondary-900);
+		background-color: var(--primary-700);
+		color: var(--primary-100);
 	}
 
 	button:focus,
 	button:focus-visible,
 	.button:focus,
 	.button:focus-visible {
-		background-color: var(--secondary-100);
-		color: var(--secondary-900);
+		background-color: var(--primary-700);
+		color: var(--primary-100);
 	}
 
 	h1,

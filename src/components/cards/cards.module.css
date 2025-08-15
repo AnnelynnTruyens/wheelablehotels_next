@@ -203,13 +203,13 @@
 	}
 
 	.review {
-		background-color: var(--secondary-200);
-		border-color: var(--secondary-100);
-		color: var(--secondary-900);
+		background-color: var(--primary-700);
+		color: var(--textcolor);
+		border: none;
 	}
 
 	.name {
-		color: var(--secondary-900);
+		color: var(--secondary-400);
 	}
 
 	.room {
