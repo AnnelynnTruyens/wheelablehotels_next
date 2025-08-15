@@ -196,11 +196,11 @@
 
 @media (prefers-color-scheme: dark) {
 	.rating_filled {
-		color: var(--secondary-white);
+		color: var(--secondary-300);
 	}
 
 	.rating_empty {
-		color: var(--secondary-200);
+		color: var(--secondary-600);
 	}
 }
 
@@ -421,16 +421,6 @@
 	transition: 0.3s;
 }
 
-.rating_filled {
-	color: var(--primary-700);
-	transition: 0.3s;
-}
-
-.rating_empty {
-	color: var(--primary-300);
-	transition: 0.3s;
-}
-
 .rating_label input:focus + .rating {
 	outline: 2px solid var(--primary-700);
 	outline-offset: 4px;
@@ -443,14 +433,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-	.rating_filled {
-		color: var(--secondary-300);
-	}
-
-	.rating_empty {
-		color: var(--secondary-600);
-	}
-
 	.rating_label input:focus + .rating {
 		outline: 2px solid var(--secondary-300);
 	}

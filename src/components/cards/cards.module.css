@@ -37,7 +37,9 @@
 .card_info {
 	width: 100%;
 	padding: 1rem;
+}
 
+.card_info_left {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -68,6 +70,21 @@
 
 .card_features {
 	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.card_li {
+	list-style: none;
+	text-align: center;
+}
+
+.card_icon {
+	width: 3rem;
+	height: auto;
 }
 
 /* HOTEL HIGHLIGHT */
@@ -186,8 +203,8 @@
 	margin: 0;
 }
 
-.room_list {
-	margin-top: 0;
+.card_feature {
+	width: 5rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -252,9 +269,9 @@
 	}
 }
 
-@media screen and (max-width: 400px) {
-	.card_info {
-		flex-wrap: wrap;
+@media screen and (max-width: 450px) {
+	.card_info_left {
+		flex-wrap: wrap-reverse;
 		gap: 0.5rem;
 	}
 }

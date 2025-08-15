@@ -29,6 +29,7 @@ export async function getRoomsByHotel(hotelId: string): Promise<RoomInfo[]> {
 				).map((f) => ({
 					_id: f._id.toString(),
 					name: f.name,
+					icon: f.icon,
 				})),
 			});
 		}

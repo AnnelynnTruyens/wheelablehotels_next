@@ -6,7 +6,7 @@ import styles from "./cards.module.css";
 type RoomCardProps = {
 	roomName: string;
 	roomDescription: string;
-	accessibilityFeatures: { _id: string; name: string }[];
+	accessibilityFeatures: { _id: string; name: string; icon?: string }[];
 	accessibilityInfo: string;
 };
 
@@ -23,12 +23,18 @@ export default function RoomCard({
 			<p className={styles.room_text}>{roomDescription}</p>
 			<h4 className={styles.room_subtitle}>Accessibility features</h4>
 			{accessibilityFeatures && accessibilityFeatures.length > 0 ? (
-				<ul className={styles.room_list}>
+				<ul className={styles.card_features}>
 					{accessibilityFeatures.map((feature) => {
 						return (
-							<li key={`feature_${feature._id}`} className={styles.list_li}>
-								{feature.name}
-							</li>
+							<div
+								key={`accessibility-feature_${feature._id}`}
+								className={styles.card_feature}
+							>
+								<img src={feature.icon} alt="" className={styles.card_icon} />
+								<li className={styles.card_li} key={`feature_${feature._id}`}>
+									{feature.name}
+								</li>
+							</div>
 						);
 					})}
 				</ul>

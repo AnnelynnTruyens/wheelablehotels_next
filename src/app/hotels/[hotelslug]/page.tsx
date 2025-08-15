@@ -72,11 +72,19 @@ export default async function HotelDetailPage({ params }: HotelDetailProps) {
 						</p>
 						<h2 className={styles.subtitle}>Accessibility</h2>
 						{hotel.accessibilityFeatures?.length > 0 ? (
-							<ul>
+							<ul className={styles.features}>
 								{hotel.accessibilityFeatures.map((feature) => (
-									<li key={`accessibility-feature_${feature._id}`}>
-										{feature.name}
-									</li>
+									<div
+										key={`accessibility-feature_${feature._id}`}
+										className={styles.feature}
+									>
+										<img
+											src={feature.icon}
+											alt=""
+											className={styles.feature_img}
+										/>
+										<li className={styles.feature_name}>{feature.name}</li>
+									</div>
 								))}
 							</ul>
 						) : (
@@ -85,9 +93,19 @@ export default async function HotelDetailPage({ params }: HotelDetailProps) {
 						<p>{hotel.accessibilityInfo}</p>
 						<h2 className={styles.subtitle}>General amenities</h2>
 						{hotel.amenities?.length > 0 ? (
-							<ul>
+							<ul className={styles.features}>
 								{hotel.amenities.map((amenity) => (
-									<li key={`amenity_${amenity._id}`}>{amenity.name}</li>
+									<div
+										key={`amenity_${amenity._id}`}
+										className={styles.feature}
+									>
+										<img
+											src={amenity.icon}
+											alt=""
+											className={styles.feature_img}
+										/>
+										<li className={styles.feature_name}>{amenity.name}</li>
+									</div>
 								))}
 							</ul>
 						) : (

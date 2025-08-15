@@ -17,6 +17,5 @@ export async function getAmenities(): Promise<SerializableAmenity[]> {
 	return amenities.map((a) => ({
 		_id: a._id.toString(),
 		name: a.name,
-		icon: a.icon || null,
 	}));
 }

@@ -4,13 +4,13 @@ import NotFoundError from "@/lib/middleware/errors/NotFoundError";
 import HotelModel from "@/lib/modules/Hotel/Hotel.model";
 import { connectToDatabase } from "@/lib/mongoose";
 import { calculateAverageRating } from "./utils";
-import { Amenity } from "@/lib/modules/Amenity/Amenity.types";
-import { AccessibilityFeature } from "@/lib/modules/AccessibilityFeature/AccessibilityFeature.types";
 import { HotelWithRating } from "./types";
 import { User } from "@/lib/modules/User/User.types";
 import "@/lib/modules/Amenity/Amenity.model";
 import "@/lib/modules/AccessibilityFeature/AccessibilityFeature.model";
 import "@/lib/modules/User/User.model";
+import { Amenity } from "../amenities/types";
+import { AccessibilityFeature } from "../accessibilityFeatures/types";
 
 export async function getHotelBySlug(slug: string): Promise<HotelWithRating> {
 	await connectToDatabase();
@@ -44,12 +44,14 @@ export async function getHotelBySlug(slug: string): Promise<HotelWithRating> {
 		amenities: (hotel.amenities as Amenity[]).map((a) => ({
 			_id: a._id.toString(),
 			name: a.name,
+			icon: a.icon,
 		})),
 		accessibilityFeatures: (
 			hotel.accessibilityFeatures as AccessibilityFeature[]
 		).map((f) => ({
 			_id: f._id.toString(),
 			name: f.name,
+			icon: f.icon,
 		})),
 	};
 

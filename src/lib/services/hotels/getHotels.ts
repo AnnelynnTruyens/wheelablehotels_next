@@ -38,12 +38,14 @@ export async function getHotels(): Promise<HotelWithRatingAndImage[]> {
 			amenities: (hotel.amenities as Amenity[]).map((a) => ({
 				_id: a._id.toString(),
 				name: a.name,
+				icon: a.icon,
 			})),
 			accessibilityFeatures: (
 				hotel.accessibilityFeatures as AccessibilityFeature[]
 			).map((f) => ({
 				_id: f._id.toString(),
 				name: f.name,
+				icon: f.icon,
 			})),
 			imageUrl: image?.imageUrl || null,
 			imageAlt: image?.alt || null,

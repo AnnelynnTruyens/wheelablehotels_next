@@ -50,6 +50,30 @@
 	margin-bottom: 1rem;
 }
 
+.features {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding: 0;
+}
+
+.feature {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 5rem;
+	text-align: center;
+}
+
+.feature_img {
+	width: 3.5rem;
+}
+
+.feature_name {
+	list-style: none;
+}
+
 .contact_reviews {
 	display: flex;
 	flex-direction: row;

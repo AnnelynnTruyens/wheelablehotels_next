@@ -7,7 +7,7 @@ type HotelCardProps = {
 	hotelSlug: string;
 	hotelId: string;
 	location: string | undefined;
-	accessibilityFeatures: { _id: string; name: string }[];
+	accessibilityFeatures: { _id: string; name: string; icon?: string }[];
 	rating: number | undefined;
 	imageUrl?: string;
 	imageAlt?: string;
@@ -32,26 +32,33 @@ export default function HotelCard({
 			/>
 			<div className={styles.card_info}>
 				<div className={styles.card_info_left}>
-					<Link
-						href={{
-							pathname: `/hotels/${hotelSlug}`,
-						}}
-						className={styles.card_link}
-					>
-						<h2 className={styles.card_title}>{hotelName}</h2>
-					</Link>
-					<p className={styles.card_location}>{location}</p>
-					<ul className={styles.card_features}>
-						{accessibilityFeatures.map((feature, index) => {
-							return (
-								<li className={styles.card_li} key={`feature_${index}`}>
-									{feature.name}
-								</li>
-							);
-						})}
-					</ul>
+					<div className={styles.card_info_left_top}>
+						<Link
+							href={{
+								pathname: `/hotels/${hotelSlug}`,
+							}}
+							className={styles.card_link}
+						>
+							<h2 className={styles.card_title}>{hotelName}</h2>
+						</Link>
+						<p className={styles.card_location}>{location}</p>
+					</div>
+					{rating ? <Rating rating={rating} /> : null}
 				</div>
-				{rating ? <Rating rating={rating} /> : null}
+				<ul className={styles.card_features}>
+					{accessibilityFeatures.map((feature, index) => {
+						return (
+							<li className={styles.card_li} key={`feature_${index}`}>
+								<img
+									src={feature.icon}
+									alt=""
+									aria-label={feature.name}
+									className={styles.card_icon}
+								/>
+							</li>
+						);
+					})}
+				</ul>
 			</div>
 		</div>
 	);
