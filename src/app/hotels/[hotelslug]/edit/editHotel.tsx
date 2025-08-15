@@ -3,7 +3,6 @@
 import Step5 from "@/components/forms/_addHotel/Step5";
 import SuccessMessage from "@/components/forms/_partials/SuccessMessage";
 import Loading from "@/components/Loading";
-import { getHotelById } from "@/lib/services/hotels/getHotelById";
 import { getCurrentUserInfo } from "@/lib/services/users/getCurrentUserInfo";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

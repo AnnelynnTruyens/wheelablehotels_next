@@ -229,3 +229,63 @@ button:disabled,
 		color: var(--secondary-400);
 	}
 }
+
+@media screen and (max-width: 1290px) {
+	.main {
+		margin: 3rem;
+		min-width: 1090px;
+	}
+}
+
+@media screen and (max-width: 1190px) {
+	.main {
+		margin: 3rem;
+		min-width: 0;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	h1 {
+		font-size: 3em;
+	}
+
+	h2 {
+		font-size: 2.2em;
+	}
+
+	h3 {
+		font-size: 1.2em;
+	}
+
+	.main {
+		margin: 2rem;
+	}
+}
+
+@media screen and (max-width: 570px) {
+	h1 {
+		font-size: 2.5em;
+	}
+
+	h2 {
+		font-size: 2em;
+	}
+
+	h3 {
+		font-size: 1em;
+	}
+
+	button {
+		padding: 0.4rem 1rem;
+		font-size: 0.8em;
+	}
+
+	.button {
+		padding: 0.4rem 1rem;
+		font-size: 0.8em;
+	}
+
+	.main {
+		margin: 1rem;
+	}
+}

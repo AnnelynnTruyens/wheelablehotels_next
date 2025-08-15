@@ -72,8 +72,8 @@
 
 /* HOTEL HIGHLIGHT */
 .hotel_highlight {
-	width: 15rem;
-	margin-bottom: 1rem;
+	width: 14rem;
+	margin-bottom: 1.5rem;
 
 	display: flex;
 	flex-direction: column;

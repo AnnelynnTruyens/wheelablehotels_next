@@ -40,12 +40,18 @@ export default function Header() {
 			</a>
 
 			<header className={pathname === "/" ? styles.header_home : styles.header}>
-				<Link href="/">
-					<img
-						src="/logo/Logo_WheelableHotels.svg"
-						alt="logo Wheelable Hotels"
-						className={styles.logo}
-					/>
+				<Link href="/" className={styles.brand}>
+					<picture>
+						<source
+							media="(max-width: 500px)"
+							srcSet="/Icon_WheelableHotels.png"
+						/>
+						<img
+							src="/logo/Logo_WheelableHotels.svg"
+							alt="Wheelable Hotels"
+							className={styles.logo}
+						/>
+					</picture>
 				</Link>
 
 				<nav className={styles.nav}>

@@ -145,23 +145,6 @@
 	.icon_border {
 		width: 1.5rem;
 		height: 1.5rem;
-	}
-
-	.step_text {
-		font-size: 0.8em;
-	}
-
-	.line {
-		transform: translateY(-1.3rem);
-	}
-
-	.line_bold {
-		transform: translateY(-1.3rem);
-	}
-}
-
-@media screen and (max-width: 650px) {
-	.icon_border {
 		padding: 0.5rem;
 	}
 
@@ -175,5 +158,30 @@
 
 	.line_bold {
 		transform: translateY(-1rem);
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.icon {
+		width: 20px;
+		height: 20px;
+	}
+
+	.icon_border {
+		width: 1.2rem;
+		height: 1.2rem;
+		padding: 0.5rem;
+	}
+
+	.line {
+		transform: translateY(-0.8rem);
+	}
+
+	.line_bold {
+		transform: translateY(-0.8rem);
+	}
+
+	.step_text {
+		font-size: 0.5em;
 	}
 }

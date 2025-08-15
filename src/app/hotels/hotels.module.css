@@ -232,6 +232,7 @@
 @media screen and (max-width: 1000px) {
 	.content_flex {
 		gap: 1rem;
+		flex-wrap: wrap;
 	}
 
 	.top_right {
@@ -248,12 +249,6 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-	}
-}
-
-@media screen and (max-width: 900px) {
-	.content_flex {
-		flex-wrap: wrap;
 	}
 }
 

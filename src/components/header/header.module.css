@@ -6,7 +6,7 @@
 	font-weight: 700;
 	padding: 0.4rem 1.5rem;
 	position: absolute;
-	transform: translateY(-100%);
+	transform: translateY(-110%);
 }
 
 .skip:focus {
@@ -138,13 +138,11 @@
 		font-size: 1.1em;
 	}
 
-	.nav_icon,
-	.nav_icon_home {
+	.nav_icon {
 		stroke-width: 2.5;
 	}
 
-	.icon_user,
-	.icon_user_home {
+	.icon_user {
 		stroke-width: 2.5;
 		border-width: 2.5px;
 	}
@@ -156,8 +154,7 @@
 		padding: 1rem;
 	}
 
-	.logo,
-	.logo_home {
+	.logo {
 		height: 2rem;
 	}
 	.nav_list {
@@ -174,7 +171,6 @@
 	.header,
 	.header_home {
 		padding: 0.5rem;
-		flex-wrap: wrap;
 	}
 	.nav_list {
 		font-size: 0.8em;
@@ -187,16 +183,6 @@
 }
 
 @media screen and (max-width: 500px) {
-	.header,
-	.header_home {
-		padding: 0.5rem;
-		justify-content: flex-start;
-	}
-
-	.logo,
-	.logo_home {
-		display: none;
-	}
 	.nav {
 		width: 100%;
 	}

@@ -43,44 +43,9 @@ export default function Step3({
 	const [accessibilityFeatures, setAccessibilityFeatures] = useState<
 		AccessibilityFeature[]
 	>([]);
-	// const { pending } = useFormStatus();
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
 	const [pending, setPending] = useState<boolean>(false);
-
-	// const [formState, formAction] = useActionState(
-	// 	async (_prevState: any, formData: FormData) => {
-	// 		try {
-	// 			if (roomDataList.length === 0) {
-	// 				throw new Error("No rooms provided");
-	// 			}
-
-	// 			for (const room of roomDataList) {
-	// 				const formData = new FormData();
-	// 				formData.append("hotelId", hotelId);
-	// 				formData.append("name", room.name);
-	// 				formData.append("description", room.description);
-	// 				formData.append("accessibilityInfo", room.accessibilityInfo);
-
-	// 				(room.accessibilityFeatures || []).forEach((id: string) => {
-	// 					formData.append("accessibilityFeatures[]", id);
-	// 				});
-
-	// 				await createRoom(formData); // ⬅️ Can make this concurrent if needed
-	// 			}
-
-	// 			onSuccess(); // ✅ After all rooms submitted
-	// 			return { success: true, error: null };
-	// 		} catch (err: any) {
-	// 			onError(err.message || "Failed to create room");
-	// 			return {
-	// 				success: false,
-	// 				error: err.message || "Failed to create room",
-	// 			};
-	// 		}
-	// 	},
-	// 	initialState
-	// );
 
 	useEffect(() => {
 		async function fetchData() {
@@ -233,6 +198,7 @@ export default function Step3({
 								type="button"
 								className={styles.delete_btn}
 								onClick={() => handleDeleteRoom(room._id)}
+								aria-label="delete"
 							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
