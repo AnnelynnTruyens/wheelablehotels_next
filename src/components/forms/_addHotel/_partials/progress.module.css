@@ -173,14 +173,6 @@
 		padding: 0.5rem;
 	}
 
-	.line {
-		transform: translateY(-0.8rem);
-	}
-
-	.line_bold {
-		transform: translateY(-0.8rem);
-	}
-
 	.step_text {
 		font-size: 0.5em;
 	}
