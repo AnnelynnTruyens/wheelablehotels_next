@@ -58,7 +58,7 @@ export default async function Profile() {
 									hotelName={hotel.name}
 									pathname={`/hotels/${hotel.slug}/edit`}
 									hotelId={hotel._id}
-									location={hotel.location}
+									location={hotel.address}
 									rating={hotel.rating}
 								/>
 							);
@@ -84,7 +84,7 @@ export default async function Profile() {
 									hotelName={hotel.name}
 									pathname={`/hotels/${hotel.slug}`}
 									hotelId={hotel._id}
-									location={hotel.location}
+									location={hotel.address}
 									rating={hotel.rating}
 								/>
 							);
@@ -106,7 +106,7 @@ export default async function Profile() {
 									hotelName={hotel.name}
 									pathname={`/hotels/${hotel.slug}`}
 									hotelId={hotel._id}
-									location={hotel.location}
+									location={hotel.address}
 									rating={hotel.rating}
 								/>
 							);

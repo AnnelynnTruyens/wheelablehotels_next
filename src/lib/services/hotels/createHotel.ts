@@ -28,13 +28,29 @@ export async function createHotel(
 		const user = await getCurrentUser(headers);
 
 		const hotelName = formData.get("hotelName") as string;
+		const address = formData.get("address") as string;
 		const hotelSlug =
 			slugify(hotelName, { lower: true, strict: true }) + `-${user.username}`;
+		const latRaw = formData.get("lat");
+		const lngRaw = formData.get("lng");
+
+		const lat = latRaw != null ? parseFloat(String(latRaw)) : NaN;
+		const lng = lngRaw != null ? parseFloat(String(lngRaw)) : NaN;
+
+		if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+			return {
+				success: false,
+				data: null,
+				error: "Invalid coordinates from Place Autocomplete.",
+			};
+		}
 
 		const hotel = new HotelModel({
 			name: hotelName,
 			userId: user._id,
 			slug: hotelSlug,
+			address: address,
+			location: { lat: lat, lng: lng },
 			status: "new",
 			amenities: [],
 			accessibilityFeatures: [],

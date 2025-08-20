@@ -46,7 +46,11 @@ export async function getAllHotels(): Promise<HotelWithRating[]> {
 			_id: hotel._id.toString(),
 			name: hotel.name,
 			slug: hotel.slug,
-			location: hotel.location,
+			address: hotel.address,
+			location: {
+				lat: hotel.location?.lat?.toString(),
+				lng: hotel.location?.lng?.toString(),
+			},
 			rating: avg,
 			userId: {
 				_id: (hotel.userId as User)._id?.toString(),

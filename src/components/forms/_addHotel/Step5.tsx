@@ -98,6 +98,7 @@ export default function Step5({
 
 		const fieldMapping: Record<string, string> = {
 			hotelName: "name",
+			address: "address",
 			location: "location",
 			contactEmail: "contactEmail",
 			contactPhone: "contactPhone",
@@ -306,9 +307,9 @@ export default function Step5({
 				<FormInput
 					label="Address hotel"
 					type="text"
-					id="location"
-					name="location"
-					value={hotelData.location}
+					id="address"
+					name="address"
+					value={hotelData.address}
 					placeholder="Plaza 1, 1000 Brussels"
 					onChange={handleInputChange}
 					required
@@ -394,6 +395,8 @@ export default function Step5({
 					onChange={handleInputChange}
 					required
 				/>
+				<input type="hidden" name="lat" value={hotelData.location.lat} />
+				<input type="hidden" name="lng" value={hotelData.location.lng} />
 
 				<h2 className={styles.subtitle}>Rooms</h2>
 				{roomDataList.map((room) => (

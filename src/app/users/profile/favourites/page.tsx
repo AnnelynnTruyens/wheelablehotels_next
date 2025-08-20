@@ -33,7 +33,7 @@ export default async function Favourites() {
 								hotelName={favourite.name}
 								pathname={`/hotels/${favourite.slug}`}
 								hotelId={favourite._id}
-								location={favourite.location}
+								location={favourite.address}
 								rating={favourite.rating}
 							/>
 						);

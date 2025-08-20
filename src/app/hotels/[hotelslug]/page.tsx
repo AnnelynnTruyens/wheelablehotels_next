@@ -16,6 +16,8 @@ import { RoomInfo } from "@/lib/services/rooms/types";
 import { ReviewInfo } from "@/lib/services/reviews/types";
 import FavouriteBtn from "@/components/buttons/FavouriteBtn";
 import Loading from "@/components/Loading";
+import { HotelWithRating } from "@/lib/services/hotels/types";
+import HotelMap from "./map";
 
 interface HotelDetailProps {
 	params: Promise<{ hotelslug: string }>;
@@ -25,7 +27,7 @@ export default async function HotelDetailPage({ params }: HotelDetailProps) {
 	let loading = true;
 	const { hotelslug } = await params;
 
-	const hotel = await getHotelBySlug(hotelslug);
+	const hotel: HotelWithRating = await getHotelBySlug(hotelslug);
 	const images: ImageInfo[] = await getImagesByHotel(hotel._id);
 	const rooms: RoomInfo[] = await getRoomsByHotel(hotel._id);
 	const reviews: ReviewInfo[] = await getReviewsByHotel(hotel._id);
@@ -187,6 +189,36 @@ export default async function HotelDetailPage({ params }: HotelDetailProps) {
 										{hotel.website}
 									</a>
 								</div>
+								<div className={styles.contact_item}>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+									>
+										<g clipPath="url(#clip0_2270_2261)">
+											<path
+												d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+												strokeWidth="2"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+											/>
+											<path
+												d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
+												strokeWidth="2"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+											/>
+										</g>
+										<defs>
+											<clipPath id="clip0_2270_2261">
+												<rect width="24" height="24" fill="white" />
+											</clipPath>
+										</defs>
+									</svg>
+									<p>{hotel.address}</p>
+								</div>
 							</div>
 							<div className={styles.ratings}>
 								<div className={styles.rating}>
@@ -206,6 +238,10 @@ export default async function HotelDetailPage({ params }: HotelDetailProps) {
 							</div>
 						</div>
 						<HotelImageGallery images={images} />
+						<HotelMap
+							lat={Number(hotel.location?.lat)}
+							lng={Number(hotel.location?.lng)}
+						/>
 					</div>
 				</section>
 				<section className={styles.room_section}>

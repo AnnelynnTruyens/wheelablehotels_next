@@ -15,9 +15,20 @@ const hotelSchema = new mongoose.Schema<Hotel>(
 			required: true,
 			unique: true,
 		},
-		location: {
+		address: {
 			type: String,
-			required: false,
+			required: true,
+			unique: true,
+		},
+		location: {
+			lat: {
+				type: Number,
+				required: true,
+			},
+			lng: {
+				type: Number,
+				required: true,
+			},
 		},
 		contactEmail: {
 			type: String,

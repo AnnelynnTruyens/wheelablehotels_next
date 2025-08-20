@@ -53,7 +53,7 @@ export default async function AdminDashboard() {
 										hotelName={hotel.name}
 										hotelSlug={`/hotels/${hotel.slug}`}
 										hotelId={hotel._id}
-										location={hotel.location}
+										location={hotel.address}
 										from={from}
 									/>
 								);

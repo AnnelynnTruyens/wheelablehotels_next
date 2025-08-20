@@ -53,7 +53,6 @@ export default function Step2({
 	const [formState, formAction] = useActionState(
 		async (_prevState: any, formData: FormData) => {
 			try {
-				formData.append("hotelName", hotelName);
 				formData.append("status", "new");
 				// Append amenities
 				formData.delete("amenities[]"); // Avoid duplicates if form re-submitted
@@ -106,7 +105,10 @@ export default function Step2({
 	}, [formState, onSuccess, onError]);
 
 	const [formValue, setFormValue] = useState({
-		location: "",
+		hotelName: "",
+		address: "",
+		lat: 0,
+		lng: 0,
 		contactEmail: "",
 		contactPhone: "",
 		website: "",
@@ -116,10 +118,19 @@ export default function Step2({
 	});
 
 	useEffect(() => {
-		if (!hotelData || !hotelData.location) return;
+		if (
+			!hotelData ||
+			!hotelData.name ||
+			!hotelData.location.lat ||
+			!hotelData.location.lng
+		)
+			return;
 
 		setFormValue({
-			location: hotelData.location || "",
+			hotelName: hotelData.name || "",
+			address: hotelData.address || "",
+			lat: hotelData.location.lat || 0,
+			lng: hotelData.location.lng || 0,
 			contactEmail: hotelData.contactEmail || "",
 			contactPhone: hotelData.contactPhone || "",
 			website: hotelData.website || "",
@@ -189,11 +200,21 @@ export default function Step2({
 
 				<form className={styles.form} action={formAction}>
 					<FormInput
+						label="Name hotel"
+						type="text"
+						id="hotelName"
+						name="hotelName"
+						placeholder="Brussels Plaza Hotel"
+						required
+						value={formValue.hotelName}
+						onChange={handleChange}
+					/>
+					<FormInput
 						label="Address hotel"
 						type="text"
-						id="location"
-						name="location"
-						value={formValue.location}
+						id="address"
+						name="address"
+						value={formValue.address}
 						placeholder="Plaza 1, 1000 Brussels"
 						onChange={handleChange}
 						required
@@ -282,6 +303,8 @@ export default function Step2({
 						required
 					/>
 
+					<input type="hidden" name="lat" value={formValue.lat} />
+					<input type="hidden" name="lng" value={formValue.lng} />
 					{formState.error && <p className={styles.error}>{formState.error}</p>}
 
 					<div className={styles.buttons}>

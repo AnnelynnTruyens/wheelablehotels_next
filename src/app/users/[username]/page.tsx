@@ -35,7 +35,7 @@ export default async function UserPage({ params }: UserPageProps) {
 								hotelName={hotel.name}
 								pathname={`/hotels/${hotel.slug}`}
 								hotelId={hotel._id}
-								location={hotel.location}
+								location={hotel.address}
 								rating={hotel.rating}
 							/>
 						);

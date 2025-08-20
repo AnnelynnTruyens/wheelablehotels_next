@@ -48,7 +48,7 @@ export default async function AdminHotelOverview() {
 										key={`hotel_${hotel._id}`}
 										hotelId={hotel._id}
 										hotelName={hotel.name}
-										hotelLocation={hotel.location}
+										hotelLocation={hotel.address}
 										status={hotel.status}
 										username={hotel.userId.username}
 										hotelSlug={hotel.slug}

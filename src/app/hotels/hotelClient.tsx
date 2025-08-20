@@ -78,7 +78,7 @@ export default function HotelClient({ initialHotels }: HotelClientProps) {
 
 		const results = hotels.filter((hotel) => {
 			const nameMatch = hotel.name?.toLowerCase().includes(query);
-			const locationMatch = hotel.location?.toLowerCase().includes(query);
+			const locationMatch = hotel.address?.toLowerCase().includes(query);
 			const matchesSearch = query === "" || nameMatch || locationMatch;
 
 			const hotelAmenityIds =
@@ -185,7 +185,7 @@ export default function HotelClient({ initialHotels }: HotelClientProps) {
 									hotelId={hotel._id}
 									hotelName={hotel.name}
 									hotelSlug={hotel.slug}
-									location={hotel.location}
+									location={hotel.address}
 									rating={hotel.rating}
 									accessibilityFeatures={hotel.accessibilityFeatures}
 									imageUrl={hotel.imageUrl}

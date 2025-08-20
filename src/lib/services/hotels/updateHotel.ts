@@ -30,7 +30,7 @@ export async function updateHotel(
 		const user = await getCurrentUser(headers);
 
 		const hotelName = formData.get("hotelName") as string;
-		const location = formData.get("location") as string;
+		const address = formData.get("address") as string;
 		const contactEmail = formData.get("contactEmail") as string;
 		const contactPhone = formData.get("contactPhone") as string;
 		const website = formData.get("website") as string;
@@ -39,6 +39,20 @@ export async function updateHotel(
 
 		const amenities = formData.getAll("amenities[]");
 		const accessibilityFeatures = formData.getAll("accessibilityFeatures[]");
+
+		const latRaw = formData.get("lat");
+		const lngRaw = formData.get("lng");
+
+		const lat = latRaw != null ? parseFloat(String(latRaw)) : NaN;
+		const lng = lngRaw != null ? parseFloat(String(lngRaw)) : NaN;
+
+		if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+			return {
+				success: false,
+				data: null,
+				error: "Invalid coordinates from Place Autocomplete.",
+			};
+		}
 
 		let hotelSlug;
 		if (status === "published") {
@@ -57,7 +71,11 @@ export async function updateHotel(
 			query,
 			{
 				name: hotelName,
-				location,
+				address,
+				location: {
+					lat,
+					lng,
+				},
 				contactEmail,
 				contactPhone,
 				website,

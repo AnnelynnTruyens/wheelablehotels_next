@@ -7,7 +7,11 @@ export interface HotelWithRating {
 	_id: string;
 	name: string;
 	slug: string;
-	location?: string;
+	address: string;
+	location: {
+		lat: number;
+		lng: number;
+	};
 	contactEmail?: string;
 	contactPhone?: string;
 	website?: string;
@@ -24,7 +28,11 @@ export interface HotelWithRatingAndImage {
 	_id: string;
 	name: string;
 	slug: string;
-	location?: string;
+	address: string;
+	location: {
+		lat: number;
+		lng: number;
+	};
 	rating?: number;
 	status: string;
 
@@ -39,7 +47,11 @@ export interface HotelWithRatingSimple {
 	_id: string;
 	name: string;
 	slug: string;
-	location?: string;
+	address: string;
+	location: {
+		lat: number;
+		lng: number;
+	};
 	rating?: number;
 	status: string;
 }
@@ -47,7 +59,11 @@ export interface HotelWithRatingSimple {
 export interface HotelBody {
 	name: string;
 	slug: string;
-	location?: string;
+	address: string;
+	location: {
+		lat: number;
+		lng: number;
+	};
 	contactEmail?: string;
 	contactPhone?: string;
 	website?: string;

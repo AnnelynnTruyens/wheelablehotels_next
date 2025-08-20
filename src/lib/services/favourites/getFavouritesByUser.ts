@@ -45,6 +45,7 @@ export async function getFavouritesByUser(): Promise<HotelWithRatingSimple[]> {
 				_id: hotel._id.toString(),
 				name: hotel.name,
 				slug: hotel.slug,
+				address: hotel.address,
 				location: hotel.location,
 				rating: avg,
 				status: hotel.status,

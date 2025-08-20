@@ -30,7 +30,11 @@ export async function getHotelsByUser(
 			_id: hotel._id.toString(),
 			name: hotel.name,
 			slug: hotel.slug,
-			location: hotel.location,
+			address: hotel.address,
+			location: {
+				lat: hotel.location?.lat?.toString(),
+				lng: hotel.location?.lng?.toString(),
+			},
 			rating: avg,
 			status: hotel.status,
 		});
