@@ -11,7 +11,7 @@ type MapProps = {
 };
 
 export default function HotelMap({ lat, lng }: MapProps) {
-	const key = process.env.GOOGLE_MAPS_API_KEY;
+	const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
 	// Make sure these are plain numbers and a plain object literal.
 	const center = useMemo(() => {
@@ -22,7 +22,7 @@ export default function HotelMap({ lat, lng }: MapProps) {
 	}, [lat, lng]);
 
 	if (!key) {
-		return <Error message="Missing GOOGLE_MAPS_API_KEY." />;
+		return <Error message="Missing NEXT_PUBLIC_GOOGLE_MAPS_API_KEY." />;
 	}
 	if (!center) return <Error message="Invalid coordinates." />;
 	return (
