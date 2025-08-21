@@ -20,7 +20,7 @@ export default function RootLayout({
 				<Footer />
 				{/* Google Maps JS API with Places */}
 				<Script
-					src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&v=weekly`}
+					src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_API_KEY}&v=weekly`}
 					strategy="afterInteractive"
 				/>
 				{/* The Extended Component Library that registers <gmpx-place-autocomplete> */}
