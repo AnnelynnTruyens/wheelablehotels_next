@@ -63,13 +63,13 @@ export default function Step4({
 					throw new Error("Upload failed");
 				}
 
-				const { filename } = await uploadRes.json();
+				const { url } = await uploadRes.json();
 
 				await createImage({
 					hotelId,
 					name: file.name,
 					alt: file.name,
-					filename: `/uploads/${filename}`,
+					filename: url,
 				});
 			}
 
