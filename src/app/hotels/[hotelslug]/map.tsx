@@ -28,7 +28,7 @@ export default function HotelMap({ lat, lng }: MapProps) {
 	return (
 		<APIProvider apiKey={key}>
 			<div className={styles.map}>
-				<Map defaultZoom={10} defaultCenter={center}>
+				<Map defaultZoom={11} defaultCenter={center}>
 					<Marker position={center} />
 				</Map>
 			</div>

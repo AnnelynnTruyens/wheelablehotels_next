@@ -82,8 +82,8 @@ export async function getHotelById(id: string): Promise<HotelWithRating> {
 		slug: hotel.slug,
 		address: hotel.address,
 		location: {
-			lat: hotel.location?.lat.toString(),
-			lng: hotel.location?.lng.toString(),
+			lat: hotel.location?.lat?.toString(),
+			lng: hotel.location?.lng?.toString(),
 		},
 		contactEmail: hotel.contactEmail,
 		contactPhone: hotel.contactPhone,
