@@ -250,13 +250,13 @@ export default function Step5({
 						method: "POST",
 						body: form,
 					});
-					const { filename } = await uploadRes.json();
+					const { url } = await uploadRes.json();
 
 					await createImage({
 						hotelId,
 						name: file.name,
 						alt: file.name,
-						filename: `/uploads/${filename}`,
+						filename: url,
 					});
 				}
 			}
