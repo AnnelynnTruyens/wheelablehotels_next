@@ -205,6 +205,8 @@
 
 .card_feature {
 	width: 5rem;
+	list-style: none;
+	text-align: center;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -217,6 +219,10 @@
 	.card_title,
 	.highlight_title {
 		color: var(--secondary-400);
+	}
+
+	.card_icon {
+		stroke: var(--textcolor);
 	}
 
 	.review {

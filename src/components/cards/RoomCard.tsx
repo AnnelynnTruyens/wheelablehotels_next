@@ -26,15 +26,15 @@ export default function RoomCard({
 				<ul className={styles.card_features}>
 					{accessibilityFeatures.map((feature) => {
 						return (
-							<div
+							<li
 								key={`accessibility-feature_${feature._id}`}
 								className={styles.card_feature}
 							>
 								<img src={feature.icon} alt="" className={styles.card_icon} />
-								<li className={styles.card_li} key={`feature_${feature._id}`}>
+								<p className={styles.card_p} key={`feature_${feature._id}`}>
 									{feature.name}
-								</li>
-							</div>
+								</p>
+							</li>
 						);
 					})}
 				</ul>

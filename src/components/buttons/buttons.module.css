@@ -76,13 +76,17 @@
 	transition: 0.3s;
 }
 
-.favourite_btn:hover .favourite_icon_filled {
+.favourite_btn:hover .favourite_icon_filled,
+.favourite_btn:focus .favourite_icon_filled,
+.favourite_btn:focus-visible .favourite_icon_filled {
 	stroke: var(--secondary-900);
 	fill: var(--secondary-900);
 	transition: 0.3s;
 }
 
-.favourite_btn:hover .favourite_icon_empty {
+.favourite_btn:hover .favourite_icon_empty,
+.favourite_btn:focus .favourite_icon_empty,
+.favourite_btn:focus-visible .favourite_icon_empty {
 	stroke: var(--secondary-900);
 	fill: none;
 	transition: 0.3s;
