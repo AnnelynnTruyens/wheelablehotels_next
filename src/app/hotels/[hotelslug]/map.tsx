@@ -24,11 +24,11 @@ export default function HotelMap({ lat, lng }: MapProps) {
 	if (!key) {
 		return <Error message="Missing NEXT_PUBLIC_GOOGLE_MAPS_API_KEY." />;
 	}
-	if (!center) return <Error message="Invalid coordinates." />;
+	if (!center) return null;
 	return (
 		<APIProvider apiKey={key}>
 			<div className={styles.map}>
-				<Map defaultZoom={11} defaultCenter={center}>
+				<Map defaultZoom={12} defaultCenter={center}>
 					<Marker position={center} />
 				</Map>
 			</div>

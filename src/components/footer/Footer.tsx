@@ -6,12 +6,18 @@ import Link from "next/link";
 export default function Footer() {
 	return (
 		<footer className={styles.footer}>
-			<Link href="/">
-				<img
-					src="/logo/Logo_WheelableHotels.svg"
-					alt="Logo Wheelable Hotels"
-					className={styles.logo}
-				/>
+			<Link href="/" className={styles.brand} aria-label="home">
+				<picture>
+					<source
+						media="(prefers-color-scheme: dark)"
+						srcSet="/logo/Logo_WheelableHotels_light.svg"
+					/>
+					<img
+						src="/logo/Logo_WheelableHotels.svg"
+						alt="Wheelable Hotels"
+						className={styles.logo}
+					/>
+				</picture>
 			</Link>
 			<nav className={styles.nav}>
 				<ul className={styles.nav_list}>

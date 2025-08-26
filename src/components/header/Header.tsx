@@ -40,7 +40,7 @@ export default function Header() {
 			</a>
 
 			<header className={pathname === "/" ? styles.header_home : styles.header}>
-				<Link href="/" className={styles.brand}>
+				<Link href="/" className={styles.brand} aria-label="home">
 					<picture>
 						<source
 							media="(max-width: 500px)"
