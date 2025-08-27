@@ -5,7 +5,12 @@ import styles from "./contact.module.css";
 import ContactForm from "./form";
 import { useEffect, useState } from "react";
 
-export default function Contact() {
+type ContactProps = {
+	username?: string;
+	userEmail?: string;
+};
+
+export default function Contact({ username, userEmail }: ContactProps) {
 	const searchParams = useSearchParams();
 
 	const hotelName = searchParams?.get("hotelName");
@@ -24,7 +29,11 @@ export default function Contact() {
 			{hotelName != null ? (
 				<p className={styles.contact_text}>Hotel: {hotelName}</p>
 			) : null}
-			<ContactForm hotelId={hotelId} />
+			<ContactForm
+				hotelId={hotelId}
+				username={username}
+				userEmail={userEmail}
+			/>
 		</main>
 	);
 }

@@ -9,11 +9,30 @@ import SuccessMessage from "@/components/forms/_partials/SuccessMessage";
 
 type ContactFormProps = {
 	hotelId?: string;
+	username?: string;
+	userEmail?: string;
 };
 
-export default function ContactForm({ hotelId }: ContactFormProps) {
+export default function ContactForm({
+	hotelId,
+	username,
+	userEmail,
+}: ContactFormProps) {
 	const [error, setError] = useState<string | null>(null);
 	const [success, setSuccess] = useState(false);
+
+	const [formValue, setFormValue] = useState({
+		name: username ?? "",
+		email: userEmail ?? "",
+	});
+
+	const handleChange = (
+		e:
+			| React.ChangeEvent<HTMLInputElement>
+			| React.ChangeEvent<HTMLTextAreaElement>
+	) => {
+		setFormValue({ ...formValue, [e.target.name]: e.target.value });
+	};
 
 	async function handleSubmit(formData: FormData) {
 		setError(null);
@@ -49,6 +68,8 @@ export default function ContactForm({ hotelId }: ContactFormProps) {
 					id="name"
 					name="name"
 					placeholder="John Doe"
+					value={formValue.name}
+					onChange={handleChange}
 					required
 					autocomplete="name"
 				/>
@@ -58,6 +79,8 @@ export default function ContactForm({ hotelId }: ContactFormProps) {
 					id="email"
 					name="email"
 					placeholder="john.doe@example.com"
+					value={formValue.email}
+					onChange={handleChange}
 					required
 					autocomplete="email"
 				/>
