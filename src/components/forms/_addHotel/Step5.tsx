@@ -518,7 +518,7 @@ export default function Step5({
 					)}
 
 					<PrimaryBtn type="submit" disabled={pending}>
-						Submit
+						{pending ? "Submitting hotel..." : "Submit"}
 					</PrimaryBtn>
 				</div>
 			</form>

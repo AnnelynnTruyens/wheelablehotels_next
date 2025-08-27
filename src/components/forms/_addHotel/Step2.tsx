@@ -312,7 +312,7 @@ export default function Step2({
 							Previous
 						</SecondaryBtn>
 						<PrimaryBtn type="submit" disabled={pending}>
-							Next
+							{pending ? "Adding hotel info..." : "Next"}
 						</PrimaryBtn>
 					</div>
 				</form>

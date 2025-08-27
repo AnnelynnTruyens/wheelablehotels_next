@@ -155,7 +155,7 @@ export default function Step1({
 				<div className={styles.buttons}>
 					<Link href="/">Cancel</Link>
 					<PrimaryBtn type="submit" disabled={pending}>
-						Next
+						{pending ? "Creating hotel..." : "Next"}
 					</PrimaryBtn>
 				</div>
 			</form>

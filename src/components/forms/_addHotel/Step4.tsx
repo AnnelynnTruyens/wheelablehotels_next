@@ -98,7 +98,7 @@ export default function Step4({
 						Previous
 					</SecondaryBtn>
 					<PrimaryBtn type="submit" disabled={loading}>
-						Next
+						{loading ? "Adding photos..." : "Next"}
 					</PrimaryBtn>
 				</div>
 			</form>

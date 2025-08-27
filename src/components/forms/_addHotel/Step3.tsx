@@ -227,7 +227,7 @@ export default function Step3({
 							Previous
 						</SecondaryBtn>
 						<PrimaryBtn type="submit" disabled={pending}>
-							Next
+							{pending ? "Adding rooms..." : "Next"}
 						</PrimaryBtn>
 					</div>
 				</form>
