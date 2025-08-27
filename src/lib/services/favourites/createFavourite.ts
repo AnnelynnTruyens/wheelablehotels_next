@@ -5,6 +5,7 @@ import { getCurrentUser } from "../users/getCurrentUser";
 import AuthError from "@/lib/middleware/errors/AuthError";
 import FavouriteModel from "@/lib/modules/Favourite/Favourite.model";
 import { connectToDatabase } from "@/lib/mongoose";
+import { isTokenExpired } from "@/lib/middleware/auth";
 
 export async function createFavourite(formData: FormData) {
 	try {
@@ -12,7 +13,7 @@ export async function createFavourite(formData: FormData) {
 
 		const authToken = (await cookies()).get("authToken")?.value;
 		const from = formData.get("from")?.toString() || "/users/profile";
-		if (!authToken) {
+		if (!authToken || isTokenExpired(authToken)) {
 			return { redirect: `/users/login?from=${encodeURIComponent(from)}` };
 		}
 

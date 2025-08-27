@@ -53,7 +53,7 @@ export default async function HotelDetailPage({ params }: HotelDetailProps) {
 				<title>Hotel detail | Wheelable Hotels</title>
 				<div className={styles.buttons}>
 					<GoBackBtn>Go back</GoBackBtn>
-					<FavouriteBtn hotelId={hotel._id} />
+					<FavouriteBtn hotelId={hotel._id} hotelSlug={hotelslug} />
 				</div>
 				<section className={styles.top_section}>
 					<div className={styles.top_left}>

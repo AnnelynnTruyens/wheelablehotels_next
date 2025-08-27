@@ -8,10 +8,14 @@ import { deleteFavourite } from "@/lib/services/favourites/deleteFavourite";
 
 type FavouriteBtnProps = {
 	hotelId: string;
+	hotelSlug: string;
 };
 
-export default function FavouriteBtn({ hotelId }: FavouriteBtnProps) {
-	const [isFavourite, setIsFavourite] = useState(false);
+export default function FavouriteBtn({
+	hotelId,
+	hotelSlug,
+}: FavouriteBtnProps) {
+	const [isFavourite, setIsFavourite] = useState<boolean>(false);
 	const [favouriteId, setFavouriteId] = useState<string | null>(null);
 	const [isPending, startTransition] = useTransition();
 
