@@ -10,6 +10,9 @@ export type RegisterState =
 	  }
 	| { success: false; error: string };
 
+// Only allow letters, numbers, underscores, and hyphens
+const USERNAME_REGEX = /^[a-zA-Z0-9_-]+$/;
+
 export default async function register(
 	prevState: RegisterState,
 	formData: FormData
@@ -17,16 +20,30 @@ export default async function register(
 	try {
 		await connectToDatabase();
 
-		// Extract form fields (you can adjust this to use zod or custom validation)
-		const data = {
-			username: formData.get("username"),
-			email: formData.get("email"),
-			password: formData.get("password"),
-			role: formData.get("role") ?? "user",
-		};
+		// Extract form fields
+		const username = formData.get("username")?.toString().trim() ?? "";
+		const email = formData.get("email")?.toString().trim() ?? "";
+		const password = formData.get("password")?.toString() ?? "";
+		const role = formData.get("role")?.toString() ?? "user";
+
+		// ✅ Validate username
+		if (!USERNAME_REGEX.test(username)) {
+			return {
+				success: false,
+				error:
+					"Usernames may only contain letters, numbers, underscores (_) and hyphens (-).",
+			};
+		}
+
+		if (username.length < 3 || username.length > 20) {
+			return {
+				success: false,
+				error: "Username must be between 3 and 20 characters.",
+			};
+		}
 
 		// Create and save user
-		const user = new UserModel(data);
+		const user = new UserModel({ username, email, password, role });
 		const result = await user.save();
 
 		// Optional: redirect after success or return data

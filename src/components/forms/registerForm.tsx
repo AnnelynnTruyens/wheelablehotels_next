@@ -6,6 +6,10 @@ import styles from "./forms.module.css";
 import { useFormStatus } from "react-dom";
 import register, { RegisterState } from "@/lib/services/users/register";
 import { useActionState } from "react";
+import { stat } from "fs";
+import SuccessMessage from "./_partials/SuccessMessage";
+import PrimaryBtn from "../buttons/PrimaryBtn";
+import PrimaryLinkBtn from "../buttons/PrimaryLinkBtn";
 
 function SubmitButton() {
 	const { pending } = useFormStatus();
@@ -23,6 +27,13 @@ export default function RegisterForm() {
 	};
 	const [state, formAction] = useActionState(register, initialState);
 
+	if (state.success)
+		return (
+			<>
+				<SuccessMessage message="You have been registered successfully! Welcome to the Wheelable Hotels community!" />
+				<PrimaryLinkBtn link={"/users/login"}>Log in</PrimaryLinkBtn>
+			</>
+		);
 	return (
 		<div className={styles.container_center}>
 			<p className={styles.title_small}>Join our community!</p>
