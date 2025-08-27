@@ -320,7 +320,7 @@
 
 /* ADD HOTELS */
 .room_container {
-	background-color: var(--secondary-500);
+	background-color: var(--secondary-200);
 
 	padding: 2rem;
 	margin: 1rem 0;
